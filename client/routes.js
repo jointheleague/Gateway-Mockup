@@ -1,3 +1,4 @@
+//do this on client for super fast switching
 Router.route('/', function(){
   this.layout('ApplicationLayout');
   this.render('navBar', {to: 'top'});

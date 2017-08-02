@@ -18,7 +18,15 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/dashboard">Dashboard <span class="sr-only">(current)</span></a></li>
+              {{#if isDashboard}}
+              <li class="active"><a href="/dashboard">Dashboard<span class="sr-only">(current)</span></a></li>
+              {{else}}
+              <li><a href="/dashboard">Dashboard<span class="sr-only">(current)</span></a></li>
+              {{/if}}
+              <li><a href="#"></a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+              <li class=""><a href="#">SomethingElse <span class="sr-only">(current)</span></a></li>
               <li><a href="#"></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
