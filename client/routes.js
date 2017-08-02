@@ -2,10 +2,15 @@
 Router.route('/', function(){
   this.layout('ApplicationLayout');
   this.render('navBar', {to: 'top'});
-  this.render('landing')
+  this.render('landing');
 });
 Router.route('/dashboard',function(){
+    this.layout('ApplicationLayout');
+    this.render('navBar', {to: 'top'});
+    this.render('clientDashboard'); //logict to choose wich dashboard to render
+});
+Router.route('/testPage', function(){
   this.layout('ApplicationLayout');
   this.render('navBar', {to: 'top'});
-  this.render('clientDashboard'); //logict to choose wich dashboard to render
+  this.render('Blank');
 });

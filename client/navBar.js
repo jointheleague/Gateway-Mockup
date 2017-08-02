@@ -9,5 +9,12 @@ Template.navBar.helpers({
     }else{
       return false;
     }
+  },
+  isTestPage(){
+    if (Router.current().route.getName() === "testPage") {
+      return true;
+    }else{
+      return false;
+    }
   }
 });
