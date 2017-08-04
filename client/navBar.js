@@ -17,5 +17,8 @@ Template.navBar.helpers({
     }else{
       return false;
     }
+  },
+  currentUsername(){
+    return Meteor.user().username;
   }
 });
