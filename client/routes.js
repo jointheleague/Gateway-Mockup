@@ -17,6 +17,12 @@ Router.route('/testPage', function(){
   this.render('Blank');
   this.render('footer',{to: 'footer'})
 });
+Router.route('/profile', function(){
+  this.layout('ApplicationLayout');
+  this.render('navBar', {to: 'top'});
+  this.render('profile');
+  this.render('footer',{to: 'footer'})
+});
 Router.route('/signup', function(){
   this.layout('ApplicationLayout');
   this.render('navBar', {to: 'top'});

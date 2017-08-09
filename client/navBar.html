@@ -23,6 +23,13 @@
               {{/if}}
             </ul>
             <ul class="nav navbar-nav">
+              {{#if isProfile}}
+              <li class="active"><a href="/profile">Profile<span class="sr-only">(current)</span></a></li>
+              {{else}}
+              <li><a href="/profile">Profile<span class="sr-only">(not current)</span></a></li>
+              {{/if}}
+            </ul>
+            <ul class="nav navbar-nav">
               {{#if isTestPage}}
               <li class="active"><a href="/testPage">testPage <span class="sr-only">(current)</span></a></li>
               {{else}}

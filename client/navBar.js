@@ -18,6 +18,13 @@ Template.navBar.helpers({
       return false;
     }
   },
+  isProfile(){
+    if(Router.current().route.getName() === "profile"){
+      return true;
+    }else{
+      return false;
+    }
+  },
   currentUsername(){
     return Meteor.user().username;
   }
