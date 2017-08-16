@@ -1,0 +1,24 @@
+<template name="profileNav">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h2> John Doe </h2>
+      <p>Here is an optional short bio... Hey look, this bio wraps onto the next line! Oh, and the next one too.</p>
+      <div class="container-fluid">
+        <div class="row">
+          <ul class="nav nav-pills nav-stacked">
+            {{#if isPageProfile}}
+            <li role="presentation" class="active"><a href="/profile">Profile</a></li>
+            {{else}}
+            <li role="presentation"><a href="/profile">Profile</a></li>
+            {{/if}}
+            {{#if isPageMessages}}
+            <li role="presentation" class="active"><a href="/profile/messages">Messages <span class="badge">4</span> </a></li>
+            {{else}}
+            <li role="presentation"><a href="/profile/messages">Messages <span class="badge">4</span> </a></li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

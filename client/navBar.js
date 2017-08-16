@@ -19,7 +19,7 @@ Template.navBar.helpers({
     }
   },
   isProfile(){
-    if(Router.current().route.getName() === "profile"){
+    if(Router.current().route.getName().includes("profile")){
       return true;
     }else{
       return false;

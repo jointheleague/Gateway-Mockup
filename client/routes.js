@@ -23,6 +23,12 @@ Router.route('/profile', function(){
   this.render('profile');
   this.render('footer',{to: 'footer'})
 });
+Router.route('/profile/messages', function(){
+  this.layout('ApplicationLayout');
+  this.render('navBar', {to: 'top'});
+  this.render('messages');
+  this.render('footer',{to: 'footer'})
+});
 Router.route('/signup', function(){
   this.layout('ApplicationLayout');
   this.render('navBar', {to: 'top'});

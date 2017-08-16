@@ -3,26 +3,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3 offset-md-4">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h2> John Doe </h2>
-            <div class="container-fluid">
-              <div class="row">
-                <ul class="nav nav-pills nav-stacked">
-                  <li role="presentation" class="active"><a href="#">Profile</a></li>
-                  <li role="presentation"><a href="#">Messeges <span class="badge">4</span> </a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        {{>profileNav}}
       </div>
       <div class="col-md-8">
         <div class="panel panel-default">
           <div class="panel-body">
-            <h3> Profile Information </h3>
-            <p>Here is an optional short bio...</p>
-            <br>
+
             <h3> Current Activity </h3>
             <div style="font-size:18px">
               <div style="color:grey"><b> 0 </b> Jobs In Progress <div class="pull-right"><a href="#"> View Current Jobs</a> </div></div>
@@ -34,7 +20,7 @@
             <br>
             <h3> User Ratings </h3>
             <div style="font-size:18px">
-              <b> Experiance </b> <span class="label label-primary">5.0</span>
+              <b> Experience </b> <span class="label label-primary">5.0</span>
               <br>
               <b> Work Quality </b> <span class="label label-info">4.1</span>
               <br>
@@ -46,22 +32,22 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="panel panel-default">
-                  <div class="panel-body">
-                    "All I needed was a for loop, but gee did he write that for loop well. Super optimized. 10/10 would hire again"
+                  <div class="panel-body" style="height:100%;">
+                    "All I needed was a for loop, but gee did he write that for loop well. Super optimized. 10/10 would hire again." <br> <a href="#"> -Teran Bo </a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="panel panel-default">
-                  <div class="panel-body">
-                    "This guy found a way to implement bubble sort in O(-1). My computer ran backwards."
+                  <div class="panel-body" style="height:100%;">
+                    "This guy found a way to implement bubble sort in O(-1). My computer ran backwards." <br> <a href="#"> -Khan Toe </a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="panel panel-default">
-                  <div class="panel-body">
-                    "Best Git Commit Messeges"
+                  <div class="panel-body" style="height:100%;">
+                    "Best Git Commit Messages" <br> <a href="#"> -Ron Moe </a>
                   </div>
                 </div>
               </div>
@@ -72,7 +58,7 @@
             <div style="color:grey">
               john.doe@bestemailhosting.net
               <br>
-              1-234-567-7910
+              1-234-567-7890
               <br>
               github.com/johnDoe
             </div>
