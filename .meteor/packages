@@ -25,5 +25,5 @@ iron:router
 accounts-base
 accounts-password
 accounts-github
-useraccounts:bootstrap
 accounts-google
+custom-useraccounts:bootstrap
