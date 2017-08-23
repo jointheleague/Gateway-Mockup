@@ -7,3 +7,18 @@
   background-color: rgb(246,246,246);
   text-align: center;
 }
+.currentText{
+  color: blue;
+  font-size: 22px;
+}
+.currentTextDisabled{
+  color: grey;
+  font-size: 22px;
+}
+.blackColorLink{
+  color: black;
+}
+
+.labelLarge{
+  font-size: 16px;
+}
