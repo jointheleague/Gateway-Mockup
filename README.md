@@ -14,4 +14,4 @@ Project Gateway is a website that allows anyone who wants an application, to hav
 * [Bootstrap 3 Docs](https://getbootstrap.com/docs/3.3/css/)
 * [Meteor Homepage](https://www.meteor.com/)
 * [Bug Report](https://github.com/jointheleague/Gateway-Mockup/issues/new)
-* [localhost:3000](localhost:3000)
+* [localhost:3000](http://localhost:3000/)
