@@ -19,6 +19,18 @@ Router.route('/testPage', function(){
   this.render('Blank');
   this.render('footer',{to: 'footer'})
 });
+Router.route('/profile', function(){
+  this.layout('ApplicationLayout');
+  this.render('navBar', {to: 'top'});
+  this.render('profile');
+  this.render('footer',{to: 'footer'})
+});
+Router.route('/profile/messages', function(){
+  this.layout('ApplicationLayout');
+  this.render('navBar', {to: 'top'});
+  this.render('messages');
+  this.render('footer',{to: 'footer'})
+});
 Router.route('/signup', function(){
   this.render('navBar', {to: 'top'});
   this.render('signup');
@@ -27,5 +39,11 @@ Router.route('/signup', function(){
 Router.route('/login', function(){
   this.render('navBar', {to: 'top'});
   this.render('login');
+  this.render('footer',{to: 'footer'})
+});
+Router.route('/jobs', function(){
+  this.layout('ApplicationLayout');
+  this.render('navBar', {to: 'top'});
+  this.render('jobListings');
   this.render('footer',{to: 'footer'})
 });

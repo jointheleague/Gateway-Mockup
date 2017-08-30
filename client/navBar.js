@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
+
 import './navBar.html';
 
 Template.navBar.helpers({
@@ -13,6 +14,20 @@ Template.navBar.helpers({
   },
   isTestPage(){
     if (Router.current().route.getName() === "testPage") {
+      return true;
+    }else{
+      return false;
+    }
+  },
+  isProfile(){
+    if(Router.current().route.getName().includes("profile")){
+      return true;
+    }else{
+      return false;
+    }
+  },
+  isFreelancer(){
+    if(Meteor.userId != undefined){
       return true;
     }else{
       return false;
