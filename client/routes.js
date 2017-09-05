@@ -41,3 +41,9 @@ Router.route('/login', function(){
   this.render('login');
   this.render('footer',{to: 'footer'})
 });
+Router.route('/dashboard2',function(){
+  this.layout('ApplicationLayout');
+  this.render('navBar', {to: 'top'});
+  this.render('freelancerDashboard');
+  this.render('footer',{to: 'footer'})
+});
