@@ -22,9 +22,8 @@
       {{#if showPwdForm}}
         <div class="container col-md-offset-4 col-md-4">
           {{> atPwdForm}}
-          {{#if showPwdForm}}
-            {{> atSigninLink}}
-          {{/if}}
+          {{> atSigninLink}}
+          {{> atSignupLink}}
         </div>
       {{/if}}
       {{#if showTermsLink}}
@@ -36,7 +35,9 @@
         {{/unless}}
       {{/if}}
       {{#if showSignUpLink}}
-        {{> atSignupLink}}
+        {{#unless showPwdForm}}
+          {{> atSignupLink}}
+        {{/unless}}
       {{/if}}
       {{#if showResendVerificationEmailLink}}
         {{> atResendVerificationEmailLink}}
