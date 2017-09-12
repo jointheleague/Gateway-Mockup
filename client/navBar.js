@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
+
 import './navBar.html';
 
 Template.navBar.helpers({
@@ -12,6 +13,13 @@ Template.navBar.helpers({
   },
   isProfile(){
     return Router.current().route.getName() != undefined && Router.current().route.getName().includes("profile");
+  },
+  isFreelancer(){
+    if(Meteor.userId != undefined){
+      return true;
+    }else{
+      return false;
+    }
   },
   currentUsername(){
     return Meteor.user().username;

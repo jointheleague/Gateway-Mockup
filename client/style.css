@@ -1,5 +1,4 @@
 .footer {
-  position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
@@ -15,10 +14,18 @@
   color: grey;
   font-size: 22px;
 }
+.currentTextDisabledSmall{
+  color: grey;
+  font-size: 16px;
+}
 .blackColorLink{
   color: black;
 }
 
 .labelLarge{
   font-size: 16px;
+}
+
+html{
+  height: 100%;
 }
