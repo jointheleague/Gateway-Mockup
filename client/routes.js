@@ -47,6 +47,12 @@ Router.route('/jobs', function(){
   this.render('jobListings');
   this.render('footer',{to: 'footer'})
 });
+Router.route('/jobs/edit', function(){
+  this.layout('ApplicationLayout');
+  this.render('navBar', {to: 'top'});
+  this.render('editJob');
+  this.render('footer',{to: 'footer'})
+});
 Router.route('/dashboard2',function(){
   this.layout('ApplicationLayout');
   this.render('navBar', {to: 'top'});
