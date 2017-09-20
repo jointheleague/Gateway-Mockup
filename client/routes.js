@@ -59,6 +59,12 @@ Router.route('/dashboard2',function(){
   this.render('freelancerDashboard');
   this.render('footer',{to: 'footer'})
 });
+Router.route('/about',function(){
+  this.layout('ApplicationLayout');
+  this.render('navBar', {to: 'top'});
+  this.render('about');
+  this.render('footer',{to: 'footer'})
+});
 Router.route('/logout', function() {
   Meteor.logout();
   this.redirect("/");
