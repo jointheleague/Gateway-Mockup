@@ -21,6 +21,9 @@ Template.navBar.helpers({
       return false;
     }
   },
+  isAbout(){
+    return Router.current().route.getName() != undefined && Router.current().route.getName().includes("about");
+  },
   currentUsername(){
     return Meteor.user().username;
   }
