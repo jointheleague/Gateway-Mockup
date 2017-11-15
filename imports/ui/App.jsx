@@ -45,9 +45,11 @@ export default class App extends Component {
 											- A navigation app to avoid crime
 										</Col>
 									</div>
-									<Panel header="Featured Users">
-										<HomepageCarousel></HomepageCarousel>
-									</Panel>
+									<div>
+										<Panel header="Featured Users">
+											<HomepageCarousel></HomepageCarousel>
+										</Panel>
+									</div>
 								</Panel>
 							</Col>
 						</Row>
