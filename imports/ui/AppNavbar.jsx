@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
+
+NavItem.prototype.handleClick = function handleClick(e) {
+  if (this.props.onSelect) {    
+    if (!this.props.disabled) {
+      this.props.onSelect(this.props.eventKey, e);
+    }
+  }
+};
 
 export default class AppNavbar extends Component {
   render() {
@@ -11,7 +19,7 @@ export default class AppNavbar extends Component {
         <Navbar inverse collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">Gateway Mockup</a>
+              <a href="/">Gateway Mockup</a>
             </Navbar.Brand>
             <Navbar.Toggle/>
           </Navbar.Header>

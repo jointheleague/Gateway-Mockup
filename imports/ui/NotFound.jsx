@@ -9,7 +9,7 @@ export default class NotFound extends Component {
   	return(
 	  	<div>
 	  		<AppNavbar username="lucas.baizer"></AppNavbar>
-	  		Page not found. Find it better.
+	  		<h1>Page not found. Find it better. (404)</h1>
 	    </div>
     );
   }

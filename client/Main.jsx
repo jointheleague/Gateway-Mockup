@@ -11,13 +11,13 @@ import './main.html';
 const history = createBrowserHistory();
 
 Meteor.startup(() => {
-  render( 
-    <Router history={history}>
-		<Switch>
-        	<Route path="/" component={ App } />
-       		<Route component={ NotFound } />
-		</Switch>
-    </Router>, 
-    document.getElementById('react-root') 
-  );
+	render(
+		<Router history={history}>
+			<Switch>
+				<Route exact path="/" component={ App } />
+				<Route path="*" component={ NotFound } />
+			</Switch>
+		</Router>, 
+		document.getElementById('react-root') 
+	);
 });
