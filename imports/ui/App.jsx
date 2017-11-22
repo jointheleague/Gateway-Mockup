@@ -11,14 +11,18 @@ export default class App extends Component {
 		return(
 			<div>
 				<AppNavbar username="lucas.baizer"></AppNavbar>
-				<div style={{'background': 'linear-gradient(to right, rgba(236, 240, 241,1.0), rgba(236, 240, 241,1.0) 5%, rgba(52, 152, 219,1.0), rgba(52, 152, 219,1.0) 95%)'}}>
+				<div style={{
+						'background': 'linear-gradient(to right, rgba(236, 240, 241,1.0), rgba(236, 240, 241,1.0) 5%, rgba(52, 152, 219,1.0), rgba(52, 152, 219,1.0) 95%)',
+						'width': '100%',
+						'height': '100%'
+					}}>
 					<Grid>
 						<Row>
 							<Col md={12}>
 								<Jumbotron>
 									<PageHeader>Project Gateway</PageHeader>
 									<br />
-									<p>Project Gateway is a website that allows anyone who wants an application, to have it made free of charge. New and upcoming developers can see your posting and begin working on it. After a few developers have finished, you can choose your favorite. This developer will gain points. This allows new developers to gain experience in real world applications in low stress environments.</p>
+									<p>Project Gateway is a website that allows anyone who wants code written to have it, free of charge. New and upcoming developers can see your job posting and begin working on it. After a few developers have submitted the code, you can choose your favorite. The winning developer will gain points. This allows new developers to gain experience in real world applications in low stress environments without bias against them because they don't have a lot of experience.</p>
 									<a href="/signup"><Button bsStyle="primary" bsSize="lg">Sign Up!</Button></a>
 									<br />
 									<Col md={4} mdOffset={5}>
@@ -26,30 +30,26 @@ export default class App extends Component {
 									</Col>
 								</Jumbotron>
 							</Col>
-							<Col md={1}>
-							</Col>
 							<Col md={10}>
 								<Panel header="Example Jobs">
-									<div>
+									<Row>
 										<Col md={9}>
 											<a href="/jobs/letseat">
 												Let's Eat
 											</a>
-											- A food locator app
+											&nbsp;A food locator app
 										</Col>
 										<br/>
 										<Col md={9}>
 											<a href="/jobs/crimeapp">
 												Crime Data App
 											</a>
-											- A navigation app to avoid crime
+											&nbsp;A navigation app to avoid crime
 										</Col>
-									</div>
-									<div>
-										<Panel header="Featured Users">
-											<HomepageCarousel></HomepageCarousel>
-										</Panel>
-									</div>
+									</Row>
+									<Panel header="Featured Users">
+										<HomepageCarousel></HomepageCarousel>
+									</Panel>
 								</Panel>
 							</Col>
 						</Row>

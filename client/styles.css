@@ -1,0 +1,44 @@
+nav {
+	margin: 0px !important;
+}
+
+.page-header {
+	margin-top: 0px !important;
+}
+
+.currentText {
+  color: blue;
+  font-size: 22px;
+}
+
+.footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: rgb(246,246,246);
+  text-align: center;
+}
+.currentText{
+  color: blue;
+  font-size: 22px;
+}
+.currentTextDisabled{
+  color: grey;
+  font-size: 22px;
+}
+.currentTextDisabledSmall{
+  color: grey;
+  font-size: 16px;
+}
+.blackColorLink{
+  color: black;
+}
+
+.labelLarge{
+  font-size: 16px;
+}
+
+html{
+  height: 100%;
+}
