@@ -3,15 +3,18 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
+import ProfileNav from './ProfileNav';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 export default class Profile extends Component {
   render() {
     return(
+      <div>
+      <AppNavbar username="lucas.baizer"></AppNavbar>
       <Grid>
         <Row>
-          <div class="col-md-3 offset-md-4">
-            {{>profileNav}}
+        <ProfileNav> </ProfileNav>
+          <div className="col-md-3 offset-md-4">
           </div>
           <Col md={8}>
             <Panel>
@@ -21,52 +24,52 @@ export default class Profile extends Component {
                     <legend><h3>Current Activity</h3></legend>
                   </Col>
                   <Col md={4}>
-                    <div class="center">
-                      <div class="currentText">
+                    <div className="center">
+                      <div className="currentText">
                         <b>4</b>
                       </div>
-                      <a href="/jobs" class="blackColorLink">Current Jobs</a>
+                      <a href="/jobs" className="blackColorLink">Current Jobs</a>
                     </div>
                   </Col>
                   <Col md={4}>
-                    <div class="center">
-                      <div class="currentText">
+                    <div className="center">
+                      <div className="currentText">
                         <b>8</b>
                       </div>
-                      <a href="/jobs" class="blackColorLink">Completed Jobs</a>
+                      <a href="/jobs" className="blackColorLink">Completed Jobs</a>
                     </div>
                   </Col>
                   <Col md={4}>
-                    <div class="center">
-                      <div class="currentTextDisabled">
+                    <div className="center">
+                      <div className="currentTextDisabled">
                         <b> 0 </b>
                       </div>
-                      <div href="/listings" class="blackColorLink">Job Listings</div>
+                      <div href="/listings" className="blackColorLink">Job Listings</div>
                     </div>
                   </Col>
                 </Col>
                 <Col md={6}>
                   <Col mdOffset={1} md={10}>
-                    <div class="center">
+                    <div className="center">
                       <legend> <h3> User Ratings </h3> </legend>
                     </div>
                   </Col>
-                  <div style="font-size:14px;">
+                  <div style={{fontSize: 14 + "px"}}>
                     <Col md={4}>
-                      <div class="center">
-                        <div class="currentText">5.0</div>
+                      <div className="center">
+                        <div className="currentText">5.0</div>
                         Experience
                       </div>
                     </Col>
                     <Col md={4}>
-                      <div class="center">
-                        <div class="currentText">4.1</div>
+                      <div className="center">
+                        <div className="currentText">4.1</div>
                         Work Quality
                       </div>
                     </Col>
                     <Col md={4}>
-                      <div class="center">
-                        <div class="currentText">2.9</div>
+                      <div className="center">
+                        <div className="currentText">2.9</div>
                         Timeliness
                       </div>
                     </Col>
@@ -76,28 +79,28 @@ export default class Profile extends Component {
 
               <br />
 
-              <div class="center">
+              <div className="center">
                 <h3> User Testimonials </h3>
               </div>
               <br />
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="panel panel-default">
-                    <div class="panel-body" style="height:150px;">
+              <div className="row">
+                <div className="col-md-4">
+                  <div className="panel panel-default">
+                    <div className="panel-body" style={{height: 150 + "px"}}>
                       "All I needed was a for loop, but gee did he write that for loop well. Super optimized. 10/10 would hire again." <br /> <a href="#"> -Teran Bo </a>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="panel panel-default">
-                    <div class="panel-body" style="height:150px;">
+                <div className="col-md-4">
+                  <div className="panel panel-default">
+                    <div className="panel-body" style={{height: 150 + "px"}}>
                       "This guy found a way to implement bubble sort in O(-1). My computer ran backwards." <br /> <a href="#"> -Khan Toe </a>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="panel panel-default">
-                    <div class="panel-body" style="height:100%;">
+                <div className="col-md-4">
+                  <div className="panel panel-default">
+                    <div className="panel-body" style={{height: 150 + "px"}}>
                       "Best Git Commit Messages" <br /> <a href="#"> -Ron Moe </a><br /><br /><br /><br />
                     </div>
                   </div>
@@ -107,6 +110,7 @@ export default class Profile extends Component {
           </Col>
         </Row>
       </Grid>
+      </div>
     );
   }
 }
