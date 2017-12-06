@@ -5,16 +5,41 @@ import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
-export default class JobListings extends Component {
+// TrackerReact is imported (default) with Meteor 1.3 new module system
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
+
+// Get the Collection
+Jobs = new Mongo.Collection("jobs");
+
+export default class JobListings extends TrackerReact(React.Component) {
+    
+    constructor() {
+    super();
+    this.state = {
+          subscription: {
+            jobs: Meteor.subscribe('jobs')
+          }
+        }
+  }
+  
+  componentWillUnmount() {
+    this.state.subscription.jobs.stop();
+  }
+
+  jobs(){
+    return Jobs.find({}).fetch();
+  }
+
   render() {
+
     return(
     <Grid>
         <div className="row">
     </div>
     <Col md={4}>
-      <div align="center">
+      
         <h2> Filters </h2>
-      </div>
+      
       <Panel>
           <legend> Languages </legend>
           <div style={{fontSize: 16 + "px"}}> <input type="checkbox" aria-label="..."/>  Java </div>
@@ -48,87 +73,15 @@ export default class JobListings extends Component {
       </Panel>
     </Col>
     <div className="col-md-8">
-      <div align="center">
+      
         <h2> Job Listings </h2>
-      </div>
-      <Panel>
-          <h3> Job Title </h3>
-          <div className="currentTextDisabledSmall"> Posted By <a href="#"> Joe </a> </div>
-          <p> Lorem ipsum dolor sit amet, dicunt discere argumentum cum ei. Sint primis dicunt quo et, eam eu viris scripta accusam. Duo doming possim laboramus at. Eu commodo accusam scripserit nec, vel eu quidam audire, quo meis errem ea.
-          </p>
-          <br/>
-          <span className="label label-primary">Lv. 2</span>
-          <span className="label label-default">Java</span>
-          <span className="label label-default">For Loops</span>
-          <div className="pull-right">
-            <button type="button" className="btn btn-success">View Job</button>
-          </div>
-      </Panel>
-      <Panel>
-          <h3> Job Title </h3>
-          <div className="currentTextDisabledSmall"> Posted By <a href="#"> Joe </a> </div>
-          <p> Lorem ipsum dolor sit amet, dicunt discere argumentum cum ei. Sint primis dicunt quo et, eam eu viris scripta accusam. Duo doming possim laboramus at. Eu commodo accusam scripserit nec, vel eu quidam audire, quo meis errem ea.
-          </p>
-          <br/>
-          <span className="label label-primary">Lv. 2</span>
-          <span className="label label-default">Java</span>
-          <span className="label label-default">For Loops</span>
-          <div className="pull-right">
-            <button type="button" className="btn btn-success">View Job</button>
-          </div>
-      </Panel>
-      <Panel>
-          <h3> Job Title </h3>
-          <div className="currentTextDisabledSmall"> Posted By <a href="#"> Joe </a> </div>
-          <p> Lorem ipsum dolor sit amet, dicunt discere argumentum cum ei. Sint primis dicunt quo et, eam eu viris scripta accusam. Duo doming possim laboramus at. Eu commodo accusam scripserit nec, vel eu quidam audire, quo meis errem ea.
-          </p>
-          <br/>
-          <span className="label label-primary">Lv. 2</span>
-          <span className="label label-default">Java</span>
-          <span className="label label-default">For Loops</span>
-          <div className="pull-right">
-            <button type="button" className="btn btn-success">View Job</button>
-          </div>
-        </Panel>
-      <Panel>
-          <h3> Job Title </h3>
-          <div className="currentTextDisabledSmall"> Posted By <a href="#"> Joe </a> </div>
-          <p> Lorem ipsum dolor sit amet, dicunt discere argumentum cum ei. Sint primis dicunt quo et, eam eu viris scripta accusam. Duo doming possim laboramus at. Eu commodo accusam scripserit nec, vel eu quidam audire, quo meis errem ea.
-          </p>
-          <br/>
-          <span className="label label-primary">Lv. 2</span>
-          <span className="label label-default">Java</span>
-          <span className="label label-default">For Loops</span>
-          <div className="pull-right">
-            <button type="button" className="btn btn-success">View Job</button>
-          </div>
-        </Panel>
-      <Panel>
-          <h3> Job Title </h3>
-          <div className="currentTextDisabledSmall"> Posted By <a href="#"> Joe </a> </div>
-          <p> Lorem ipsum dolor sit amet, dicunt discere argumentum cum ei. Sint primis dicunt quo et, eam eu viris scripta accusam. Duo doming possim laboramus at. Eu commodo accusam scripserit nec, vel eu quidam audire, quo meis errem ea.
-          </p>
-          <br/>
-          <span className="label label-primary">Lv. 2</span>
-          <span className="label label-default">Java</span>
-          <span className="label label-default">For Loops</span>
-          <div className="pull-right">
-            <button type="button" className="btn btn-success">View Job</button>
-          </div>
-        </Panel>
-      <Panel>
-          <h3> Job Title </h3>
-          <div className="currentTextDisabledSmall"> Posted By <a href="#"> Joe </a> </div>
-          <p> Lorem ipsum dolor sit amet, dicunt discere argumentum cum ei. Sint primis dicunt quo et, eam eu viris scripta accusam. Duo doming possim laboramus at. Eu commodo accusam scripserit nec, vel eu quidam audire, quo meis errem ea.
-          </p>
-          <br/>
-          <span className="label label-primary">Lv. 2</span>
-          <span className="label label-default">Java</span>
-          <span className="label label-default">For Loops</span>
-          <div className="pull-right">
-            <button type="button" className="btn btn-success">View Job</button>
-          </div>
-        </Panel>
+     
+        
+        {this.jobs().map((job) => {
+              return <h1> {job.name}   </h1>;
+            })}
+
+
     </div>
     </Grid>
     );

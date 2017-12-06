@@ -26,3 +26,4 @@ accounts-github@1.3.0
 accounts-google@1.2.0
 custom-useraccounts:bootstrap
 twbs:bootstrap
+ultimatejs:tracker-react
