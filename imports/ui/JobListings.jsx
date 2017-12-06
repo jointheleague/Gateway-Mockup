@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
-import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Col, Panel, Grid, Row, ListGroup, ListGroupItem, InputGroup, Label, Button } from 'react-bootstrap';
 
 // TrackerReact is imported (default) with Meteor 1.3 new module system
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
@@ -18,8 +18,15 @@ export default class JobListings extends TrackerReact(React.Component) {
     this.state = {
           subscription: {
             jobs: Meteor.subscribe('jobs')
-          }
-        }
+          },
+          languages: ["Java", "Python", "C", "C++", "C#", "F#", "VB", "JavaScript", "HTML", "TypeScript", "Rust", "PHP", "ASM", "Fortran", "Chef", "Perl" ],
+          selectedLangs : []
+        };
+        this.langSelected = this.langSelected.bind(this);
+  }
+
+  langSelected(ev){
+    this.state.selectedLangs.push(ev.target["data-lang"]);
   }
   
   componentWillUnmount() {
@@ -31,59 +38,91 @@ export default class JobListings extends TrackerReact(React.Component) {
   }
 
   render() {
-
+  const languageList = this.state.languages.map((value) => {
+      return (
+        <div key={value} style={{fontSize: 16 + "px"}}>
+          <input type="checkbox" onChange={this.langSelected} data-lang={value} aria-label="..."/>&nbsp;{value}
+        </div>
+      );
+       });
     return(
+      <div>
+      <AppNavbar username="lucas"></AppNavbar>
     <Grid>
-        <div className="row">
-    </div>
     <Col md={4}>
-      
+      <div style={{margin: "auto"}}>
         <h2> Filters </h2>
-      
+      </div>
       <Panel>
-          <legend> Languages </legend>
-          <div style={{fontSize: 16 + "px"}}> <input type="checkbox" aria-label="..."/>  Java </div>
-          <div style={{fontSize: 16 + "px"}}> <input type="checkbox" aria-label="..."/>  Python </div>
-          <div style={{fontSize: 16 + "px"}}> <input type="checkbox" aria-label="..."/>  HTML </div>
-          <div style={{fontSize: 16 + "px"}}> <input type="checkbox" aria-label="..."/>  C </div>
-          <div style={{fontSize: 16 + "px"}}> <input type="checkbox" aria-label="..."/>  C++ </div>
-          <div style={{fontSize: 16 + "px"}}> <input type="checkbox" aria-label="..."/>  Rust </div>
+          <fieldset>
+            <legend> Languages </legend>
+            {languageList}
+          </fieldset>
           <br/>
-          <legend> Level Range </legend>
-          <div className="col-md-6">
-          <div className="input-group">
-            <span className="input-group-addon" id="basic-addon1">Low</span>
-            <input type="text" className="form-control" placeholder="0" aria-describedby="basic-addon1"/>
-          </div>
-        </div>
-        <div className="col-md-6">
-        <div className="input-group">
-          <span className="input-group-addon" id="basic-addon1">High</span>
-          <input type="text" className="form-control" placeholder="9" aria-describedby="basic-addon1"/>
-        </div>
-      </div>
-      <br/>
-      <br/>
-      <br/>
+          <fieldset>
+            <legend> Level Range </legend>
+            <Col md={6}>
+              <InputGroup>
+                <InputGroup.Addon>Low</InputGroup.Addon>
+              </InputGroup>
+            </Col>
+            <Col md={6}>
+              <InputGroup>
+               <InputGroup.Addon>High</InputGroup.Addon>
+              </InputGroup>
+           </Col>
+           </fieldset>
+      <br />
+      <br />
+      <br />
       <legend> Other Tags </legend>
-      <div className="input-group">
-        <span className="input-group-addon" id="basic-addon1">Tags</span>
-        <input type="text" className="form-control" placeholder="" aria-describedby="basic-addon1"/>
-      </div>
+      <InputGroup>
+        <InputGroup.Addon>Tags</InputGroup.Addon>
+      </InputGroup>
       </Panel>
     </Col>
-    <div className="col-md-8">
-      
+    <Col md={8}>
+      <div style={{margin: "auto"}}>
         <h2> Job Listings </h2>
+      </div>
+     {this.jobs().map((job) => {
+      var shouldReturn = false;
+      for(i in job.langs){
+        for(j in this.state.selectedLangs){
+          if(job.langs[i] === this.state.selectedLangs[j]){
+            shouldReturn = true;
+          }
+        }
+      }
+        if(shouldReturn){
+              return (
+                <div>
+                 <Panel>
+         <h3> {job.name} </h3>
+          <div className="currentTextDisabledSmall"> Posted By <a href="#"> {job.client} </a> </div>
+          <p> {job.desc} </p>
+          <br/>
+          <Label bsStyle="primary">Lv. {job.level}</Label>
+          <Label bsStyle="default">Java</Label>
+          <Label bsStyle="default">Networking</Label>
+          <div className="pull-right">
+            <Button bsStyle="success">View Job</Button>
+          </div>
+      }
+      </Panel>
+                </div>
+              );
+            }
+            })}
+     
+    </Col>
+    </Grid>
+    </div>
      
         
-        {this.jobs().map((job) => {
-              return <h1> {job.name}   </h1>;
-            })}
 
 
-    </div>
-    </Grid>
+  
     );
   }
 }

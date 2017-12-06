@@ -7,15 +7,11 @@ import { App } from '../imports/ui/App.jsx';
 
 const Jobs = new Mongo.Collection('jobs');
 
-if (Meteor.isServer) {
+
   Meteor.publish('jobs', function jobsPublication() {
     return Jobs.find();
   });
-}
 
-
-if (Meteor.isServer) {
   Meteor.startup(() => {
     
   });
-}
