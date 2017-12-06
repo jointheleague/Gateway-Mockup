@@ -9,6 +9,7 @@ import Dashboard from '../imports/ui/Dashboard.jsx';
 import Profile from '../imports/ui/Profile.jsx';
 import JobListings from '../imports/ui/JobListings.jsx';
 import NotFound from '../imports/ui/NotFound.jsx';
+import About from '../imports/ui/About.jsx';
 import './main.html';
 
 const history = createBrowserHistory();
@@ -21,6 +22,7 @@ Meteor.startup(() => {
 				<Route exact path="/dashboard" component={ Dashboard } />
 				<Route exact path="/profile" component={ Profile } />
 				<Route exact path="/jobs" component={ JobListings } />
+				<Route exact path="/about" component={ About } />
 				<Route path="*" component={ NotFound } />
 			</Switch>
 		</Router>, 
