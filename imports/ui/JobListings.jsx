@@ -24,6 +24,8 @@ export default class JobListings extends Component {
     });
 
     return(
+      <div>
+      <AppNavbar></AppNavbar>
     <Grid>
     <Col md={4}>
       <div style={{margin: "auto"}}>
@@ -99,6 +101,7 @@ export default class JobListings extends Component {
       </Panel>
     </Col>
     </Grid>
+    </div>
     );
   }
 }
