@@ -10,14 +10,14 @@ export default class JobListings extends Component {
     super();
 
     this.state = {
-      languages: ["Java", "Python", "C", "C++", "C#", "F#", "VB", "JavaScript", "HTML", "TypeScript", "Rust", "PHP", "ASM", "Fortran", "Chef", "Perl" ]
+      languages: [ "ASM", "C", "C#", "C++", "Chef", "F#", "Fortran", "HTML", "Java", "JavaScript", "PHP", "Perl", "Python", "Rust", "TypeScript", "VB" ]
     };
   }
 
   render() {
     const languageList = this.state.languages.map((value) => {
       return (
-        <div key={value} style={{fontSize: 16 + "px"}}>
+        <div key={value} style={{fontSize: "16px"}}>
           <input type="checkbox" aria-label="..."/>&nbsp;{value}
         </div>
       );

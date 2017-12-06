@@ -24,7 +24,7 @@ export default class About extends Component {
           </div>
           <br />
           <Panel>
-            <div style={{"font-size": "18px", margin: "auto"}}>
+            <div style={{"font-size": "18px", margin: "auto", width: "50%"}}>
               <Col md={4}>
                 <img src="images/computerIcon.svg" width="75px;" />
                 <br />
