@@ -13,5 +13,5 @@ const Jobs = new Mongo.Collection('jobs');
   });
 
   Meteor.startup(() => {
-    
+    Jobs.insert({name : "Cool Job", desc : "This job involves writing a lot of for loops and unit tests. Be prepared.", langs : ["Fortran"], client : "John Doe", level : 3});
   });

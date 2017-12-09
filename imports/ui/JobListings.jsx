@@ -20,13 +20,23 @@ export default class JobListings extends TrackerReact(React.Component) {
             jobs: Meteor.subscribe('jobs')
           },
           languages: ["Java", "Python", "C", "C++", "C#", "F#", "VB", "JavaScript", "HTML", "TypeScript", "Rust", "PHP", "ASM", "Fortran", "Chef", "Perl" ],
-          selectedLangs : []
+          selectedLangs : [""]
         };
         this.langSelected = this.langSelected.bind(this);
   }
 
   langSelected(ev){
-    this.state.selectedLangs.push(ev.target["data-lang"]);
+    if(ev.target.checked){
+     this.setState({ selectedLangs : [...this.state.selectedLangs, ev.target.dataset.lang]});   
+    }else{
+      var indexToRemove;
+      for(i = 0; i < this.state.selectedLangs.size; i++){
+        if(ev.target.dataset.lang === this.state.selectedLangs.get(i)){
+          indexToRemove = i;
+        }
+      }
+      this.setState({ selectedLangs : this.state.selectedLangs.splice(i, 1)});
+    }
   }
   
   componentWillUnmount() {
@@ -94,6 +104,7 @@ export default class JobListings extends TrackerReact(React.Component) {
           }
         }
       }
+     // shouldReturn = true;
         if(shouldReturn){
               return (
                 <div>
@@ -108,7 +119,7 @@ export default class JobListings extends TrackerReact(React.Component) {
           <div className="pull-right">
             <Button bsStyle="success">View Job</Button>
           </div>
-      }
+      
       </Panel>
                 </div>
               );
