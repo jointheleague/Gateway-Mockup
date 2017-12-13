@@ -10,6 +10,7 @@ import Profile from '../imports/ui/Profile.jsx';
 import JobListings from '../imports/ui/JobListings.jsx';
 import NotFound from '../imports/ui/NotFound.jsx';
 import About from '../imports/ui/About.jsx';
+import Login from '../imports/ui/Login.jsx'
 import './main.html';
 
 const history = createBrowserHistory();
@@ -23,10 +24,7 @@ Meteor.startup(() => {
 				<Route exact path="/profile" component={ Profile } />
 				<Route exact path="/jobs" component={ JobListings } />
 				<Route exact path="/login" component={ Login } />
-<<<<<<< HEAD
-=======
 				<Route exact path="/about" component={ About } />
->>>>>>> Stashed changes
 				<Route path="*" component={ NotFound } />
 			</Switch>
 		</Router>,
