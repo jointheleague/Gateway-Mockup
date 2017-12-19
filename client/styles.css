@@ -1,3 +1,16 @@
+nav {
+	margin: 0px !important;
+}
+
+.page-header {
+	margin-top: 0px !important;
+}
+
+.currentText {
+  color: blue;
+  font-size: 22px;
+}
+
 .footer {
   right: 0;
   bottom: 0;

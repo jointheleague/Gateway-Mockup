@@ -1,11 +1,5 @@
+import React from 'react';
 import { Meteor } from 'meteor/meteor';
-
-Meteor.startup(() => {
-  // code to run on server at startup
-});
-
-Meteor.methods({
-    "userExists": function(username){
-        return !!Meteor.users.findOne({username: username});
-    },
-});
+import { render } from 'react-dom';
+import { Router, Route, browserHistory } from 'react-router';
+import { App } from '../imports/ui/App.jsx';
