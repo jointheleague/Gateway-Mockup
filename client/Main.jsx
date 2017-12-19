@@ -22,11 +22,7 @@ Meteor.startup(() => {
 				<Route exact path="/dashboard" component={ Dashboard } />
 				<Route exact path="/profile" component={ Profile } />
 				<Route exact path="/jobs" component={ JobListings } />
-				<Route exact path="/login" component={ Login } />
-<<<<<<< HEAD
-=======
 				<Route exact path="/about" component={ About } />
->>>>>>> Stashed changes
 				<Route path="*" component={ NotFound } />
 			</Switch>
 		</Router>,
