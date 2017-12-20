@@ -12,6 +12,7 @@ import NotFound from '../imports/ui/NotFound.jsx';
 import About from '../imports/ui/About.jsx';
 import Login from '../imports/ui/Login.jsx'
 import SignUp from '../imports/ui/SignUp.jsx'
+import PostaJob from '../imports/ui/PostaJob.jsx'
 import './main.html';
 
 const history = createBrowserHistory();
@@ -27,6 +28,7 @@ Meteor.startup(() => {
 				<Route exact path="/login" component={ Login } />
 				<Route exact path="/signup" component={ SignUp } />
 				<Route exact path="/about" component={ About } />
+				<Route exact path="/jobs/edit" component={ PostaJob } />
 				<Route path="*" component={ NotFound } />
 			</Switch>
 		</Router>,
