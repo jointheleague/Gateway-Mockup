@@ -45,6 +45,16 @@ export default class SignUp extends Component {
                         />
                         <FormControl.Feedback />
                       </FormGroup>
+                      <FormGroup
+                        controlId="formBasicText"
+                        >
+                          <ControlLabel>Confirm Email</ControlLabel>
+                          <FormControl
+                            type="text"
+                            placeholder = "Reenter email"
+                          />
+                          <FormControl.Feedback />
+                        </FormGroup>
                     <FormGroup
                       controlId="formBasicText"
                       >
@@ -55,8 +65,22 @@ export default class SignUp extends Component {
                         />
                         <FormControl.Feedback />
                       </FormGroup>
+                      <FormGroup
+                        controlId="formBasicText"
+                        >
+                          <ControlLabel>Confirm Password</ControlLabel>
+                          <FormControl
+                            type="text"
+                            placeholder = "Reenter password"
+                          />
+                          <FormControl.Feedback />
+                        </FormGroup>
                       <a href="/profile"><Button bsStyle="primary">Sign up for Gateway</Button></a>
                     </form>
+                  </Panel>
+                  <Panel>
+                    <p>Already have an account?</p>
+                    <a href = "/login">Log in.</a>
                   </Panel>
                 </Col>
               </Row>
