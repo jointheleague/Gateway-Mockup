@@ -5,22 +5,22 @@ import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
 import { Col, Panel, Grid, Row, form, FormGroup, Button, FormControl, ControlLabel } from 'react-bootstrap';
 
-export default class Login extends Component {
+export default class SignUp extends Component {
 
   render(){
     return(
       <div>
         <AppNavbar username="lucas.baizer"></AppNavbar>
         <Grid>
-        <br />
-          <Row>
-              <center><img src="images/gate.png" alt="..." width={100} height={100}/></center>
-          </Row>
           <br />
-          <Row>
-            <center><h3>Sign in to Gateway</h3></center>
-          </Row>
-          <br />
+            <Row>
+                <center><img src="images/gate.png" alt="..." width={100} height={100}/></center>
+            </Row>
+            <br />
+            <Row>
+              <center><h3>Sign up for Gateway</h3></center>
+            </Row>
+            <br />
           <Row>
             <Col md={4} mdOffset={4}>
               <Panel>
@@ -31,27 +31,32 @@ export default class Login extends Component {
                       <ControlLabel>Username</ControlLabel>
                       <FormControl
                         type="text"
-                        placeholder = "Username"
+                        placeholder = "Pick a username"
                       />
                       <FormControl.Feedback />
                     </FormGroup>
                     <FormGroup
                       controlId="formBasicText"
                       >
+                        <ControlLabel>Email</ControlLabel>
+                        <FormControl
+                          type="text"
+                          placeholder = "you@example.com"
+                        />
+                        <FormControl.Feedback />
+                      </FormGroup>
+                    <FormGroup
+                      controlId="formBasicText"
+                      >
                         <ControlLabel>Password</ControlLabel>
                         <FormControl
                           type="text"
-                          placeholder = "Password"
+                          placeholder = "Create a password"
                         />
                         <FormControl.Feedback />
-                        <a href="/forgotPW" align="right">Forgot password?</a>
                       </FormGroup>
-                      <a href="/profile"><Button bsStyle="primary">Sign in</Button></a>
+                      <a href="/profile"><Button bsStyle="primary">Sign up for Gateway</Button></a>
                     </form>
-                  </Panel>
-                  <Panel>
-                    <p>New to Gateway?</p>
-                    <a href = "/signup">Create an account.</a>
                   </Panel>
                 </Col>
               </Row>
