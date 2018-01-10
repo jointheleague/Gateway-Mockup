@@ -20,7 +20,7 @@ Meteor.startup(() => {
 	render(
 		<Router history={history}>
 			<App>
-				<Route path="/" component={ Homepage } />
+				<Route exact path="/" component={ Homepage } />
 				<Route path="/dashboard" component={ Dashboard } />
 				<Route path="/profile" component={ Profile } />
 				<Route path="/jobs" component={ JobListings } />
