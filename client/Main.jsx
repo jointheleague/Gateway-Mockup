@@ -26,7 +26,6 @@ Meteor.startup(() => {
 				<Route path="/jobs" component={ JobListings } />
 				<Route path="/login" component={ Login } />
 				<Route path="/about" component={ About } />
-				<Route path="*" component={ NotFound } />                                                   
 			</App>
 		</Router>,
 		document.getElementById('react-root')
