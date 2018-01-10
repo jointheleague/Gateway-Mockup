@@ -7,6 +7,28 @@ import { Col, Panel, Grid, Row, form, FormGroup, Button, FormControl, ControlLab
 
 export default class SignUp extends Component {
 
+  constructor(){
+    console.log("Constructor");
+    super();
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      username: '',
+      usernamePlaceholder: 'Pick a username'
+    };
+    console.log(this.state);
+  }
+
+  handleChange(e){
+    console.log("handleChange");
+    this.setState({ username: e.target.value});
+    console.log(this.state);
+  }
+
+  handleSubmit(e){
+    if (this.state.username == '') this.setState({ usernamePlaceholder : 'You must enter a username.'});
+  }
+
   render(){
     return(
       <div>
@@ -31,7 +53,9 @@ export default class SignUp extends Component {
                       <ControlLabel>Username</ControlLabel>
                       <FormControl
                         type="text"
-                        placeholder = "Pick a username"
+                        placeholder = {this.state.usernamePlaceholder}
+                        onChange = {this.handleChange}
+                        value = {this.state.username}
                       />
                       <FormControl.Feedback />
                     </FormGroup>
@@ -75,7 +99,7 @@ export default class SignUp extends Component {
                           />
                           <FormControl.Feedback />
                         </FormGroup>
-                      <a href="/profile"><Button bsStyle="primary">Sign up for Gateway</Button></a>
+                      <Button bsStyle="primary" onClick={this.handleSubmit}>Sign up for Gateway</Button>
                     </form>
                   </Panel>
                   <Panel>
