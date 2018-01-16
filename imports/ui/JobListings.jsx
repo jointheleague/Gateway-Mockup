@@ -3,26 +3,86 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
-import { Col, Panel, Grid, Row, ListGroup, ListGroupItem, InputGroup, Label, Button } from 'react-bootstrap';
+import { Col, Panel, Grid, Row, ListGroup, ListGroupItem, InputGroup, Label, Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
-export default class JobListings extends Component {
-  constructor() {
+// TrackerReact is imported (default) with Meteor 1.3 new module system
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
+
+// Get the Collection
+Jobs = new Mongo.Collection("jobs");
+
+  function FieldGroup({ id, label, help, ...props }) {
+  return (
+    <FormGroup controlId={id}>
+      <ControlLabel>{label}</ControlLabel>
+      <FormControl {...props} />
+      
+    </FormGroup>
+  );
+}
+
+export default class JobListings extends TrackerReact(React.Component) {
+    
+    constructor() {
     super();
-
     this.state = {
-      languages: [ "ASM", "C", "C#", "C++", "Chef", "F#", "Fortran", "HTML", "Java", "JavaScript", "PHP", "Perl", "Python", "Rust", "TypeScript", "VB" ]
-    };
+          subscription: {
+            jobs: Meteor.subscribe('jobs')
+          },
+          languages: ["Java", "Python", "C", "C++", "C#", "F#", "VB", "JavaScript", "HTML", "TypeScript", "Rust", "PHP", "ASM", "Fortran", "Chef", "Perl" ],
+          selectedLangs : [""],
+          upperLevelFilter : 0,
+          lowerLevelFilter : 9
+        };
+        this.langSelected = this.langSelected.bind(this);
+        this.levelRangeChanged = this.levelRangeChanged.bind(this);
+  }
+
+  levelRangeChanged(ev){
+    if(ev.target.dataset.limit === "upper"){
+      this.setState({upperLevelFilter : ev.target.value});
+    }else if(ev.target.dataset.limit === "lower"){
+      this.setState({upperLevelFilter : ev.target.value});
+    }
+  }
+
+
+  langSelected(ev){
+    if(ev.target.checked){
+     this.setState({ selectedLangs : [...this.state.selectedLangs, ev.target.dataset.lang]});   
+    }else{
+      var indexToRemove = -1;
+      for(i = 0; i < this.state.selectedLangs.length; i++){
+       
+        if(ev.target.dataset.lang === this.state.selectedLangs[i]){
+          indexToRemove = i;
+        }
+      }
+
+      if(!(indexToRemove == -1)){
+        var newArray = this.state.selectedLangs;
+        newArray.splice(indexToRemove, 1);
+        this.setState({ selectedLangs : newArray});
+      }
+    }
+  }
+  
+  componentWillUnmount() {
+    this.state.subscription.jobs.stop();
+  }
+
+  jobs(){
+    return Jobs.find({}).fetch();
   }
 
   render() {
-    const languageList = this.state.languages.map((value) => {
+  const languageList = this.state.languages.map((value) => {
       return (
-        <div key={value} style={{fontSize: "16px"}}>
-          <input type="checkbox" aria-label="..."/>&nbsp;{value}
+        <div key={value} style={{fontSize: 16 + "px"}}>
+          <input type="checkbox" onChange={this.langSelected} data-lang={value} aria-label="..."/>&nbsp;{value}
         </div>
       );
-    });
-
+       });
     return(
       <div>
     <Grid>
@@ -38,15 +98,14 @@ export default class JobListings extends Component {
           <br/>
           <fieldset>
             <legend> Level Range </legend>
-            <Col md={6}>
-              <InputGroup>
-                <InputGroup.Addon>Low</InputGroup.Addon>
-              </InputGroup>
+            <Col md={6}>              
+                <FieldGroup data-limit={"lower"} onChange={this.levelRangeChanged} type={"text"} label={"Upper Limit"} placeholder={"0"}/>
+              
             </Col>
             <Col md={6}>
-              <InputGroup>
-               <InputGroup.Addon>High</InputGroup.Addon>
-              </InputGroup>
+              
+               <FieldGroup data-limit={"upper"} onChange={this.levelRangeChanged} type={"text"} label={"Lower Limit"} placeholder={"9"}/>
+              
            </Col>
            </fieldset>
       <br />
@@ -62,42 +121,41 @@ export default class JobListings extends Component {
       <div style={{margin: "auto"}}>
         <h2> Job Listings </h2>
       </div>
-      <Panel>
-          <h3> Job Title </h3>
-          <div className="currentTextDisabledSmall"> Posted By <a href="#"> James Gosling </a> </div>
-          <p>I need someone to make me a Hello World program. I can't figure out how to use this language.</p>
+     {this.jobs().map((job) => {
+      var shouldReturn = false;
+      for(i in job.langs){
+        for(j in this.state.selectedLangs){
+          if(job.langs[i] === this.state.selectedLangs[j]){
+            if(job.level >= this.state.lowerLevelFilter && job.level <= this.state.upperLevelFilter){
+            shouldReturn = true;
+          }
+          }
+        }
+      }
+     
+        if(shouldReturn){
+           const langLabels = job.langs.map((lang) => {
+            return(<div key={job.toString() + lang.toString()}><Label bsStyle="default">{lang}</Label></div>);
+      });
+              return (
+                <div>
+                 <Panel>
+         <h3> {job.name} </h3>
+          <div className="currentTextDisabledSmall"> Posted By <a href="#"> {job.client} </a> </div>
+          <p> {job.desc} </p>
           <br/>
-          <Label bsStyle="primary">Lv. 1</Label>
-          <Label bsStyle="default">Chef</Label>
-          <Label bsStyle="default">Hello World</Label>
+          <Label bsStyle="primary">Lv. {job.level}</Label>
+
+          {langLabels}
+        
           <div className="pull-right">
             <Button bsStyle="success">View Job</Button>
           </div>
-      </Panel>
-      <Panel>
-          <h3> Job Title </h3>
-          <div className="currentTextDisabledSmall"> Posted By <a href="#"> Anonymous </a> </div>
-          <p>I need someone to make me a Turing-complete programming language. Syntax is irrelevant. I don't really care whether it's object oriented, functional, or whatever. I just need it.</p>
-          <br/>
-          <Label bsStyle="primary">Lv. 6</Label>
-          <Label bsStyle="default">ASM</Label>
-          <Label bsStyle="default">Language Design</Label>
-          <div className="pull-right">
-            <Button bsStyle="success">View Job</Button>
-          </div>
-      </Panel>
-      <Panel>
-          <h3> Job Title </h3>
-          <div className="currentTextDisabledSmall"> Posted By <a href="#"> League Student </a> </div>
-          <p>I need someone to make me a Java spambot for educational purposes.</p>
-          <br/>
-          <Label bsStyle="primary">Lv. 3</Label>
-          <Label bsStyle="default">Java</Label>
-          <Label bsStyle="default">Networking</Label>
-          <div className="pull-right">
-            <Button bsStyle="success">View Job</Button>
-          </div>
-      </Panel>
+        </Panel>
+        </div>);
+            }
+            })}
+     
     </Col>
     </Grid>
     </div>
