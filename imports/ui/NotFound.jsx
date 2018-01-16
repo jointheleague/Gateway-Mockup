@@ -8,7 +8,6 @@ export default class NotFound extends Component {
   render() {
   	return(
 	  	<div>
-	  		<AppNavbar username="lucas.baizer"></AppNavbar>
 	  		<h1>Page not found. Find it better. (404)</h1>
 	    </div>
     );

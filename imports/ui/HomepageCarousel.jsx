@@ -4,20 +4,21 @@ import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import { Glyphicon, Carousel, Col, Media } from 'react-bootstrap';
 
-const HomepageCarousel = React.createClass({
-	getInitialState() {
-	    return {
+export default class HomepageCarousel extends Component {
+	constructor() {
+	    super();
+	    this.state = {
 	       index: 0,
 	       direction: null
 	    };
-	},
+	}
 
 	handleSelect(selectedIndex, e) {
-	    this.setState({
+	    this.state = {
 	        index: selectedIndex,
 	        direction: e.direction
-	    });
-	},
+	    };
+	}
 
 	render() {
 		return(
@@ -64,6 +65,4 @@ const HomepageCarousel = React.createClass({
 			</Carousel>
 		);
 	}
-});
-
-export default HomepageCarousel;
+}

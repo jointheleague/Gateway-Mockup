@@ -85,7 +85,6 @@ export default class JobListings extends TrackerReact(React.Component) {
        });
     return(
       <div>
-      <AppNavbar username="lucas"></AppNavbar>
     <Grid>
     <Col md={4}>
       <div style={{margin: "auto"}}>
@@ -99,8 +98,7 @@ export default class JobListings extends TrackerReact(React.Component) {
           <br/>
           <fieldset>
             <legend> Level Range </legend>
-            <Col md={6}>
-              
+            <Col md={6}>              
                 <FieldGroup data-limit={"lower"} onChange={this.levelRangeChanged} type={"text"} label={"Upper Limit"} placeholder={"0"}/>
               
             </Col>
@@ -161,7 +159,6 @@ export default class JobListings extends TrackerReact(React.Component) {
     </Col>
     </Grid>
     </div>
-
     );
   }
 }

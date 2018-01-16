@@ -27,15 +27,16 @@ export default class AppNavbar extends Component {
             <Nav>
               <NavItem eventKey={1} href="/dashboard">Dashboard</NavItem>
               <NavItem eventKey={2} href="/profile">Profile</NavItem>
-              <NavItem eventKey={3} href="/about">About</NavItem>
+              <NavItem eventKey={3} href="/jobs">Jobs</NavItem>
+              <NavItem eventKey={4} href="/about">About</NavItem>
             </Nav>
             <Nav pullRight>
-              <NavItem eventKey={4} href="/jobs/edit">Post a Job</NavItem>
-              <NavDropdown eventKey={5} title={this.props.username} id="basic-nav-dropdown">
-                <MenuItem eventKey={5.1} href="/profile">Profile</MenuItem>
-                <MenuItem eventKey={5.2}>Switch to Freelancer</MenuItem>
+              <NavItem eventKey={5} href="/jobs/edit">Post a Job</NavItem>
+              <NavDropdown eventKey={6} title={this.props.username} id="basic-nav-dropdown">
+                <MenuItem eventKey={6.1} href="/profile">Profile</MenuItem>
+                <MenuItem eventKey={6.2}>Switch to Freelancer</MenuItem>
                 <MenuItem divider />
-                <MenuItem eventKey={5.3} href="/logout">Logout</MenuItem>
+                <MenuItem eventKey={6.3} href="/logout">Logout</MenuItem>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
