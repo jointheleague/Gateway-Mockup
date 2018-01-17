@@ -27,3 +27,9 @@ accounts-google@1.2.0
 custom-useraccounts:bootstrap
 twbs:bootstrap
 ultimatejs:tracker-react
+practicalmeteor:mocha
+tmeasday:acceptance-test-driver
+xolvio:cleaner
+random
+underscore
+xolvio:backdoor
