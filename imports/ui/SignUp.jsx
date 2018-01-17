@@ -10,7 +10,7 @@ export default class SignUp extends Component {
   constructor(){
     console.log("Constructor");
     super();
-    this.handleChange = this.handleChange.bind(this);
+    this.handleUsername1 = this.handleUsername1.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       username: '',
@@ -19,7 +19,7 @@ export default class SignUp extends Component {
     console.log(this.state);
   }
 
-  handleChange(e){
+  handleUsername1(e){
     console.log("handleChange");
     this.setState({ username: e.target.value});
     console.log(this.state);
@@ -52,9 +52,10 @@ export default class SignUp extends Component {
                     >
                       <ControlLabel>Username</ControlLabel>
                       <FormControl
+                        
                         type="text"
                         placeholder = {this.state.usernamePlaceholder}
-                        onChange = {this.handleChange}
+                        onChange = {this.handleUsername1}
                         value = {this.state.username}
                       />
                       <FormControl.Feedback />
