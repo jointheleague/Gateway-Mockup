@@ -11,6 +11,6 @@ describe("basic navigation", function() {
 		browser.url("http://localhost:3000");
 		const loginForm = browser.elements("form.accounts-ui");
 
-		assert.equal(browser.getText("div.page-header"), "Project GatewayX");
+		assert.equal(browser.getText("div.page-header"), "Project Gateway");
 	});
 });
