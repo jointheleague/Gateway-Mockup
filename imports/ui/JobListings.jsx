@@ -99,12 +99,12 @@ export default class JobListings extends TrackerReact(React.Component) {
               <fieldset>
                 <legend> Level Range </legend>
                 <Col md={6}>
-                  <FieldGroup data-limit={"lower"} onChange={this.levelRangeChanged} type={"text"} label={"Upper Limit"} placeholder={"0"}/>
+                  <FieldGroup data-limit={"lower"} onChange={this.levelRangeChanged} type={"text"} label={"Lower Limit"} placeholder={"0"}/>
 
                 </Col>
                 <Col md={6}>
 
-                  <FieldGroup data-limit={"upper"} onChange={this.levelRangeChanged} type={"text"} label={"Lower Limit"} placeholder={"9"}/>
+                  <FieldGroup data-limit={"upper"} onChange={this.levelRangeChanged} type={"text"} label={"Upper Limit"} placeholder={"9"}/>
 
                 </Col>
               </fieldset>
