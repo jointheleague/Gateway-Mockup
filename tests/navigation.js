@@ -13,4 +13,9 @@ describe("basic navigation", function() {
 
 		assert.equal(browser.getText("div.page-header"), "Project Gateway");
 	});
+
+	it("can try to go to the About page", function() {
+		browser.url("http://localhost:3000/about");
+		assert.equal(browser.getText("h2"), "About");
+	});
 });
