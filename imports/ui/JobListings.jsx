@@ -32,10 +32,16 @@ export default class JobListings extends TrackerReact(React.Component) {
       languages: ["Java", "Python", "C", "C++", "C#", "F#", "VB", "JavaScript", "HTML", "TypeScript", "Rust", "PHP", "ASM", "Fortran", "Chef", "Perl" ],
       selectedLangs : [],
       lowerLevelFilter : 0,
-      upperLevelFilter : 9
+      upperLevelFilter : 9,
+      search: ""
     };
     this.langSelected = this.langSelected.bind(this);
     this.levelRangeChanged = this.levelRangeChanged.bind(this);
+    this.searchChanged = this.searchChanged.bind(this);
+  }
+
+  searchChanged(ev) {
+    this.setState({search: ev.target.value.toLowerCase().trim()});
   }
 
   levelRangeChanged(ev){
@@ -120,12 +126,14 @@ export default class JobListings extends TrackerReact(React.Component) {
           <Col md={8}>
             <div style={{margin: "auto"}}>
               <h2> Job Listings </h2>
+              <FormControl type="text" onChange={this.searchChanged} placeholder="search for jobs"/>
+              <br />
             </div>
             {
               this.jobs().map((job) => {
                 var validLangs = false;
                 var validLevel = false;
-
+                var validSearch = false;
 
                 if(this.state.selectedLangs.length > 0) {
                   for(i in job.langs){
@@ -139,6 +147,14 @@ export default class JobListings extends TrackerReact(React.Component) {
                   validLangs = true;
                 }
 
+                if(this.state.search != "") {
+                  if(job.name.toLowerCase().trim().includes(this.state.search))) {
+                    validSearch = true;
+                  }
+                } else {
+                  validSearch = true;
+                }
+
                 if(!(this.state.lowerLevelFilter == 0 && this.state.upperLevelFilter == 9)) {
                   if(job.level >= this.state.lowerLevelFilter && job.level <= this.state.upperLevelFilter){
                     validLevel = true;
@@ -147,7 +163,7 @@ export default class JobListings extends TrackerReact(React.Component) {
                   validLevel = true;
                 }
 
-                if(validLangs && validLevel){
+                if(validLangs && validLevel && validSearch){
                   const langLabels = job.langs.map((lang) => {
                     return(<span style={{"paddingRight": "5px"}} key={job.toString() + lang.toString()}><Label bsStyle="default">{lang}</Label></span>);
                   });
