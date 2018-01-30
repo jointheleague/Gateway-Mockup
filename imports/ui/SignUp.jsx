@@ -56,6 +56,12 @@ export default class SignUp extends Component {
     if (this.state.username == '') this.setState({
       usernamePlaceholder : 'You must enter a username.',
       validationState1: 'error'});
+    if (this.state.email1 == '') this.setState({
+      email1Placeholder : 'You must enter an email.',
+      validationState2: 'error'});
+    if (this.state.password1 == '') this.setState({
+      password1Placeholder : 'You must enter a password.',
+      validationState3: 'error'});
     if (this.state.email1 != this.state.email2) this.setState({
       email1: '',
       email2: '',
