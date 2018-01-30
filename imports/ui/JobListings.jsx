@@ -70,7 +70,7 @@ export default class JobListings extends TrackerReact(React.Component) {
 		if (ev.target.dataset.limit === "upper") {
 			this.setState({ upperLevelFilter: ev.target.value });
 		} else if (ev.target.dataset.limit === "lower") {
-			this.setState({ upperLevelFilter: ev.target.value });
+			this.setState({ lowerLevelFilter: ev.target.value });
 		}
 	}
 
