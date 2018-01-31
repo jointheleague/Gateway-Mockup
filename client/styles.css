@@ -42,3 +42,7 @@ nav {
 html{
   height: 100%;
 }
+
+body    {overflow-x:scroll;}
+body    {overflow-y:scroll;}
+body    {overflow:scroll;}

@@ -21,19 +21,16 @@ const history = createBrowserHistory();
 Meteor.startup(() => {
 	render(
 		<Router history={history}>
-
 			<App>
 				<Route exact path="/" component={ Homepage } />
-				<Route path="/dashboard" component={ Dashboard } />
-				<Route path="/profile" component={ Profile } />
-				<Route path="/jobs" component={ JobListings } />
-				<Route path="/login" component={ Login } />
-				<Route path="/about" component={ About } />
+				<Route exact path="/dashboard" component={ Dashboard } />
+				<Route exact path="/profile" component={ Profile } />
+				<Route exact path exact="/jobs" component={ JobListings } />
+				<Route exact path="/login" component={ Login } />
+				<Route exact path="/about" component={ About } />
 				<Route exact path="/signup" component={ SignUp } />
-			  <Route exact path="/jobs/edit" component={ PostaJob } />
-				<Route path="*" component={ NotFound } />
+				<Route exact path="/jobs/edit" component={ PostaJob } />
 			</App>
-
 		</Router>,
 		document.getElementById('react-root')
 	);
