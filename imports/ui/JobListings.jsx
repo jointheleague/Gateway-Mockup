@@ -60,10 +60,12 @@ export default class JobListings extends TrackerReact(React.Component) {
 			],
 			selectedLangs: [],
 			lowerLevelFilter: 0,
-			upperLevelFilter: 9
+			upperLevelFilter: 9,
+			search: ""
 		};
 		this.langSelected = this.langSelected.bind(this);
 		this.levelRangeChanged = this.levelRangeChanged.bind(this);
+		this.searchChanged = this.searchChanged.bind(this);
 	}
 
 	levelRangeChanged(ev) {
@@ -72,6 +74,10 @@ export default class JobListings extends TrackerReact(React.Component) {
 		} else if (ev.target.dataset.limit === "lower") {
 			this.setState({ lowerLevelFilter: ev.target.value });
 		}
+	}
+
+	searchChanged(ev) {
+		this.setState({ search: ev.target.value.trim() });
 	}
 
 	langSelected(ev) {
@@ -163,9 +169,11 @@ export default class JobListings extends TrackerReact(React.Component) {
 						<div style={{ margin: "auto" }}>
 							<h2 id="pageTitle"> Job Listings </h2>
 						</div>
+						<FormControl type="text" placeholder="search for jobs..." style={{ "paddingBottom": "10px" }} onChange={this.searchChanged} />
 						{this.jobs().map(job => {
 							var validLangs = false;
 							var validLevel = false;
+							var validSearch = false;
 
 							if (this.state.selectedLangs.length > 0) {
 								for (i in job.langs) {
@@ -195,7 +203,17 @@ export default class JobListings extends TrackerReact(React.Component) {
 								validLevel = true;
 							}
 
-							if (validLangs && validLevel) {
+							if(this.state.search != "") {
+								var lower1 = job.name.toLowerCase();
+								var lower2 = this.state.search.toLowerCase();
+								if(lower1.indexOf(lower2) !== -1) {
+									validSearch = true;
+								}
+							} else {
+								validSearch = true;
+							}
+
+							if (validLangs && validLevel && validSearch) {
 								const langLabels = job.langs.map(lang => {
 									return (
 										<span
