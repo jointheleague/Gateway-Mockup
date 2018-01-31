@@ -12,6 +12,8 @@ import JobListings from '../imports/ui/JobListings.jsx';
 import NotFound from '../imports/ui/NotFound.jsx';
 import About from '../imports/ui/About.jsx';
 import Login from '../imports/ui/Login.jsx'
+import SignUp from '../imports/ui/SignUp.jsx'
+import PostaJob from '../imports/ui/PostaJob.jsx'
 import './main.html';
 
 const history = createBrowserHistory();
@@ -19,6 +21,7 @@ const history = createBrowserHistory();
 Meteor.startup(() => {
 	render(
 		<Router history={history}>
+
 			<App>
 				<Route exact path="/" component={ Homepage } />
 				<Route path="/dashboard" component={ Dashboard } />
@@ -26,7 +29,11 @@ Meteor.startup(() => {
 				<Route path="/jobs" component={ JobListings } />
 				<Route path="/login" component={ Login } />
 				<Route path="/about" component={ About } />
+				<Route exact path="/signup" component={ SignUp } />
+			  <Route exact path="/jobs/edit" component={ PostaJob } />
+				<Route path="*" component={ NotFound } />
 			</App>
+
 		</Router>,
 		document.getElementById('react-root')
 	);
