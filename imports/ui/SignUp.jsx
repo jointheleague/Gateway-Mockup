@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
+import { Accounts } from 'meteor/std:accounts-ui';
 import { Col, Panel, Grid, Row, form, FormGroup, Button, FormControl, ControlLabel } from 'react-bootstrap';
 
 export default class SignUp extends Component {
@@ -93,82 +94,8 @@ export default class SignUp extends Component {
             </Row>
             <br />
           <Row>
-            <Col md={4} mdOffset={4}>
-              <Panel>
-                <form>
-                  <FormGroup
-                    controlId="formBasicText"
-                    validationState = {this.state.validationState1}
-                    >
-                      <ControlLabel>Username</ControlLabel>
-                      <FormControl
-                        type="text"
-                        placeholder = {this.state.usernamePlaceholder}
-                        onChange = {this.handleUsername}
-                        value = {this.state.username}
-                      />
-                      <FormControl.Feedback />
-                    </FormGroup>
-                    <FormGroup
-                      controlId="formBasicText"
-                      validationState = {this.state.validationState2}
-                      >
-                        <ControlLabel>Email</ControlLabel>
-                        <FormControl
-                          type="text"
-                          placeholder = {this.state.email1Placeholder}
-                          onChange = {this.handleEmail1}
-                          value = {this.state.email1}
-                        />
-                        <FormControl.Feedback />
-                      </FormGroup>
-                      <FormGroup
-                        controlId="formBasicText"
-                        validationState = {this.state.validationState2}
-                        >
-                          <ControlLabel>Confirm Email</ControlLabel>
-                          <FormControl
-                            type="text"
-                            placeholder = {this.state.email2Placeholder}
-                            onChange = {this.handleEmail2}
-                            value = {this.state.email2}
-                          />
-                          <FormControl.Feedback />
-                        </FormGroup>
-                    <FormGroup
-                      controlId="formBasicText"
-                      validationState = {this.state.validationState3}
-                      >
-                        <ControlLabel>Password</ControlLabel>
-                        <FormControl
-                          type="text"
-                          placeholder = {this.state.password1Placeholder}
-                          onChange = {this.handlePassword1}
-                          value = {this.state.password1}
-                        />
-                        <FormControl.Feedback />
-                      </FormGroup>
-                      <FormGroup
-                        controlId="formBasicText"
-                        validationState = {this.state.validationState3}
-                        >
-                          <ControlLabel>Confirm Password</ControlLabel>
-                          <FormControl
-                            type="text"
-                            placeholder = {this.state.password2Placeholder}
-                            onChange = {this.handlePassword2}
-                            value = {this.state.password2}
-                          />
-                          <FormControl.Feedback />
-                        </FormGroup>
-                      <Button bsStyle="primary" onClick={this.handleSubmit}>Sign up for Gateway</Button>
-                    </form>
-                  </Panel>
-                  <Panel>
-                    <p>Already have an account?</p>
-                    <a href = "/login">Log in.</a>
-                  </Panel>
-                </Col>
+            <Accounts.ui.LoginForm />
+      
               </Row>
             </Grid>
           </div>

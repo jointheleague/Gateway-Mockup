@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import { Router, Route, Switch } from 'react-router';
 import {createBrowserHistory} from 'history';
+import { Accounts } from 'meteor/std:accounts-ui';
 
 import App from '../imports/ui/App.jsx';
 import Homepage from '../imports/ui/Homepage.jsx';
@@ -18,7 +19,13 @@ import './main.html';
 
 const history = createBrowserHistory();
 
+
 Meteor.startup(() => {
+	Accounts.ui.config({
+	  loginPath: '/login',
+	  onSignedInHook: () => history.push('/dashboard'),
+	  onSignedOutHook: () => history.push('/')
+	});
 	render(
 		<Router history={history}>
 			<App>
