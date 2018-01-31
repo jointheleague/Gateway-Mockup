@@ -10,7 +10,6 @@ export default class Login extends Component {
   render(){
     return(
       <div>
-        <AppNavbar username="lucas.baizer"></AppNavbar>
         <Grid>
         <br />
           <Row>

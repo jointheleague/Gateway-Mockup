@@ -9,9 +9,8 @@ export default class About extends Component {
   render() {
     return (
       <div>
-        <AppNavbar></AppNavbar>
         <Grid>
-          <div style={{"font-size": "18px"}}>
+          <div style={{"fontSize": "18px"}}>
             <div style={{margin: "auto"}}>
               <h2> About </h2>
               <br />
@@ -24,7 +23,7 @@ export default class About extends Component {
           </div>
           <br />
           <Panel>
-            <div style={{"font-size": "18px", margin: "auto", width: "50%"}}>
+            <div style={{"fontSize": "18px", margin: "auto", width: "50%"}}>
               <Col md={4}>
                 <img src="images/computerIcon.svg" width="75px;" />
                 <br />

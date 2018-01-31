@@ -9,7 +9,6 @@ export default class Dashboard extends Component {
   render() {
     return(
       <div>
-        <AppNavbar username="lucas.baizer"></AppNavbar>
         <Grid>
           <Row>
             <Col md={3}>

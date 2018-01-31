@@ -5,6 +5,7 @@ import { Router, Route, Switch } from 'react-router';
 import {createBrowserHistory} from 'history';
 
 import App from '../imports/ui/App.jsx';
+import Homepage from '../imports/ui/Homepage.jsx';
 import Dashboard from '../imports/ui/Dashboard.jsx';
 import Profile from '../imports/ui/Profile.jsx';
 import JobListings from '../imports/ui/JobListings.jsx';
@@ -20,17 +21,19 @@ const history = createBrowserHistory();
 Meteor.startup(() => {
 	render(
 		<Router history={history}>
-			<Switch>
-				<Route exact path="/" component={ App } />
-				<Route exact path="/dashboard" component={ Dashboard } />
-				<Route exact path="/profile" component={ Profile } />
-				<Route exact path="/jobs" component={ JobListings } />
-				<Route exact path="/login" component={ Login } />
+
+			<App>
+				<Route exact path="/" component={ Homepage } />
+				<Route path="/dashboard" component={ Dashboard } />
+				<Route path="/profile" component={ Profile } />
+				<Route path="/jobs" component={ JobListings } />
+				<Route path="/login" component={ Login } />
+				<Route path="/about" component={ About } />
 				<Route exact path="/signup" component={ SignUp } />
-				<Route exact path="/about" component={ About } />
-				<Route exact path="/jobs/edit" component={ PostaJob } />
+			  <Route exact path="/jobs/edit" component={ PostaJob } />
 				<Route path="*" component={ NotFound } />
-			</Switch>
+			</App>
+
 		</Router>,
 		document.getElementById('react-root')
 	);
