@@ -95,7 +95,6 @@ export default class SignUp extends Component {
             <br />
           <Row>
             <Accounts.ui.LoginForm />
-      
               </Row>
             </Grid>
           </div>

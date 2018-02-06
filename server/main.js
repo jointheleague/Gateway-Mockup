@@ -8,6 +8,12 @@ import { App } from '../imports/ui/App.jsx';
 const Jobs = new Mongo.Collection('jobs');
 const Profiles = new Mongo.Collection('profiles');
 
+import { Accounts } from 'meteor/accounts-base';
+
+Accounts.onCreateUser(function (options, user) {
+  return user;
+});
+
   Meteor.publish('jobs', function jobsPublication() {
     return Jobs.find();
   });

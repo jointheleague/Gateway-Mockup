@@ -23,9 +23,11 @@ const history = createBrowserHistory();
 Meteor.startup(() => {
 	Accounts.ui.config({
 	  loginPath: '/login',
+		profilePath: '/dashboard',
 	  onSignedInHook: () => history.push('/dashboard'),
 	  onSignedOutHook: () => history.push('/')
 	});
+
 	render(
 		<Router history={history}>
 			<App>
