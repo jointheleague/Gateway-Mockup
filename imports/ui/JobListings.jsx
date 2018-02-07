@@ -101,6 +101,10 @@ export default class JobListings extends TrackerReact(React.Component) {
 		}
 	}
 
+	componentWillMount(){
+		this.state.subscription.jobs = Meteor.subscribe("jobs");
+	}
+
 	componentWillUnmount() {
 		this.state.subscription.jobs.stop();
 	}

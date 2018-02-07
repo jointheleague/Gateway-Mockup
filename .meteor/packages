@@ -22,7 +22,7 @@ insecure@1.0.7                # Allow all DB writes from clients (for prototypin
 jquery@1.11.10
 accounts-base@1.4.0
 accounts-password@1.5.0
-accounts-github@1.4.0
+accounts-github
 accounts-google@1.3.0
 custom-useraccounts:bootstrap
 twbs:bootstrap
@@ -34,3 +34,4 @@ random
 underscore
 xolvio:backdoor
 std:accounts-bootstrap
+service-configuration

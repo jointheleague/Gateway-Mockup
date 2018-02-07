@@ -11,6 +11,7 @@ const Profiles = new Mongo.Collection('profiles');
 import { Accounts } from 'meteor/accounts-base';
 
 Accounts.onCreateUser(function (options, user) {
+  user.username = user.services.github.email;
   return user;
 });
 
@@ -18,7 +19,20 @@ Accounts.onCreateUser(function (options, user) {
     return Jobs.find();
   });
 
+
+
   Meteor.startup(() => {
+
+    ServiceConfiguration.configurations.upsert(
+    { service: 'github' },
+    {
+      $set: {
+        clientId: '6488d774e9599a74c3cc',
+        loginStyle: 'popup',
+        secret: '896361c0d4475fa9c72940c652af253a3cc81efa'
+      }
+    }
+  );
 
     Jobs.insert({name : "Cool Job", desc : "This job involves writing a lot of for loops and unit tests. Be prepared.", langs : ["Java"], client : "John Doe", level : 4});
     Jobs.insert({name : "Best Job", desc : "This job involves writing a lot of for loops and unit tests. Be prepared.", langs : ["Fortran"], client : "John Doe", level : 1});
