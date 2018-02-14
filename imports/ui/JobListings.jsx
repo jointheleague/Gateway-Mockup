@@ -18,11 +18,6 @@ import {
 	FormControl
 } from "react-bootstrap";
 
-// TrackerReact is imported (default) with Meteor 1.3 new module system
-import TrackerReact from "meteor/ultimatejs:tracker-react";
-
-// Get the Collection
-Jobs = new Mongo.Collection("jobs");
 
 function FieldGroup({ id, label, help, ...props }) {
 	return (
@@ -33,13 +28,16 @@ function FieldGroup({ id, label, help, ...props }) {
 	);
 }
 
-export default class JobListings extends TrackerReact(React.Component) {
+export default class JobListings extends Component {
 	constructor() {
 		super();
+		this.propTypes = {
+  			loading: React.PropTypes.bool,
+  			jobs: React.PropTypes.array,
+  			//jobsCursor : React.PropTypes.object,
+  			dataExists: React.PropTypes.bool
+		};
 		this.state = {
-			subscription: {
-				jobs: Meteor.subscribe("jobs")
-			},
 			languages: [
 				"Java",
 				"Python",
@@ -63,6 +61,7 @@ export default class JobListings extends TrackerReact(React.Component) {
 			upperLevelFilter: 9,
 			search: ""
 		};
+		
 		this.langSelected = this.langSelected.bind(this);
 		this.levelRangeChanged = this.levelRangeChanged.bind(this);
 		this.searchChanged = this.searchChanged.bind(this);
@@ -101,19 +100,19 @@ export default class JobListings extends TrackerReact(React.Component) {
 		}
 	}
 
-	componentWillMount(){
-		this.state.subscription.jobs = Meteor.subscribe("jobs");
-	}
-
-	componentWillUnmount() {
-		this.state.subscription.jobs.stop();
-	}
-
 	jobs() {
-		return Jobs.find({}).fetch();
+		return this.props.jobs;
 	}
 
-	render() {
+	render(){
+		return(
+			<div>
+			Hello World
+			</div>
+			)
+	}
+
+	render2() {
 		const languageList = this.state.languages.map(value => {
 			return (
 				<div key={value} style={{ fontSize: 16 + "px" }}>

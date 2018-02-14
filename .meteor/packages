@@ -35,3 +35,4 @@ underscore
 xolvio:backdoor
 std:accounts-bootstrap
 service-configuration
+react-meteor-data
