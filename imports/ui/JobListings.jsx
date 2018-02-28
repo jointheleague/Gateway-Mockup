@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
+import LanguageSearch from './LanguageSearch';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem, InputGroup, Label, Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
 // TrackerReact is imported (default) with Meteor 1.3 new module system
@@ -16,7 +17,6 @@ function FieldGroup({ id, label, help, ...props }) {
     <FormGroup controlId={id}>
       <ControlLabel>{label}</ControlLabel>
       <FormControl {...props} />
-
     </FormGroup>
   );
 }
@@ -38,6 +38,7 @@ export default class JobListings extends TrackerReact(React.Component) {
     this.langSelected = this.langSelected.bind(this);
     this.levelRangeChanged = this.levelRangeChanged.bind(this);
     this.searchChanged = this.searchChanged.bind(this);
+    this.setLangs = this.setLangs.bind(this);
   }
 
   searchChanged(ev) {
@@ -52,6 +53,9 @@ export default class JobListings extends TrackerReact(React.Component) {
     }
   }
 
+  setLangs(x) {
+    this.setState({ selectedLangs: x });
+  }
 
   langSelected(ev){
     if(ev.target.checked){
@@ -82,13 +86,6 @@ export default class JobListings extends TrackerReact(React.Component) {
   }
 
   render() {
-    const languageList = this.state.languages.map((value) => {
-      return (
-        <div key={value} style={{fontSize: 16 + "px"}}>
-          <input type="checkbox" onChange={this.langSelected} data-lang={value} aria-label="..."/>&nbsp;{value}
-        </div>
-      );
-    });
     return(
       <div>
         <Grid>
@@ -99,19 +96,16 @@ export default class JobListings extends TrackerReact(React.Component) {
             <Panel>
               <fieldset>
                 <legend> Languages </legend>
-                {languageList}
+                <LanguageSearch languageList={this.state.selectedLangs} setLangs={this.setLangs}></LanguageSearch>
               </fieldset>
               <br/>
               <fieldset>
                 <legend> Level Range </legend>
                 <Col md={6}>
                   <FieldGroup data-limit={"lower"} onChange={this.levelRangeChanged} type={"text"} label={"Lower Limit"} placeholder={"0"}/>
-
                 </Col>
                 <Col md={6}>
-
                   <FieldGroup data-limit={"upper"} onChange={this.levelRangeChanged} type={"text"} label={"Upper Limit"} placeholder={"9"}/>
-
                 </Col>
               </fieldset>
               <br />
@@ -148,7 +142,7 @@ export default class JobListings extends TrackerReact(React.Component) {
                 }
 
                 if(this.state.search != "") {
-                  if(job.name.toLowerCase().trim().includes(this.state.search))) {
+                  if(job.name.toLowerCase().trim().indexOf(this.state.search) !== -1) {
                     validSearch = true;
                   }
                 } else {

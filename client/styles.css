@@ -46,3 +46,9 @@ html{
 body    {overflow-x:scroll;}
 body    {overflow-y:scroll;}
 body    {overflow:scroll;}
+
+.languageScrollWindow {
+	height: 200px;
+	border: 1px solid #ccc;
+	overflow:auto;
+}
