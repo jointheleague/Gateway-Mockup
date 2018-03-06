@@ -10,10 +10,10 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 Languages = new Mongo.Collection("languages");
 
 export default class LanguageSearch extends TrackerReact(React.Component) {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    var list = this.orops.languageList;
+    var list = this.props.languageList;
     this.state = {
       subscription: {
         languages: Meteor.subscribe("languages")
@@ -27,6 +27,7 @@ export default class LanguageSearch extends TrackerReact(React.Component) {
     this.listLanguages = this.listLanguages.bind(this);
     this.listAllLanguages = this.listAllLanguages.bind(this);
     this.transferItem = this.transferItem.bind(this);
+    this.getPopular = this.getPopular.bind(this);
   }
 
   searchChanged(ev) {
@@ -65,9 +66,11 @@ export default class LanguageSearch extends TrackerReact(React.Component) {
   listSelectedLanguages() {
     if(this.state.selectedLangs.length == 0) {
       return(
-        <ListGroup>
-          <ListGroupItem>None</ListGroupItem>
-        </ListGroup>
+        <div className="languageScrollWindow">
+          <ListGroup>
+            <ListGroupItem>None</ListGroupItem>
+          </ListGroup>
+        </div>
       );
     } else {
       return(
@@ -87,19 +90,35 @@ export default class LanguageSearch extends TrackerReact(React.Component) {
   }
 
   listLanguages(list) {
-    return list.map((language) => {
+    return list.map(language => {
       if(this.state.selectedLangs.indexOf(language.name) == -1 && (this.state.search == "" || language.name.toLowerCase().indexOf(this.state.search) > -1)) {
         return(<ListGroupItem key={language.name} style={{"cursor": "pointer"}} onClick={this.transferItem}>{language.name}</ListGroupItem>);
       }
     });
   }
 
+  getPopular() {
+    var popular = this.listLanguages(this.popularLanguages());
+
+    var len = 0;
+    for(var key in popular) {
+      if(popular[key] !== undefined) {
+        len++;
+      }
+    }
+
+    if(len > 0) {
+      return(
+        <ListGroup>{popular}</ListGroup>
+      );
+    }
+  }
+
   listAllLanguages() {
+
     return(
       <div className="languageScrollWindow">
-        <ListGroup>
-          { this.listLanguages(this.popularLanguages()) }
-        </ListGroup>
+        { this.getPopular() }
         <ListGroup>
           { this.listLanguages(this.languages()) }
         </ListGroup>
@@ -114,7 +133,7 @@ export default class LanguageSearch extends TrackerReact(React.Component) {
         <h3>Selected Languages</h3>
         { this.listSelectedLanguages() }
         <hr />
-        <h3>Languages</h3>
+        <h3>Other Languages</h3>
         { this.listAllLanguages() }
       </div>
     );
