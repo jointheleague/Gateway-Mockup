@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import classnames from "classnames";
 import AppNavbar from "./AppNavbar";
+import { withTracker } from 'meteor/react-meteor-data';
+import { Jobs } from '/imports/api/Jobs.js';
 import {
 	Col,
 	Panel,
@@ -18,11 +20,6 @@ import {
 	FormControl
 } from "react-bootstrap";
 
-// TrackerReact is imported (default) with Meteor 1.3 new module system
-import TrackerReact from "meteor/ultimatejs:tracker-react";
-
-// Get the Collection
-Jobs = new Mongo.Collection("jobs");
 
 function FieldGroup({ id, label, help, ...props }) {
 	return (
@@ -33,13 +30,12 @@ function FieldGroup({ id, label, help, ...props }) {
 	);
 }
 
-export default class JobListings extends TrackerReact(React.Component) {
+class JobListings extends Component {
+
 	constructor() {
 		super();
+
 		this.state = {
-			subscription: {
-				jobs: Meteor.subscribe("jobs")
-			},
 			languages: [
 				"Java",
 				"Python",
@@ -63,6 +59,7 @@ export default class JobListings extends TrackerReact(React.Component) {
 			upperLevelFilter: 9,
 			search: ""
 		};
+
 		this.langSelected = this.langSelected.bind(this);
 		this.levelRangeChanged = this.levelRangeChanged.bind(this);
 		this.searchChanged = this.searchChanged.bind(this);
@@ -101,12 +98,8 @@ export default class JobListings extends TrackerReact(React.Component) {
 		}
 	}
 
-	componentWillUnmount() {
-		this.state.subscription.jobs.stop();
-	}
-
 	jobs() {
-		return Jobs.find({}).fetch();
+		return this.props.jobs;
 	}
 
 	render() {
@@ -262,3 +255,20 @@ export default class JobListings extends TrackerReact(React.Component) {
 		);
 	}
 }
+export default withTracker(() => {
+  const jobsHandle = Meteor.subscribe('jobs');
+  const loading = !jobsHandle.ready();
+  const jobsCursor = Jobs.find({});
+  const dataExists = !loading && !!jobsCursor;
+  return {
+    loading,
+    dataExists,
+    jobs: dataExists ? Jobs.find({}).fetch() : [],
+  };
+})(JobListings);
+
+JobListings.propTypes = {
+		loading: React.PropTypes.bool,
+		jobs: React.PropTypes.array,
+		dataExists: React.PropTypes.bool
+};
