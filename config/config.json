@@ -1,0 +1,18 @@
+{
+  "sampledata": {
+    "Jobs": [
+      { "name": "Cool Job",      "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["Java"],        "client": "John Doe", "level": 4 },
+      { "name": "Best Job",      "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["Fortran"],     "client": "John Doe", "level": 1 },
+      { "name": "Better Job",    "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["C++", "Rust"], "client": "John Doe", "level": 4 },
+      { "name": "Difficult Job", "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["C++"],         "client": "John Doe", "level": 9 },
+      { "name": "Easy Job",      "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["Fortran"],     "client": "John Doe", "level": 2 }
+    ],
+    "Languages": [
+      { "name": "Java",       "popular": true  },
+      { "name": "C++",        "popular": true  },
+      { "name": "Cornflakes", "popular": false },
+      { "name": "Fortran",    "popular": false },
+      { "name": "Rust",       "popular": false }
+    ]
+  }
+}
