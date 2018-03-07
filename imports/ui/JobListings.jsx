@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import classnames from "classnames";
 import AppNavbar from "./AppNavbar";
+import { withTracker } from 'meteor/react-meteor-data';
+import { Jobs } from '/imports/api/Jobs.js';
 import {
 	Col,
 	Panel,
@@ -28,15 +30,11 @@ function FieldGroup({ id, label, help, ...props }) {
 	);
 }
 
-export default class JobListings extends Component {
+class JobListings extends Component {
+
 	constructor() {
 		super();
-		this.propTypes = {
-  			loading: React.PropTypes.bool,
-  			jobs: React.PropTypes.array,
-  			//jobsCursor : React.PropTypes.object,
-  			dataExists: React.PropTypes.bool
-		};
+
 		this.state = {
 			languages: [
 				"Java",
@@ -61,7 +59,7 @@ export default class JobListings extends Component {
 			upperLevelFilter: 9,
 			search: ""
 		};
-		
+
 		this.langSelected = this.langSelected.bind(this);
 		this.levelRangeChanged = this.levelRangeChanged.bind(this);
 		this.searchChanged = this.searchChanged.bind(this);
@@ -104,15 +102,7 @@ export default class JobListings extends Component {
 		return this.props.jobs;
 	}
 
-	render(){
-		return(
-			<div>
-			Hello World
-			</div>
-			)
-	}
-
-	render2() {
+	render() {
 		const languageList = this.state.languages.map(value => {
 			return (
 				<div key={value} style={{ fontSize: 16 + "px" }}>
@@ -265,3 +255,20 @@ export default class JobListings extends Component {
 		);
 	}
 }
+export default withTracker(() => {
+  const jobsHandle = Meteor.subscribe('jobs');
+  const loading = !jobsHandle.ready();
+  const jobsCursor = Jobs.find({});
+  const dataExists = !loading && !!jobsCursor;
+  return {
+    loading,
+    dataExists,
+    jobs: dataExists ? Jobs.find({}).fetch() : [],
+  };
+})(JobListings);
+
+JobListings.propTypes = {
+		loading: React.PropTypes.bool,
+		jobs: React.PropTypes.array,
+		dataExists: React.PropTypes.bool
+};
