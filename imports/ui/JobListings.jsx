@@ -4,10 +4,9 @@ import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
 import LanguageSearch from './LanguageSearch';
+import { withTracker } from 'meteor/react-meteor-data';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem, InputGroup, Label, Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
-// TrackerReact is imported (default) with Meteor 1.3 new module system
-import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
 // Get the Collection
 Jobs = new Mongo.Collection("jobs");
@@ -21,7 +20,7 @@ function FieldGroup({ id, label, help, ...props }) {
   );
 }
 
-export default class JobListings extends TrackerReact(React.Component) {
+class JobListings extends React.Component {
 
   constructor() {
     super();
@@ -81,9 +80,9 @@ export default class JobListings extends TrackerReact(React.Component) {
     this.state.subscription.jobs.stop();
   }
 
-  jobs(){
-    return Jobs.find({}).fetch();
-  }
+	jobs() {
+			return this.props.jobs;
+		}
 
   render() {
     return(
@@ -186,3 +185,20 @@ export default class JobListings extends TrackerReact(React.Component) {
         );
       }
     }
+export default withTracker(() => {
+  const jobsHandle = Meteor.subscribe('jobs');
+  const loading = !jobsHandle.ready();
+  const jobsCursor = Jobs.find({});
+  const dataExists = !loading && !!jobsCursor;
+  return {
+    loading,
+    dataExists,
+    jobs: dataExists ? Jobs.find({}).fetch() : [],
+  };
+})(JobListings);
+
+JobListings.propTypes = {
+		loading: React.PropTypes.bool,
+		jobs: React.PropTypes.array,
+		dataExists: React.PropTypes.bool
+};
