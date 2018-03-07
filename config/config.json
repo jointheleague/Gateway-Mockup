@@ -13,6 +13,50 @@
       { "name": "Cornflakes", "popular": false },
       { "name": "Fortran",    "popular": false },
       { "name": "Rust",       "popular": false }
+    ],
+    "Accounts": [
+      {
+        "accountID": 0,
+        "firstName": "Lucas",
+        "lastName": "Baizer",
+        "bio": "Hi. I'm Lucas, and I was one of the developers on this application.",
+        "email": "titaniumsapphire32@gmail.com",
+        "phoneNumber": "(858) 242-7208",
+        "github": "LucasBaizer",
+        "currentJobs": 0,
+        "completedJobs": 1,
+        "jobListings": 0,
+        "experience": 10.0,
+        "workQuality": 10.0,
+        "timeliness": 10.0,
+        "testimonials": [
+          {
+            "accountID": 1,
+            "text": "What a great guy!"
+          },
+          {
+            "accountID": 2,
+            "text": "Wow, such a cool dude!"
+          },
+          {
+            "accountID": 3,
+            "text": "Amazing! An excellent man."
+          }
+        ]
+      }
+    ],
+    "Messages": [
+      {
+        "accountID": 0,
+        "messages": [
+          {
+            "messageID": 0,
+            "accountID": 1,
+            "date": "1970/1/1 1:00 AM PST",
+            "text": "What's up?"
+          }
+        ]
+      }
     ]
   }
 }

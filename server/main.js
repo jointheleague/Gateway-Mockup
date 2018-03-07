@@ -7,14 +7,13 @@ import { App } from '../imports/ui/App.jsx';
 
 const Jobs = new Mongo.Collection('jobs');
 const Languages = new Mongo.Collection('languages');
+const Profiles = new Mongo.Collection('profiles');
 
 Meteor.publish('jobs', function jobsPublication() {
   return Jobs.find();
 });
 
 Meteor.startup(() => {
-  const fs = Npm.require("fs");
-
   pushSampleData(Jobs, Meteor.settings.sampledata.Jobs);
   pushSampleData(Languages, Meteor.settings.sampledata.Languages);
 });
