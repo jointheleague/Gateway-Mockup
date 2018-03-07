@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
@@ -20,6 +19,7 @@ import {
 	ControlLabel,
 	FormControl
 } from "react-bootstrap";
+
 
 function FieldGroup({ id, label, help, ...props }) {
 	return (
@@ -272,4 +272,3 @@ JobListings.propTypes = {
 		jobs: React.PropTypes.array,
 		dataExists: React.PropTypes.bool
 };
-
