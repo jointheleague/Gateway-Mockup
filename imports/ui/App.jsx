@@ -12,7 +12,7 @@ export default class App extends Component {
 
 		return(
 			<div>
-				<AppNavbar username="lucas.baizer"></AppNavbar>
+				<AppNavbar username={(Meteor.user() != null ? Meteor.user().username : "")}></AppNavbar>
 				{childrenWithProps}
 			</div>
 		);

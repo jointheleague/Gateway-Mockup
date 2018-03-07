@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
@@ -10,15 +11,6 @@ import { Col, Panel, Grid, Row, ListGroup, ListGroupItem, InputGroup, Label, But
 
 // Get the Collection
 Jobs = new Mongo.Collection("jobs");
-
-function FieldGroup({ id, label, help, ...props }) {
-  return (
-    <FormGroup controlId={id}>
-      <ControlLabel>{label}</ControlLabel>
-      <FormControl {...props} />
-    </FormGroup>
-  );
-}
 
 class JobListings extends React.Component {
 
@@ -196,6 +188,7 @@ export default withTracker(() => {
     jobs: dataExists ? Jobs.find({}).fetch() : [],
   };
 })(JobListings);
+
 
 JobListings.propTypes = {
 		loading: React.PropTypes.bool,
