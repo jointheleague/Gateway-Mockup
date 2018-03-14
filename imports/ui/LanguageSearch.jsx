@@ -4,15 +4,13 @@ import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
 import { FormControl, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Languages } from '/imports/api/Languages.jsx'
 
-import TrackerReact from 'meteor/ultimatejs:tracker-react';
-
-Languages = new Mongo.Collection("languages");
-
-export default class LanguageSearch extends TrackerReact(React.Component) {
+class LanguageSearch extends Component {
   constructor(props) {
     super(props);
-
+    console.log(props);
     var list = this.props.languageList;
     this.state = {
       subscription: {
@@ -39,11 +37,11 @@ export default class LanguageSearch extends TrackerReact(React.Component) {
   }
 
   popularLanguages() {
-    return Languages.find({ popular: true }).fetch();
+    return this.props.popularLanguages;
   }
 
   languages() {
-    return Languages.find({ popular: false }).fetch();
+    return this.props.languages;
   }
 
   transferItem(ev) {
@@ -144,3 +142,18 @@ LanguageSearch.propTypes = {
   languageList: PropTypes.array.isRequired,
   setLangs: PropTypes.func.isRequired
 }
+
+export default withTracker(() => {
+  const langsHandle = Meteor.subscribe('languages');
+//  const nonPoplangsCursor = Languages.find({popular: false});
+//  const popLangsCursor = Languages.find({popular: true});
+//TODO : Figure out why isReady is inverted, might cause UI errors later when data is missing.
+  const isReady = !langsHandle.ready();
+//  const languageListExists = isReady;
+//  const popularLanguageListExists = isReady;
+  return {
+    isReady,
+    languages: isReady ? Languages.find({popular: false}).fetch() : [],
+    popularLanguages : isReady ? Languages.find({popular: true}).fetch() : []
+  };
+})(LanguageSearch);

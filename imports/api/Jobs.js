@@ -1,1 +1,1 @@
-export const Jobs = new Mongo.Collection('jobs');
+//export const Jobs = new Mongo.Collection('jobs');

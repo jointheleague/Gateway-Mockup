@@ -12,6 +12,15 @@ import { Col, Panel, Grid, Row, ListGroup, ListGroupItem, InputGroup, Label, But
 // Get the Collection
 Jobs = new Mongo.Collection("jobs");
 
+function FieldGroup({ id, label, help, ...props }) {
+  return (
+    <FormGroup controlId={id}>
+      <ControlLabel>{label}</ControlLabel>
+      <FormControl {...props} />
+    </FormGroup>
+  );
+}
+
 class JobListings extends React.Component {
 
   constructor() {
@@ -73,6 +82,7 @@ class JobListings extends React.Component {
   }
 
 	jobs() {
+    debugger;
 			return this.props.jobs;
 		}
 
