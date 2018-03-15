@@ -116,7 +116,7 @@ class JobListings extends React.Component {
 	render() {
 		if (!this.props.dataIsReady) {
 			return (
-				<div style={{ padding: "50" }}>
+				<div style={{ padding: 50 }}>
 					<h1>Loading...</h1>
 				</div>
 			);
