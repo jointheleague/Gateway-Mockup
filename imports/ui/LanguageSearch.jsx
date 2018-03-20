@@ -148,7 +148,7 @@ export default withTracker(() => {
 //  const nonPoplangsCursor = Languages.find({popular: false});
 //  const popLangsCursor = Languages.find({popular: true});
 //TODO : Figure out why isReady is inverted, might cause UI errors later when data is missing.
-  const isReady = !langsHandle.ready();
+  const isReady = langsHandle.ready();
 //  const languageListExists = isReady;
 //  const popularLanguageListExists = isReady;
   return {

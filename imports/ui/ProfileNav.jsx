@@ -6,23 +6,33 @@ import AppNavbar from './AppNavbar';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 export default class ProfileNav extends Component {
+  constructor() {
+    super();
+
+    this.profile = this.profile.bind(this);
+  }
+
+  profile() {
+    return Meteor.user().profile;
+  }
+
   render() {
     return(
-      
+
       <Col md={3}>
          <div className="panel panel-default">
     <div className="panel-body">
-      <legend> <h2> John Doe </h2> </legend>
-      <p>Here is an optional short bio... Hey look, this bio wraps onto the next line! Oh, and the next one too.</p>
-      <h4> Contact </h4>
+      <legend><h2>{this.profile().firstName + " " + this.profile().lastName}</h2></legend>
+      <p>{this.profile().bio}</p>
+      <h4>Contact</h4>
       <div style={{color: "grey"}}>
-        john.doe@bestemailhosting.net
+        {this.profile().email}
         <br/>
-        1-234-567-7890
+        {this.profile().phoneNumber}
         <br/>
-        github.com/johnDoe
+        <a href={"https://github.com/" + this.profile().github}>{this.profile().github + " on GitHub"}</a>
       </div>
-      <br/> 
+      <br/>
       <div className="container-fluid">
         <div className="row">
           <ul className="nav nav-pills nav-stacked">
@@ -36,7 +46,6 @@ export default class ProfileNav extends Component {
     </div>
   </div>
   </Col>
-    
     );
   }
 }

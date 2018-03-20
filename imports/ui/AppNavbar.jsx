@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
 
 NavItem.prototype.handleClick = function handleClick(e) {
-  if (this.props.onSelect) {    
+  if (this.props.onSelect) {
     if (!this.props.disabled) {
       this.props.onSelect(this.props.eventKey, e);
     }

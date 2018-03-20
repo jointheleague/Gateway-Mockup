@@ -7,6 +7,10 @@ import ProfileNav from './ProfileNav';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 export default class Profile extends Component {
+  profile() {
+    return Meteor.user().profile;
+  }
+
   render() {
     return(
       <div>

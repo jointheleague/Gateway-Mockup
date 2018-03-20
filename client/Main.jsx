@@ -25,7 +25,7 @@ Meteor.startup(() => {
 	  loginPath: '/login',
 		profilePath: '/dashboard',
 	  onSignedInHook: () => history.push('/dashboard'),
-	  onSignedOutHook: () => history.push('/')
+	  onSignedOutHook: () => history.push('/logout')
 	});
 
 	render(
