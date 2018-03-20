@@ -1,3 +1,196 @@
 {
-  
+  "sampledata": {
+    "Jobs": [
+      { "name": "Cool Job",      "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["Java"],        "client": "John Doe", "level": 4 },
+      { "name": "Best Job",      "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["Fortran"],     "client": "John Doe", "level": 1 },
+      { "name": "Better Job",    "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["C++", "Rust"], "client": "John Doe", "level": 4 },
+      { "name": "Difficult Job", "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["C++"],         "client": "John Doe", "level": 9 },
+      { "name": "Easy Job",      "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["Fortran"],     "client": "John Doe", "level": 2 }
+    ],
+    "Languages": [
+      { "name": "Java",       "popular": true  },
+      { "name": "C++",        "popular": true  },
+      { "name": "Cornflakes", "popular": false },
+      { "name": "Fortran",    "popular": false },
+      { "name": "Rust",       "popular": false }
+    ],
+    "Profiles": [
+      {
+        "firstName": "Lucas",
+        "lastName": "Baizer",
+        "bio": "Hi. I'm Lucas, and I was one of the developers on this application.",
+        "email": "titaniumsapphire32@gmail.com",
+        "phoneNumber": "(858) 242-7208",
+        "github": "LucasBaizer",
+        "currentJobs": 0,
+        "completedJobs": 0,
+        "jobListings": 0,
+        "experience": 10.0,
+        "workQuality": 10.0,
+        "timeliness": 10.0,
+        "testimonials": [
+          {
+            "profileID": 1,
+            "text": "What a great guy!"
+          },
+          {
+            "profileID": 2,
+            "text": "Wow! Such a cool dude!"
+          },
+          {
+            "profileID": 3,
+            "text": "Amazing! An excellent man."
+          }
+        ]
+      },
+      {
+        "firstName": "Matthew",
+        "lastName": "Smith",
+        "bio": "Hi. I'm Matthew, and I was also one of the developers on this application.",
+        "email": "matthew87097@gmail.com",
+        "phoneNumber": "(858) 123-4567",
+        "github": "matthew87097",
+        "currentJobs": 0,
+        "completedJobs": 0,
+        "jobListings": 0,
+        "experience": 10.0,
+        "workQuality": 10.0,
+        "timeliness": 10.0,
+        "testimonials": [
+          {
+            "profileID": 0,
+            "text": "Exclamations! Absolutely an enjoyable fellow."
+          },
+          {
+            "profileID": 2,
+            "text": "Holy mackerel! Truly a colorful human."
+          },
+          {
+            "profileID": 3,
+            "text": "Goodness gracious! Undoubtedly a magnificent person."
+          }
+        ]
+      },
+      {
+        "firstName": "Phil",
+        "lastName": "Cruz",
+        "bio": "Hi. I'm Phil, and I'm a mentor for the developers of this application.",
+        "email": "phil.cruz@jointheleague.org",
+        "phoneNumber": "(858) 891-0111",
+        "github": "philcruz",
+        "currentJobs": 0,
+        "completedJobs": 0,
+        "jobListings": 0,
+        "experience": 10.0,
+        "workQuality": 10.0,
+        "timeliness": 10.0,
+        "testimonials": [
+          {
+            "profileID": 0,
+            "text": "Unbelievable! Unanimously agreed to be a favorable organism."
+          },
+          {
+            "profileID": 1,
+            "text": "Fantastic! Universally a radiant creature."
+          },
+          {
+            "profileID": 3,
+            "text": "Wondeful! Consistently a jolly lad."
+          }
+        ]
+      },
+      {
+        "firstName": "Not",
+        "lastName": "A Robot",
+        "bio": "Greetings. I am definitely not a robot. I am a human.",
+        "email": "human@bostondynamics.com",
+        "phoneNumber": "(101) 010-1010",
+        "github": "humanprogrammer",
+        "currentJobs": 0,
+        "completedJobs": 0,
+        "jobListings": 0,
+        "experience": 10.0,
+        "workQuality": 10.0,
+        "timeliness": 10.0,
+        "testimonials": [
+          {
+            "profileID": 0,
+            "text": "He writes good code, but I had trouble speaking colloquial English with him."
+          },
+          {
+            "profileID": 1,
+            "text": "A great programmer, but whenever I would use a pronoun in conversation, he wouldn't know what I was referring to."
+          },
+          {
+            "profileID": 2,
+            "text": "He's such an excellent programmer! I invited him for a job interview, but he said he couldn't make it because he \"doesn't have legs\", whatever that means."
+          }
+        ]
+      }
+    ],
+    "Messages": [
+      {
+        "messageID": 0,
+        "fromID": 0,
+        "toID": 1,
+        "date": "1970/1/1 1:00 AM PST",
+        "content": [
+          {
+            "type": "text",
+            "content": "Hey, man! What's up?"
+          }
+        ]
+      },
+      {
+        "messageID": 1,
+        "fromID": 1,
+        "toID": 0,
+        "date": "1970/1/1 1:01 AM PST",
+        "content": [
+          {
+            "type": "text",
+            "content": "Great! You gotta see this thing I found on the information superhighway: "
+          },
+          {
+            "type": "url",
+            "content": "Gateway Mockup",
+            "previewType": "default",
+            "href": "https://github.com/jointheleague/Gateway-Mockup"
+          },
+          {
+            "type": "text",
+            "content": ", it looks like a really cool app!"
+          }
+        ]
+      },
+      {
+        "messageID": 2,
+        "fromID": 0,
+        "toID": 1,
+        "date": "1970/1/1 1:02 AM PST",
+        "content": [
+          {
+            "type": "text",
+            "content": "Wow! I'm definitely going to look at that. Also, did you know that you can link to images and have a preview for them like "
+          },
+          {
+            "type": "url",
+            "content": "this",
+            "previewType": "image",
+            "href": "https://yt3.ggpht.com/-JJRo6OQWWUc/AAAAAAAAAAI/AAAAAAAAAAA/sidrvuvzf44/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg"
+          },
+          {
+            "type": "text",
+            "content": ", or, you can just attach an image, like this!"
+          }
+        ],
+        "attachments": [
+          {
+            "type": "image",
+            "content": "path_to_file.jpg"
+          }
+        ]
+      }
+    ]
+  }
 }
