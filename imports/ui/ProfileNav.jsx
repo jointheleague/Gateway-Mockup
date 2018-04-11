@@ -6,14 +6,8 @@ import AppNavbar from './AppNavbar';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 export default class ProfileNav extends Component {
-  constructor() {
-    super();
-
-    this.profile = this.profile.bind(this);
-  }
-
-  profile() {
-    return Meteor.user().profile;
+  constructor(props) {
+    super(props);
   }
 
   render() {
@@ -22,15 +16,15 @@ export default class ProfileNav extends Component {
       <Col md={3}>
          <div className="panel panel-default">
     <div className="panel-body">
-      <legend><h2>{this.profile().firstName + " " + this.profile().lastName}</h2></legend>
-      <p>{this.profile().bio}</p>
+      <legend><h2>{this.props.profile.firstName + " " + this.props.profile.lastName}</h2></legend>
+      <p>{this.props.profile.bio}</p>
       <h4>Contact</h4>
       <div style={{color: "grey"}}>
-        {this.profile().email}
+        {this.props.profile.email}
         <br/>
-        {this.profile().phoneNumber}
+        {this.props.profile.phoneNumber}
         <br/>
-        <a href={"https://github.com/" + this.profile().github}>{this.profile().github + " on GitHub"}</a>
+        <a href={"https://github.com/" + this.props.profile.github}>{this.props.profile.github + " on GitHub"}</a>
       </div>
       <br/>
       <div className="container-fluid">
@@ -48,4 +42,8 @@ export default class ProfileNav extends Component {
   </Col>
     );
   }
+}
+
+ProfileNav.propTypes = {
+  profile: PropTypes.object.isRequired
 }

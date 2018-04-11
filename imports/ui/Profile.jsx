@@ -7,16 +7,34 @@ import ProfileNav from './ProfileNav';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 export default class Profile extends Component {
-  profile() {
-    return Meteor.user().profile;
+  constructor(props) {
+    super(props);
+
+    console.log("constructor...");
+    console.log(props);
+  }
+
+  componentWillMount() {
+    console.log("mount...");
+    console.log(this.props);
   }
 
   render() {
+    console.log("render...");
+    console.log(this.props.profile);
+
+    if(!this.props.profile) {
+      return (
+        <div>
+          Please sign in to access your profile.
+        </div>
+      );
+    }
     return(
       <div>
       <Grid>
         <Row>
-        <ProfileNav> </ProfileNav>
+        <ProfileNav profile={this.props.profile}> </ProfileNav>
           <div className="col-md-3 offset-md-4">
           </div>
           <Col md={8}>
@@ -79,9 +97,7 @@ export default class Profile extends Component {
                   </div>
                 </Col>
               </Row>
-
               <br />
-
               <div className="center">
                 <h3> User Testimonials </h3>
               </div>
@@ -116,4 +132,8 @@ export default class Profile extends Component {
       </div>
     );
   }
+}
+
+Profile.propTypes = {
+  profile: PropTypes.object
 }

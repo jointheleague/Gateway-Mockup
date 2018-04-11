@@ -21,7 +21,7 @@ export default class AppNavbar extends Component {
             <Navbar.Brand>
               <a href="/">Gateway Mockup</a>
             </Navbar.Brand>
-            <Navbar.Toggle/>
+            <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>

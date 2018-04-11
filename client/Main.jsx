@@ -2,7 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import { Router, Route, Switch } from 'react-router';
-import {createBrowserHistory} from 'history';
+import { createBrowserHistory } from 'history';
 import { Accounts } from 'meteor/std:accounts-ui';
 
 import App from '../imports/ui/App.jsx';
