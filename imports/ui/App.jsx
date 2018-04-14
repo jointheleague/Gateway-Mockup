@@ -14,13 +14,13 @@ class App extends Component {
 	}
 
 	render() {
-		if(!this.props.user) {
+		/* if(!this.props.user) {
 			return(
 				<div>
 					Loading...
 				</div>
-			)
-		}
+			);
+		} */
 
 		const childrenWithProps = React.Children.map(this.props.children, child => React.cloneElement(child, {
 			user: this.props.user,
@@ -32,7 +32,7 @@ class App extends Component {
 		return(
 			<div>
 				<AppNavbar username={(this.props.user != null ? this.props.user.username : "Logged Out")}></AppNavbar>
-				<Profile profile={this.props.profile}></Profile>
+				{childrenWithProps}
 			</div>
 		);
 	}

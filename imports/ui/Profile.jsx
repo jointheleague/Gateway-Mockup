@@ -21,7 +21,7 @@ export default class Profile extends Component {
 
   render() {
     console.log("render...");
-    console.log(this.props.profile);
+    console.log(this.props);
 
     if(!this.props.profile) {
       return (
