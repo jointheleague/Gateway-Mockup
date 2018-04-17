@@ -1,29 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import GatewayComponent from './GatewayComponent';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
 import ProfileNav from './ProfileNav';
+import UserTestimonial from './UserTestimonial';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
-export default class Profile extends Component {
+export default class Profile extends GatewayComponent {
   constructor(props) {
     super(props);
-
-    console.log("constructor...");
-    console.log(props);
-  }
-
-  componentWillMount() {
-    console.log("mount...");
-    console.log(this.props);
   }
 
   render() {
-    console.log("render...");
-    console.log(this.props);
-
-    if(!this.props.profile) {
+    if(!this.getProfile()) {
       return (
         <div>
           Please sign in to access your profile.
@@ -34,7 +25,7 @@ export default class Profile extends Component {
       <div>
       <Grid>
         <Row>
-        <ProfileNav profile={this.props.profile}> </ProfileNav>
+        <ProfileNav profile={this.getProfile()}> </ProfileNav>
           <div className="col-md-3 offset-md-4">
           </div>
           <Col md={8}>
@@ -47,7 +38,7 @@ export default class Profile extends Component {
                   <Col md={4}>
                     <div className="center">
                       <div className="currentText">
-                        <b>4</b>
+                        <b>{this.getProfile().currentJobs}</b>
                       </div>
                       <a href="/jobs" className="blackColorLink">Current Jobs</a>
                     </div>
@@ -55,7 +46,7 @@ export default class Profile extends Component {
                   <Col md={4}>
                     <div className="center">
                       <div className="currentText">
-                        <b>8</b>
+                        <b>{this.getProfile().completedJobs}</b>
                       </div>
                       <a href="/jobs" className="blackColorLink">Completed Jobs</a>
                     </div>
@@ -63,7 +54,7 @@ export default class Profile extends Component {
                   <Col md={4}>
                     <div className="center">
                       <div className="currentTextDisabled">
-                        <b> 0 </b>
+                        <b>{this.getProfile().jobListings}</b>
                       </div>
                       <div href="/listings" className="blackColorLink">Job Listings</div>
                     </div>
@@ -78,19 +69,19 @@ export default class Profile extends Component {
                   <div style={{fontSize: 14 + "px"}}>
                     <Col md={4}>
                       <div className="center">
-                        <div className="currentText">5.0</div>
+                        <div className="currentText">{this.getProfile().experience}</div>
                         Experience
                       </div>
                     </Col>
                     <Col md={4}>
                       <div className="center">
-                        <div className="currentText">4.1</div>
+                        <div className="currentText">{this.getProfile().workQuality}</div>
                         Work Quality
                       </div>
                     </Col>
                     <Col md={4}>
                       <div className="center">
-                        <div className="currentText">2.9</div>
+                        <div className="currentText">{this.getProfile().timeliness}</div>
                         Timeliness
                       </div>
                     </Col>
@@ -103,27 +94,9 @@ export default class Profile extends Component {
               </div>
               <br />
               <div className="row">
-                <div className="col-md-4">
-                  <div className="panel panel-default">
-                    <div className="panel-body" style={{height: 150 + "px"}}>
-                      "All I needed was a for loop, but gee did he write that for loop well. Super optimized. 10/10 would hire again." <br /> <a href="#"> -Teran Bo </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="panel panel-default">
-                    <div className="panel-body" style={{height: 150 + "px"}}>
-                      "This guy found a way to implement bubble sort in O(-1). My computer ran backwards." <br /> <a href="#"> -Khan Toe </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="panel panel-default">
-                    <div className="panel-body" style={{height: 150 + "px"}}>
-                      "Best Git Commit Messages" <br /> <a href="#"> -Ron Moe </a><br /><br /><br /><br />
-                    </div>
-                  </div>
-                </div>
+                <UserTestimonial profile={this.getProfile()} testimonialId={0}></UserTestimonial>
+                <UserTestimonial profile={this.getProfile()} testimonialId={1}></UserTestimonial>
+                <UserTestimonial profile={this.getProfile()} testimonialId={2}></UserTestimonial>
               </div>
             </Panel>
           </Col>
@@ -132,8 +105,4 @@ export default class Profile extends Component {
       </div>
     );
   }
-}
-
-Profile.propTypes = {
-  profile: PropTypes.object
 }

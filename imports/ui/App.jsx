@@ -22,17 +22,20 @@ class App extends Component {
 			);
 		} */
 
-		const childrenWithProps = React.Children.map(this.props.children, child => React.cloneElement(child, {
-			user: this.props.user,
-			profile: this.props.profile
-		}));
+		const newChildren = React.Children.map(this.props.children, child => React.cloneElement(child));
 
-		console.log(childrenWithProps);
+		for(var key in newChildren) {
+			var child = newChildren[key];
+			if(child.props.component.__proto__.name == "GatewayComponent") {
+				child.props.component.prototype.user = this.props.user;
+				child.props.component.prototype.profile = this.props.profile;
+			}
+		}
 
 		return(
 			<div>
 				<AppNavbar username={(this.props.user != null ? this.props.user.username : "Logged Out")}></AppNavbar>
-				{childrenWithProps}
+				{newChildren}
 			</div>
 		);
 	}
