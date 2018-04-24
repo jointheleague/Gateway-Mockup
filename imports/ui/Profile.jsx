@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import GatewayComponent from './GatewayComponent';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
@@ -8,13 +7,13 @@ import ProfileNav from './ProfileNav';
 import UserTestimonial from './UserTestimonial';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
-export default class Profile extends GatewayComponent {
+export default class Profile extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    if(!this.getProfile()) {
+    if(!this.props.profile) {
       return (
         <div>
           Please sign in to access your profile.
@@ -25,7 +24,7 @@ export default class Profile extends GatewayComponent {
       <div>
       <Grid>
         <Row>
-        <ProfileNav profile={this.getProfile()}> </ProfileNav>
+        <ProfileNav profile={this.props.profile}> </ProfileNav>
           <div className="col-md-3 offset-md-4">
           </div>
           <Col md={8}>
@@ -38,7 +37,7 @@ export default class Profile extends GatewayComponent {
                   <Col md={4}>
                     <div className="center">
                       <div className="currentText">
-                        <b>{this.getProfile().currentJobs}</b>
+                        <b>{this.props.profile.currentJobs}</b>
                       </div>
                       <a href="/jobs" className="blackColorLink">Current Jobs</a>
                     </div>
@@ -46,7 +45,7 @@ export default class Profile extends GatewayComponent {
                   <Col md={4}>
                     <div className="center">
                       <div className="currentText">
-                        <b>{this.getProfile().completedJobs}</b>
+                        <b>{this.props.profile.completedJobs}</b>
                       </div>
                       <a href="/jobs" className="blackColorLink">Completed Jobs</a>
                     </div>
@@ -54,7 +53,7 @@ export default class Profile extends GatewayComponent {
                   <Col md={4}>
                     <div className="center">
                       <div className="currentTextDisabled">
-                        <b>{this.getProfile().jobListings}</b>
+                        <b>{this.props.profile.jobListings}</b>
                       </div>
                       <div href="/listings" className="blackColorLink">Job Listings</div>
                     </div>
@@ -69,19 +68,19 @@ export default class Profile extends GatewayComponent {
                   <div style={{fontSize: 14 + "px"}}>
                     <Col md={4}>
                       <div className="center">
-                        <div className="currentText">{this.getProfile().experience}</div>
+                        <div className="currentText">{this.props.profile.experience}</div>
                         Experience
                       </div>
                     </Col>
                     <Col md={4}>
                       <div className="center">
-                        <div className="currentText">{this.getProfile().workQuality}</div>
+                        <div className="currentText">{this.props.profile.workQuality}</div>
                         Work Quality
                       </div>
                     </Col>
                     <Col md={4}>
                       <div className="center">
-                        <div className="currentText">{this.getProfile().timeliness}</div>
+                        <div className="currentText">{this.props.profile.timeliness}</div>
                         Timeliness
                       </div>
                     </Col>
@@ -94,9 +93,9 @@ export default class Profile extends GatewayComponent {
               </div>
               <br />
               <div className="row">
-                <UserTestimonial profile={this.getProfile()} testimonialId={0}></UserTestimonial>
-                <UserTestimonial profile={this.getProfile()} testimonialId={1}></UserTestimonial>
-                <UserTestimonial profile={this.getProfile()} testimonialId={2}></UserTestimonial>
+                <UserTestimonial profile={this.props.profile} testimonialId={0}></UserTestimonial>
+                <UserTestimonial profile={this.props.profile} testimonialId={1}></UserTestimonial>
+                <UserTestimonial profile={this.props.profile} testimonialId={2}></UserTestimonial>
               </div>
             </Panel>
           </Col>

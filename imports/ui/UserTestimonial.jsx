@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import GatewayComponent from './GatewayComponent';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
 import ProfileNav from './ProfileNav';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
-export default class UserTestimonial extends GatewayComponent {
+export default class UserTestimonial extends Component {
   constructor(props) {
     super(props);
 
-    var testimonial = this.getProfile().testimonials[this.props.testimonialId];
+    var testimonial = this.props.profile.testimonials[this.props.testimonialId];
     var profileID = testimonial.profileID;
-    
+
     this.state = {
       text: testimonial.text
     };
