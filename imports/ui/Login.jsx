@@ -42,14 +42,14 @@ export default class Login extends Component {
                           placeholder = "Password"
                         />
                         <FormControl.Feedback />
-                        <a href="/forgotPW" align="right">Forgot password?</a>
+                        <a href="/forgotPassword">Forgot password?</a>
                       </FormGroup>
                       <a href="/profile"><Button bsStyle="primary">Sign in</Button></a>
                     </form>
                   </Panel>
                   <Panel>
                     <p>New to Gateway?</p>
-                    <a href = "/signup">Create an account.</a>
+                    <a href="/signup">Create an account.</a>
                   </Panel>
                 </Col>
               </Row>

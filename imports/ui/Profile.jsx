@@ -4,15 +4,27 @@ import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
 import ProfileNav from './ProfileNav';
+import UserTestimonial from './UserTestimonial';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 export default class Profile extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    if(!this.props.profile) {
+      return (
+        <div>
+          Please sign in to access your profile.
+        </div>
+      );
+    }
     return(
       <div>
       <Grid>
         <Row>
-        <ProfileNav> </ProfileNav>
+        <ProfileNav profile={this.props.profile}> </ProfileNav>
           <div className="col-md-3 offset-md-4">
           </div>
           <Col md={8}>
@@ -25,7 +37,7 @@ export default class Profile extends Component {
                   <Col md={4}>
                     <div className="center">
                       <div className="currentText">
-                        <b>4</b>
+                        <b>{this.props.profile.currentJobs}</b>
                       </div>
                       <a href="/jobs" className="blackColorLink">Current Jobs</a>
                     </div>
@@ -33,7 +45,7 @@ export default class Profile extends Component {
                   <Col md={4}>
                     <div className="center">
                       <div className="currentText">
-                        <b>8</b>
+                        <b>{this.props.profile.completedJobs}</b>
                       </div>
                       <a href="/jobs" className="blackColorLink">Completed Jobs</a>
                     </div>
@@ -41,7 +53,7 @@ export default class Profile extends Component {
                   <Col md={4}>
                     <div className="center">
                       <div className="currentTextDisabled">
-                        <b> 0 </b>
+                        <b>{this.props.profile.jobListings}</b>
                       </div>
                       <div href="/listings" className="blackColorLink">Job Listings</div>
                     </div>
@@ -56,54 +68,34 @@ export default class Profile extends Component {
                   <div style={{fontSize: 14 + "px"}}>
                     <Col md={4}>
                       <div className="center">
-                        <div className="currentText">5.0</div>
+                        <div className="currentText">{this.props.profile.experience}</div>
                         Experience
                       </div>
                     </Col>
                     <Col md={4}>
                       <div className="center">
-                        <div className="currentText">4.1</div>
+                        <div className="currentText">{this.props.profile.workQuality}</div>
                         Work Quality
                       </div>
                     </Col>
                     <Col md={4}>
                       <div className="center">
-                        <div className="currentText">2.9</div>
+                        <div className="currentText">{this.props.profile.timeliness}</div>
                         Timeliness
                       </div>
                     </Col>
                   </div>
                 </Col>
               </Row>
-
               <br />
-
               <div className="center">
                 <h3> User Testimonials </h3>
               </div>
               <br />
               <div className="row">
-                <div className="col-md-4">
-                  <div className="panel panel-default">
-                    <div className="panel-body" style={{height: 150 + "px"}}>
-                      "All I needed was a for loop, but gee did he write that for loop well. Super optimized. 10/10 would hire again." <br /> <a href="#"> -Teran Bo </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="panel panel-default">
-                    <div className="panel-body" style={{height: 150 + "px"}}>
-                      "This guy found a way to implement bubble sort in O(-1). My computer ran backwards." <br /> <a href="#"> -Khan Toe </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="panel panel-default">
-                    <div className="panel-body" style={{height: 150 + "px"}}>
-                      "Best Git Commit Messages" <br /> <a href="#"> -Ron Moe </a><br /><br /><br /><br />
-                    </div>
-                  </div>
-                </div>
+                <UserTestimonial profile={this.props.profile} testimonialId={0}></UserTestimonial>
+                <UserTestimonial profile={this.props.profile} testimonialId={1}></UserTestimonial>
+                <UserTestimonial profile={this.props.profile} testimonialId={2}></UserTestimonial>
               </div>
             </Panel>
           </Col>

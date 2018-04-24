@@ -164,16 +164,16 @@ LanguageSearch.propTypes = {
 };
 
 export default withTracker(() => {
-	const langsHandle = Meteor.subscribe("languages");
-	//  const nonPoplangsCursor = Languages.find({popular: false});
-	//  const popLangsCursor = Languages.find({popular: true});
-	//TODO : Figure out why isReady is inverted, might cause UI errors later when data is missing.
-	const isReady = langsHandle.ready();
-	//  const languageListExists = isReady;
-	//  const popularLanguageListExists = isReady;
-	return {
-		isReady,
-		languages: isReady ? Languages.find({ popular: false }).fetch() : [],
-		popularLanguages: isReady ? Languages.find({ popular: true }).fetch() : []
-	};
+  const langsHandle = Meteor.subscribe('languages');
+//  const nonPoplangsCursor = Languages.find({popular: false});
+//  const popLangsCursor = Languages.find({popular: true});
+//TODO : Figure out why isReady is inverted, might cause UI errors later when data is missing.
+  const isReady = langsHandle.ready();
+//  const languageListExists = isReady;
+//  const popularLanguageListExists = isReady;
+  return {
+    isReady,
+    languages: isReady ? Languages.find({popular: false}).fetch() : [],
+    popularLanguages : isReady ? Languages.find({popular: true}).fetch() : []
+  };
 })(LanguageSearch);

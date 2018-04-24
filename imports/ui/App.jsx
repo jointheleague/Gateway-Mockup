@@ -1,20 +1,53 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data'
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
-import HomepageCarousel from './HomepageCarousel';
+import { Router, Route, Switch } from 'react-router';
 import { Col, Panel, Jumbotron, Grid, Row, PageHeader, Button } from 'react-bootstrap';
 
-export default class App extends Component {
-	render() {
-		const childrenWithProps = React.Children.map(this.props.children, child => React.cloneElement(child, {}));
+import Homepage from './Homepage.jsx';
+import Dashboard from './Dashboard.jsx';
+import Profile from './Profile.jsx';
+import JobListings from './JobListings.jsx';
+import NotFound from './NotFound.jsx';
+import About from './About.jsx';
+import Login from './Login.jsx'
+import SignUp from './SignUp.jsx'
+import PostaJob from './PostaJob.jsx'
 
+class App extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
 		return(
 			<div>
-				<AppNavbar username={(Meteor.user() != null ? Meteor.user().username : "")}></AppNavbar>
-				{childrenWithProps}
+				<AppNavbar username={(this.props.user != null ? this.props.user.username : "Logged Out")}></AppNavbar>
+
+				<Route exact path="/" component={Homepage} />
+				<Route exact path="/profile" render={() => <Profile {...this.props}></Profile> } />
+				<Route exact path="/dashboard" component={ Dashboard } />
+				<Route exact path="/jobs" component={ JobListings } />
+				<Route exact path="/login" component={ Login } />
+				<Route exact path="/about" component={ About } />
+				<Route exact path="/signup" component={ SignUp } />
+				<Route exact path="/jobs/edit" component={ PostaJob } />
 			</div>
 		);
 	}
 }
+
+App.propTypes = {
+	user: PropTypes.object,
+	profile: PropTypes.object
+}
+
+export default withTracker(() => {
+	return {
+		user: Meteor.user() || null,
+		profile: (Meteor.user() || null) == null ? null : Meteor.user().profile
+	}
+})(App);

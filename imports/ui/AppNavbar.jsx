@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
 
 NavItem.prototype.handleClick = function handleClick(e) {
-  if (this.props.onSelect) {    
+  if (this.props.onSelect) {
     if (!this.props.disabled) {
       this.props.onSelect(this.props.eventKey, e);
     }
@@ -21,7 +21,7 @@ export default class AppNavbar extends Component {
             <Navbar.Brand>
               <a href="/">Gateway Mockup</a>
             </Navbar.Brand>
-            <Navbar.Toggle/>
+            <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
