@@ -16,6 +16,7 @@
     ],
     "Profiles": [
       {
+        "tempID": 0,
         "firstName": "Lucas",
         "lastName": "Baizer",
         "bio": "Hi. I'm Lucas, and I was one of the developers on this application.",
@@ -44,6 +45,7 @@
         ]
       },
       {
+        "tempID": 1,
         "firstName": "Matthew",
         "lastName": "Smith",
         "bio": "Hi. I'm Matthew, and I was also one of the developers on this application.",
@@ -72,10 +74,11 @@
         ]
       },
       {
+        "tempID": 2,
         "firstName": "Phil",
         "lastName": "Cruz",
         "bio": "Hi. I'm Phil, and I'm a mentor for the developers of this application.",
-        "email": "phil.cruz@jointheleague.org",
+        "email": "phil@philcruz.com",
         "phoneNumber": "(858) 891-0111",
         "github": "philcruz",
         "currentJobs": 0,
@@ -100,6 +103,7 @@
         ]
       },
       {
+        "tempID": 3,
         "firstName": "Not",
         "lastName": "A Robot",
         "bio": "Greetings. I am definitely not a robot. I am a human.",
