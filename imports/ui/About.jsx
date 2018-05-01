@@ -4,8 +4,16 @@ import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
 import { Grid, Col, Panel } from 'react-bootstrap';
+import { Accounts } from 'meteor/accounts-base'
+import { withTracker } from "meteor/react-meteor-data";
 
-export default class About extends Component {
+class About extends Component {
+  getClients(){
+    return this.props.accounts.length;
+  }
+  getJobs(){
+    return this.props.jobs.length;
+  }
   render() {
     return (
       <div>
@@ -22,27 +30,30 @@ export default class About extends Component {
             </p>
           </div>
           <br />
-          <Panel>
-            <div style={{"fontSize": "18px", margin: "auto", width: "50%"}}>
-              <Col md={4}>
+          <legend style={{"textAlign" : "center"}}> Lifetime Statistics </legend>
+            <div style={{"fontSize": "18px", margin: "0 auto", width: "50%"}}>
+              <Col md={6}>
                 <img src="images/computerIcon.svg" width="75px;" />
                 <br />
-                14 Coders
+                {this.getClients()} Coders
               </Col>
-              <Col md={4}>
-                <img src="images/workIcon.svg" width="75px;" />
-                <br />
-                8 Clients
-              </Col>
-              <Col md={4}>
+              <Col md={6}>
                 <img src="images/checkIcon.svg" width="75px;" />
                 <br />
-                24 Completed Jobs
+                {this.getJobs()} Jobs Posted
               </Col>
             </div>
-          </Panel>
         </Grid>
       </div>
     );
   }
 }
+export default withTracker(() => {
+	const jobsHandle = Meteor.subscribe("jobs");
+	const dataIsReady = jobsHandle.ready();
+	return {
+		dataIsReady,
+		jobs: dataIsReady ? Jobs.find({}).fetch() : [],
+    accounts: dataIsReady ? Meteor.users.find({}).fetch() : []
+	};
+})(About);
