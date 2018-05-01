@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo'
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
+import '../imports/rpc/ProfileRPC';
 
 const Jobs = new Mongo.Collection('jobs');
 const Languages = new Mongo.Collection('languages');

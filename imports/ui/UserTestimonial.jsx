@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
 import ProfileNav from './ProfileNav';
+import '../rpc/ProfileRPC';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 export default class UserTestimonial extends Component {
@@ -14,8 +15,22 @@ export default class UserTestimonial extends Component {
     var profileID = testimonial.profileID;
 
     this.state = {
-      text: testimonial.text
+      text: "",
+      user: ""
     };
+
+    var profile = Meteor.call("profile.getProfile", profileID, (error, profile) => {
+      var user;
+      if(profile) {
+        user = profile.firstName + " " + profile.lastName;
+      } else {
+        user = "Unknown";
+      }
+      this.setState({
+        text: testimonial.text,
+        user: user
+      });
+    });
   }
 
   render() {
@@ -25,10 +40,15 @@ export default class UserTestimonial extends Component {
           <div className="panel-body" style={{height: 150 + "px"}}>
             {this.state.text}
             <br />
-            <a href="#">-Teran Bo</a>
+            <a href="#">{this.state.user}</a>
           </div>
         </Panel>
       </Col>
     );
   }
+}
+
+UserTestimonial.propTypes = {
+  profile: PropTypes.object,
+  testimonialId: PropTypes.number
 }

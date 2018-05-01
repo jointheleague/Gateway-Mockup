@@ -1,12 +1,10 @@
-Meteor.methods({
-  'profile.addTestimonial'({ todoId, newText }) {
-    if (!todo.editableBy(this.userId)) {
-      throw new Meteor.Error('todos.updateText.unauthorized',
-        'Cannot edit todos in a private list that is not yours');
-    }
+import { Meteor } from 'meteor/meteor';
 
-    Todos.update(todoId, {
-      $set: { text: newText }
-    });
+Meteor.methods({
+  'profile.getProfile': function(profileID) {
+    if(Meteor.isServer) {
+      var found = Meteor.users.findOne({"profile.tempID": profileID});
+      return found ? found.profile : null;
+    }
   }
 });
