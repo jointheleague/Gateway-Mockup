@@ -25,10 +25,10 @@ class App extends Component {
 	render() {
 		return(
 			<div>
-				<AppNavbar username={(this.props.user != null ? this.props.user.username : "Logged Out")}></AppNavbar>
+				<AppNavbar profile={this.props.profile || { github: "Logged Out" }}></AppNavbar>
 
-				<Route exact path="/" component={Homepage} />
-				<Route exact path="/profile" render={() => <Profile {...this.props}></Profile> } />
+				<Route exact path="/" component={ Homepage } />
+				<Route exact path="/profile/:username" component={ Profile } />
 				<Route exact path="/dashboard" component={ Dashboard } />
 				<Route exact path="/jobs" component={ JobListings } />
 				<Route exact path="/login" component={ Login } />
