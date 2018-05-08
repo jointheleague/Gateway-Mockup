@@ -3,8 +3,10 @@
 	"private": true,
 	"scripts": {
 		"start": "meteor run --settings config/config.json",
-		"test-full-app": "meteor test --full-app --driver-package tmeasday:acceptance-test-driver",
-		"test-all": "chimp config/chimp.js --ddp=http://localhost:3000  --mocha --path=tests"
+		"test-full-app":
+			"meteor test --full-app --driver-package tmeasday:acceptance-test-driver --settings config/config.json",
+		"test-all":
+			"chimp config/chimp.js --ddp=http://localhost:3000  --mocha --path=tests"
 	},
 	"dependencies": {
 		"babel-runtime": "^6.26.0",

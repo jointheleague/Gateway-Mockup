@@ -169,7 +169,7 @@ class JobListings extends React.Component {
 					</Col>
 					<Col md={8}>
 						<div style={{ margin: "auto" }}>
-							<h2> Job Listings </h2>
+							<h2 id="jobListingsHeader"> Job Listings </h2>
 							<FormControl
 								type="text"
 								onChange={this.searchChanged}

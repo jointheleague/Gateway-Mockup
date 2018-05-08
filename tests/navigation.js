@@ -21,6 +21,7 @@ describe("basic navigation", function() {
 
 	it("can go to the Jobs page", function() {
 		browser.url("http://localhost:3000/jobs");
-		assert.equal(browser.getText("h2#pageTitle"), "Job Listings");
+		browser.waitForVisible("#jobListingsHeader", waitTime);
+		assert.equal(browser.getText("#jobListingsHeader").trim(), "Job Listings");
 	});
 });
