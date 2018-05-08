@@ -16,19 +16,15 @@ export default class UserTestimonial extends Component {
 
     this.state = {
       text: "",
-      user: ""
+      user: "",
+      github: ""
     };
 
-    var profile = Meteor.call("profile.getProfile", profileID, (error, profile) => {
-      var user;
-      if(profile) {
-        user = profile.firstName + " " + profile.lastName;
-      } else {
-        user = "Unknown";
-      }
+    Meteor.call("profile.getFromID", profileID, (error, profile) => {
       this.setState({
         text: testimonial.text,
-        user: user
+        user: profile ? (profile.firstName + " " + profile.lastName) : "Unknown",
+        github: profile ? profile.github : "Unknown"
       });
     });
   }
@@ -40,7 +36,7 @@ export default class UserTestimonial extends Component {
           <div className="panel-body" style={{height: 150 + "px"}}>
             {this.state.text}
             <br />
-            <a href="#">{this.state.user}</a>
+            <a href={"/profile/" + this.state.github}>{this.state.user}</a>
           </div>
         </Panel>
       </Col>
