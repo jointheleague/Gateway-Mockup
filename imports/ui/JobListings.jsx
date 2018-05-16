@@ -60,7 +60,8 @@ class JobListings extends React.Component {
 			selectedLangs: [],
 			lowerLevelFilter: 0,
 			upperLevelFilter: 9,
-			search: ""
+			search: "",
+			profiles: []
 		};
 		this.langSelected = this.langSelected.bind(this);
 		this.levelRangeChanged = this.levelRangeChanged.bind(this);
@@ -114,13 +115,34 @@ class JobListings extends React.Component {
 	}
 
 	render() {
-		if (!this.props.dataIsReady) {
+		if(this.state.profiles.length == 0) {
+			Meteor.call("profile.getFromID", this.jobs().map(job => job.client), (error, profiles) => {
+				var map = profiles.map(profile => {
+					profile = profile.profile;
+					return {
+						firstName: profile.firstName,
+						lastName: profile.lastName,
+						github: profile.github
+					};
+				});
+				var dict = [];
+				for(var key in map) {
+					dict[key] = map[key];
+				}
+				this.setState({
+					profiles: dict
+				});
+			});
+		}
+
+		if (!this.props.dataIsReady || this.state.profiles.length == 0) {
 			return (
 				<div style={{ padding: 50 }}>
 					<h1>Loading...</h1>
 				</div>
 			);
 		}
+		console.log(this.state.profiles);
 		return (
 			<div>
 				<Grid>
@@ -234,6 +256,14 @@ class JobListings extends React.Component {
 										</span>
 									);
 								});
+								var profile = this.state.profiles[job.client];
+								if(typeof profile === 'undefined') {
+									profile = {
+										github: "",
+										firstName: "Unknown",
+										lastName: "User"
+									};
+								}
 								return (
 									<div
 										key={
@@ -248,7 +278,7 @@ class JobListings extends React.Component {
 											<h3> {job.name} </h3>
 											<div className="currentTextDisabledSmall">
 												{" "}
-												Posted By <a href="#"> {job.client} </a>{" "}
+												Posted By <a href={"/profile/" + profile.github}> {profile.firstName + " " + profile.lastName} </a>{" "}
 											</div>
 											<p> {job.desc} </p>
 											<br />

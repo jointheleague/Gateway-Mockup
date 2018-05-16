@@ -1,15 +1,18 @@
 {
   "sampledata": {
     "Jobs": [
-      { "name": "Cool Job",      "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["Java"],        "client": "John Doe", "level": 4 },
-      { "name": "Best Job",      "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["Fortran"],     "client": "John Doe", "level": 1 },
-      { "name": "Better Job",    "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["C++", "Rust"], "client": "John Doe", "level": 4 },
-      { "name": "Difficult Job", "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["C++"],         "client": "John Doe", "level": 9 },
-      { "name": "Easy Job",      "desc": "This job involves writing a lot of for loops and unit tests. Be prepared.", "langs": ["Fortran"],     "client": "John Doe", "level": 2 }
+      { "name": "Proxmark Android App", "desc": "I need an app with an interactive UI to use a Proxmark 3 from my Android phone. It should be able to work without rooting the phone. Native bindings are fine, as long as there is support for all types of Android processor architectures (ARM, x86, etc). There needs to be support for all functions of the Proxmark except for graphing functions. An internet connection should not be required. You should have experience with Android, Proxmarks, and general UI development.", "langs": ["Android", "C++"], "client": 0, "level": 4 },
+      { "name": "Motorsport Registration App", "desc": "My car racing club needs a new digital registration system. I need to be able to print labels for racers live at the event. It should be a web service with native bindings to print the labels. I would suggest experience with C# and JavaScript.", "langs": ["C#", "JavaScript"], "client": 1, "level": 1 },
+      { "name": "Organoid Detector", "desc": "My biology lab is measuring the size of human neurospheres. I need some software to recognize the diameter of the neurospheres. The app should be written in Java so that it's cross-platform.", "langs": ["Java"], "client": 0, "level": 4 },
+      { "name": "AWS Interface App", "desc": "I need a web service to interface with the AWS API to easily manage load balancing and other services on my AWS servers.", "langs": ["JavaScript"], "client": 3, "level": 9 },
+      { "name": "Neural Network Development", "desc": "I need a simple yet powerful API for creating neural networks in Fortran.", "langs": ["Fortran"], "client": 2, "level": 2 }
     ],
     "Languages": [
       { "name": "Java",       "popular": true  },
       { "name": "C++",        "popular": true  },
+      { "name": "Android",    "popular": true  },
+      { "name": "JavaScript", "popular": true  },
+      { "name": "C#",         "popular": false },
       { "name": "Cornflakes", "popular": false },
       { "name": "Fortran",    "popular": false },
       { "name": "Rust",       "popular": false }
