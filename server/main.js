@@ -11,7 +11,7 @@ const Messages = new Mongo.Collection('messages');
 
 Accounts.onCreateUser(function (options, user) {
   user.username = user.services.github.email;
-
+  console.log("Creating user...");
   const profiles = Meteor.settings.sampledata.Profiles;
   for(var key in profiles) {
     const val = profiles[key];

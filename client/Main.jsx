@@ -11,9 +11,13 @@ import './main.html';
 const history = createBrowserHistory();
 
 Meteor.startup(() => {
+	Accounts.config({
+  forbidClientAccountCreation: false
+});
 	Accounts.ui.config({
 	  loginPath: '/login',
 		profilePath: '/dashboard',
+		passwordSignupFields: 'USERNAME_AND_EMAIL',
 	  onSignedInHook: () => history.push('/dashboard'),
 	  onSignedOutHook: () => history.push('/logout')
 	});

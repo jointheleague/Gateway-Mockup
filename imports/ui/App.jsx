@@ -31,7 +31,7 @@ class App extends Component {
 				<Route exact path="/profile/:username" component={ Profile } />
 				<Route exact path="/dashboard" component={ Dashboard } />
 				<Route exact path="/jobs" component={ JobListings } />
-				<Route exact path="/login" component={ Login } />
+				<Route exact path="/login" component={ SignUp } />
 				<Route exact path="/about" component={ About } />
 				<Route exact path="/signup" component={ SignUp } />
 				<Route exact path="/jobs/edit" component={ PostaJob } />
