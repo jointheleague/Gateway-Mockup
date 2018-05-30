@@ -5,7 +5,7 @@ import classnames from "classnames";
 import AppNavbar from "./AppNavbar";
 import { FormControl, ListGroup, ListGroupItem } from "react-bootstrap";
 import { withTracker } from "meteor/react-meteor-data";
-import { Languages } from "/imports/api/Languages.jsx";
+import Languages from '../api/Languages';
 
 class LanguageSearch extends Component {
 	constructor(props) {

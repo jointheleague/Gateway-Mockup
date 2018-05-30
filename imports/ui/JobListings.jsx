@@ -21,7 +21,7 @@ import {
 } from "react-bootstrap";
 
 // Get the Collection
-Jobs = new Mongo.Collection("jobs");
+import Jobs from '../api/Jobs';
 
 function FieldGroup({ id, label, help, ...props }) {
 	return (

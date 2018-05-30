@@ -4,10 +4,11 @@ import { Mongo } from 'meteor/mongo'
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 import '../imports/rpc/ProfileRPC';
-
-const Jobs = new Mongo.Collection('jobs');
-const Languages = new Mongo.Collection('languages');
-const Messages = new Mongo.Collection('messages');
+import '../imports/rpc/JobRPC';
+import Jobs from '../imports/api/Jobs';
+import Languages from '../imports/api/Languages';
+import Messages from '../imports/api/Messages';
+import Profiles from '../imports/api/Profiles';
 
 Accounts.onCreateUser(function (options, user) {
   user.username = user.services.github.email;
