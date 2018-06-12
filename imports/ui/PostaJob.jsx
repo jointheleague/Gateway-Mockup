@@ -32,13 +32,15 @@ export default class PostaJob extends Component {
   }
 
   onSubmit(e) {
-    Meteor.call("job.add", {
-      name: this.state.title,
-      desc: this.state.desc,
-      level: this.state.level,
-      langs: this.state.selectedLangs,
-      client: Meteor.userId()
-    });
+    // if(this.state.title && this.state.desc && this.state.level) {
+      Meteor.call("job.add", {
+        name: this.state.title,
+        desc: this.state.desc,
+        level: this.state.level,
+        langs: this.state.selectedLangs,
+        client: Meteor.userId()
+      });
+    // }
   }
 
   updateTitle(e) {
