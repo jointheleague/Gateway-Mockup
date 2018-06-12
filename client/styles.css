@@ -39,6 +39,11 @@ nav {
   font-size: 16px;
 }
 
+.languageScrollWindow {
+	height: 200px;
+  overflow: auto;
+}
+
 html{
   height: 100%;
 }

@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import classnames from "classnames";
 import AppNavbar from "./AppNavbar";
-import { FormControl, ListGroup, ListGroupItem } from "react-bootstrap";
+import { FormControl, ListGroup, ListGroupItem, Panel } from "react-bootstrap";
 import { withTracker } from "meteor/react-meteor-data";
-import { Languages } from "/imports/api/Languages.jsx";
+import Languages from '../api/Languages';
 
 class LanguageSearch extends Component {
 	constructor(props) {
@@ -142,18 +142,18 @@ class LanguageSearch extends Component {
 
 	render() {
 		return (
-			<div className="rounded border border-dark">
+			<Panel>
 				<FormControl
 					type="text"
 					onChange={this.searchChanged}
 					placeholder="search for languages"
 				/>
-				<h3>Selected Languages</h3>
+				<h5>Selected Languages</h5>
 				{this.listSelectedLanguages()}
 				<hr />
-				<h3>Other Languages</h3>
+				<h5>Other Languages</h5>
 				{this.listAllLanguages()}
-			</div>
+			</Panel>
 		);
 	}
 }

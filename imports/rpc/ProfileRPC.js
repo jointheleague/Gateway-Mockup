@@ -18,5 +18,10 @@ Meteor.methods({
       var found = Meteor.users.findOne({"profile.github": gh});
       return found ? found.profile : null;
     }
+  },
+  'profile.getCount': function() {
+    if(Meteor.isServer) {
+      return Meteor.users.find().count();
+    }
   }
 });

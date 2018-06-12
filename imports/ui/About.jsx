@@ -6,14 +6,30 @@ import AppNavbar from './AppNavbar';
 import { Grid, Col, Panel } from 'react-bootstrap';
 import { Accounts } from 'meteor/accounts-base'
 import { withTracker } from "meteor/react-meteor-data";
+import ProfileRPC from '../rpc/ProfileRPC';
+import JobRPC from '../rpc/JobRPC';
 
-class About extends Component {
-  getClients(){
-    return this.props.accounts.length;
+export default class About extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      coders: 0,
+      jobs: 0
+    };
+
+    Meteor.call("profile.getCount", (error, result) => {
+      this.setState({
+        coders: result
+      });
+    });
+    Meteor.call("job.getCount", (error, result) => {
+      this.setState({
+        jobs: result
+      });
+    });
   }
-  getJobs(){
-    return this.props.jobs.length;
-  }
+
   render() {
     return (
       <div>
@@ -35,12 +51,12 @@ class About extends Component {
               <Col md={6}>
                 <img src="images/computerIcon.svg" width="75px;" />
                 <br />
-                {this.getClients()} Coders
+                {this.state.coders} Coders
               </Col>
               <Col md={6}>
                 <img src="images/checkIcon.svg" width="75px;" />
                 <br />
-                {this.getJobs()} Jobs Posted
+                {this.state.jobs} Jobs Posted
               </Col>
             </div>
         </Grid>
@@ -48,12 +64,3 @@ class About extends Component {
     );
   }
 }
-export default withTracker(() => {
-	const jobsHandle = Meteor.subscribe("jobs");
-	const dataIsReady = jobsHandle.ready();
-	return {
-		dataIsReady,
-		jobs: dataIsReady ? Jobs.find({}).fetch() : [],
-    accounts: dataIsReady ? Meteor.users.find({}).fetch() : []
-	};
-})(About);
