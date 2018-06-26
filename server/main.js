@@ -21,7 +21,6 @@ Accounts.onCreateUser(function (options, user) {
       break;
     }
   }
-
   return user;
 });
 
@@ -41,7 +40,7 @@ Meteor.startup(() => {
 
   setupCollection("jobs", Jobs, Meteor.settings.sampledata.Jobs);
   setupCollection("languages", Languages, Meteor.settings.sampledata.Languages);
-  // setupCollection(Profiles, Meteor.settings.sampledata.Profiles);
+  setupCollection("profiles", Profiles, Meteor.settings.sampledata.Profiles);
   setupCollection("messages", Messages, Meteor.settings.sampledata.Messages);
 });
 
