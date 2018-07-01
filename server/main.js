@@ -14,13 +14,23 @@ Accounts.onCreateUser(function (options, user) {
   user.username = user.services.github.email;
   console.log("Creating user...");
   const profiles = Meteor.settings.sampledata.Profiles;
+  var isSampleUser = false;
   for(var key in profiles) {
     const val = profiles[key];
     if(val.email == user.username) {
       user.profile = val;
+      isSampleUser = true;
       break;
     }
   }
+
+  if(!isSampleUser){
+    //Load empty user template so the profile page may be filled out manually
+    console.log("Adding blank profile for : " + user.services.github.email);
+    user.profile = Meteor.settings.sampledata.EmptyUser;
+    user.profile.github = user.services.github.username;
+  }
+
   return user;
 });
 
@@ -40,7 +50,7 @@ Meteor.startup(() => {
 
   setupCollection("jobs", Jobs, Meteor.settings.sampledata.Jobs);
   setupCollection("languages", Languages, Meteor.settings.sampledata.Languages);
-  setupCollection("profiles", Profiles, Meteor.settings.sampledata.Profiles);
+  setupCollection("users", Meteor.users, Meteor.settings.sampledata.Users);
   setupCollection("messages", Messages, Meteor.settings.sampledata.Messages);
 });
 

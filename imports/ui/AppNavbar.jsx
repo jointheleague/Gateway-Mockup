@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
+import {browserHistory} from 'react-router';
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
+import { withRouter } from "react-router-dom";
 
 NavItem.prototype.handleClick = function handleClick(e) {
   if (this.props.onSelect) {
@@ -12,7 +14,18 @@ NavItem.prototype.handleClick = function handleClick(e) {
   }
 };
 
-export default class AppNavbar extends Component {
+class AppNavbar extends Component {
+
+  constructor(props){
+    super(props);
+    this.onLogout = this.onLogout.bind(this);
+  }
+
+  onLogout(){
+    Meteor.logout();
+    this.props.history.push("/");
+  }
+
   render() {
     return (
       <div>
@@ -36,7 +49,7 @@ export default class AppNavbar extends Component {
                 <MenuItem eventKey={6.1} href={"/profile/" + this.props.profile.github}>Profile</MenuItem>
                 <MenuItem eventKey={6.2}>Switch to Freelancer</MenuItem>
                 <MenuItem divider />
-                <MenuItem eventKey={6.3} href="/logout">Logout</MenuItem>
+                <MenuItem eventKey={6.3} onClick={this.onLogout}>Logout</MenuItem>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
@@ -49,3 +62,5 @@ export default class AppNavbar extends Component {
 AppNavbar.propTypes = {
     profile: PropTypes.object.isRequired
 }
+
+export default withRouter(AppNavbar);

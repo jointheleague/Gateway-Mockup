@@ -10,24 +10,12 @@ export default class SignUp extends Component {
 
   constructor(){
     super();
-
-    this.state = {
-      username: '',
-      usernamePlaceholder: 'Pick a username',
-      email1: '',
-      email1Placeholder: 'you@example.com',
-      email2: '',
-      email2Placeholder: 'Reenter email',
-      password1: '',
-      password1Placeholder: 'Create a password',
-      password2: '',
-      password2Placeholder: 'Reenter password',
-      validationState1: null,
-      validationState2: null,
-      validationState3: null
-    };
+    this.onLogin = this.onLogin.bind(this);
   }
 
+  onLogin(){
+    Meteor.loginWithGithub();
+  }
 
   render(){
     return(
@@ -43,7 +31,7 @@ export default class SignUp extends Component {
             </Row>
             <br />
           <Row>
-            <Accounts.ui.LoginForm />
+            <Button onClick={this.onLogin}> Login With GitHub </Button>
               </Row>
             </Grid>
           </div>

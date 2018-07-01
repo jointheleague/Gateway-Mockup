@@ -3,24 +3,22 @@ import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import { Router, Route, Switch } from 'react-router';
 import { createBrowserHistory } from 'history';
-import { Accounts } from 'meteor/std:accounts-ui';
+import { Accounts } from 'meteor/accounts-base';
 
 import App from '../imports/ui/App.jsx';
 import './main.html';
 
 const history = createBrowserHistory();
 
+
 Meteor.startup(() => {
 	Accounts.config({
   forbidClientAccountCreation: false
 });
-	Accounts.ui.config({
-	  loginPath: '/login',
-		profilePath: '/dashboard',
-		passwordSignupFields: 'USERNAME_AND_EMAIL',
-	  onSignedInHook: () => history.push('/dashboard'),
-	  onSignedOutHook: () => history.push('/logout')
+	Accounts.onLogin(function(data){
+		var toRedirect = "/profile/" + Meteor.user.username;
 	});
+
 
 	render(
 		<Router history={history}>
