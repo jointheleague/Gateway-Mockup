@@ -16,8 +16,6 @@ Meteor.methods({
   'profile.getFromGithub': function(gh) {
     if(Meteor.isServer) {
       var found = Meteor.users.findOne({"profile.github": gh});
-      console.log(found);
-      console.log(found.profile);
       return found ? found.profile : null;
     }
   },

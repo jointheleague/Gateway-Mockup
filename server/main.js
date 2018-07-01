@@ -48,7 +48,7 @@ Meteor.startup(() => {
 
   setupCollection("jobs", Jobs, Meteor.settings.sampledata.Jobs);
   setupCollection("languages", Languages, Meteor.settings.sampledata.Languages);
-  // setupCollection(Profiles, Meteor.settings.sampledata.Profiles);
+  setupCollection("users", Meteor.users, Meteor.settings.sampledata.Users);
   setupCollection("messages", Messages, Meteor.settings.sampledata.Messages);
 });
 
