@@ -5,8 +5,19 @@ import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
 import HomepageCarousel from './HomepageCarousel';
 import { Col, Panel, Jumbotron, Grid, Row, PageHeader, Button } from 'react-bootstrap';
+import { withRouter } from "react-router-dom";
 
-export default class Homepage extends Component {
+class Homepage extends Component {
+
+	constructor(props){
+		super(props);
+		this.onLogin = this.onLogin.bind(this);
+	}
+
+	onLogin(){
+		Meteor.loginWithGithub();
+	}
+
 	render() {
 		return(
 			<div>
@@ -22,7 +33,7 @@ export default class Homepage extends Component {
 									<PageHeader>Project Gateway</PageHeader>
 									<br />
 									<p>Project Gateway is a website that allows anyone who wants code written to have it, free of charge. New and upcoming developers can see your job posting and begin working on it. After a few developers have submitted the code, you can choose your favorite. The winning developer will gain points. This allows new developers to gain experience in real world applications in low stress environments without bias against them because they don't have a lot of experience.</p>
-									<a href="/signup"><Button bsStyle="primary" bsSize="lg">Sign Up!</Button></a>
+									<Button onClick={this.onLogin}> Login With GitHub </Button>
 									<br />
 									<Col md={4} mdOffset={5}>
 										<span>Already a member? <a href="/login">Log in.</a></span>
@@ -58,3 +69,5 @@ export default class Homepage extends Component {
 		);
 	}
 }
+
+export default withRouter(Homepage);

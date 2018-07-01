@@ -15,7 +15,11 @@ export default class Profile extends Component {
       profile: null
     };
 
+    console.log("Displaying profile for GitHub username : " + this.props.match.params.username);
+
     Meteor.call("profile.getFromGithub", this.props.match.params.username, (error, profile) => {
+      console.log("Error from server : " + error);
+      console.log("Displaying profile : " + profile);
       this.setState({
         profile: profile
       });
@@ -30,6 +34,10 @@ export default class Profile extends Component {
         </div>
       );
     } else {
+      const Testimonials = [];
+      for(var i = 0; i < this.state.profile.testimonials.length; i++){
+          Testimonials.push(<UserTestimonial profile={this.state.profile} testimonialId={i}></UserTestimonial>);
+      }
       return(
         <div>
         <Grid>
@@ -103,9 +111,7 @@ export default class Profile extends Component {
                 </div>
                 <br />
                 <div className="row">
-                  <UserTestimonial profile={this.state.profile} testimonialId={0}></UserTestimonial>
-                  <UserTestimonial profile={this.state.profile} testimonialId={1}></UserTestimonial>
-                  <UserTestimonial profile={this.state.profile} testimonialId={2}></UserTestimonial>
+                  {Testimonials}
                 </div>
               </Panel>
             </Col>
