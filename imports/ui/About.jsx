@@ -8,6 +8,7 @@ import { Accounts } from 'meteor/accounts-base'
 import { withTracker } from "meteor/react-meteor-data";
 import ProfileRPC from '../rpc/ProfileRPC';
 import JobRPC from '../rpc/JobRPC';
+import ProfileEditText from '../ui/ProfileEditText';
 
 export default class About extends Component {
   constructor() {
@@ -60,6 +61,7 @@ export default class About extends Component {
               </Col>
             </div>
         </Grid>
+        <ProfileEditText fieldName="bio"></ProfileEditText>
       </div>
     );
   }

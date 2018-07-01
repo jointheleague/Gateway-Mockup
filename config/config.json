@@ -97,6 +97,35 @@
         ]
       },
       {
+        "tempID": 1,
+        "firstName": "Matthew",
+        "lastName": "Smith",
+        "bio": "Hi. I'm Matthew, and I was also one of the developers on this application.",
+        "email": "matt86707@gmail.com",
+        "phoneNumber": "(858) 123-4567",
+        "github": "matthew86707",
+        "currentJobs": 0,
+        "completedJobs": 0,
+        "jobListings": 0,
+        "experience": 10.0,
+        "workQuality": 10.0,
+        "timeliness": 10.0,
+        "testimonials": [
+          {
+            "profileID": 0,
+            "text": "Exclamations! Absolutely an enjoyable fellow."
+          },
+          {
+            "profileID": 2,
+            "text": "Holy mackerel! Truly a colorful human."
+          },
+          {
+            "profileID": 3,
+            "text": "Goodness gracious! Undoubtedly a magnificent person."
+          }
+        ]
+      },
+      {
         "tempID": 2,
         "firstName": "Phil",
         "lastName": "Cruz",
