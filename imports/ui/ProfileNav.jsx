@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
+import ProfileEditText from '../ui/ProfileEditText';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 export default class ProfileNav extends Component {
@@ -20,9 +21,9 @@ export default class ProfileNav extends Component {
       <p>{this.props.profile.bio}</p>
       <h4>Contact</h4>
       <div style={{color: "grey"}}>
-        {this.props.profile.email}
+        <ProfileEditText username={this.props.profile.github} placeholder="Email" fieldName="email"></ProfileEditText>
         <br/>
-        {this.props.profile.phoneNumber}
+        <ProfileEditText username={this.props.profile.github} placeholder="Phone Number" fieldName="phoneNumber"></ProfileEditText>
         <br/>
         <a href={"https://github.com/" + this.props.profile.github}>{this.props.profile.github + " on GitHub"}</a>
       </div>
