@@ -17,13 +17,13 @@ export default class ProfileNav extends Component {
       <Col md={3}>
          <div className="panel panel-default">
     <div className="panel-body">
-      <legend><h2>{this.props.profile.firstName + " " + this.props.profile.lastName}</h2></legend>
-      <p>{this.props.profile.bio}</p>
+      <legend><h2><ProfileEditText username={this.props.profile.github} placeholder="John" fieldName="firstName" showFullPlaceholder={false}></ProfileEditText> <ProfileEditText username={this.props.profile.github} placeholder="Doe" fieldName="lastName" showFullPlaceholder={false}></ProfileEditText></h2></legend>
+      <div style={{overflowWrap: "break-word"}}><ProfileEditText username={this.props.profile.github} placeholder="Bio" fieldName="bio" showFullPlaceholder={true} isParagraph={true}></ProfileEditText></div>
       <h4>Contact</h4>
       <div style={{color: "grey"}}>
-        <ProfileEditText username={this.props.profile.github} placeholder="Email" fieldName="email"></ProfileEditText>
+        <ProfileEditText username={this.props.profile.github} placeholder="Email" fieldName="email" showFullPlaceholder={true}></ProfileEditText>
         <br/>
-        <ProfileEditText username={this.props.profile.github} placeholder="Phone Number" fieldName="phoneNumber"></ProfileEditText>
+        <ProfileEditText username={this.props.profile.github} placeholder="Phone Number" fieldName="phoneNumber" showFullPlaceholder={true}></ProfileEditText>
         <br/>
         <a href={"https://github.com/" + this.props.profile.github}>{this.props.profile.github + " on GitHub"}</a>
       </div>

@@ -52,6 +52,7 @@ export default class ProfileEditText extends Component {
   }
 
   render() {
+    const placeHolderText = this.props.showFullPlaceholder ? "Click to add " + this.props.placeholder : this.props.placeholder;
     if(this.state.text == " ") {
       return(
         <div>
@@ -76,15 +77,13 @@ export default class ProfileEditText extends Component {
     } else if(this.state.text == ""){
       return(
         <div>
-          Click to add {this.props.placeholder}
-          <img src="/images/EditPencil.svg" width="20px;" onClick={this.onEditText} />
+          {placeHolderText} <img src="/images/EditPencil.svg" width="20px;" onClick={this.onEditText} />
         </div>
       )
     }else{
       return(
         <div>
-          {this.state.text}
-            <img src="/images/EditPencil.svg" width="20px;" onClick={this.onEditText} />
+          {this.state.text} <img src="/images/EditPencil.svg" width="20px;" onClick={this.onEditText} />
         </div>
       );
     }

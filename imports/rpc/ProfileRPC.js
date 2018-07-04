@@ -39,7 +39,8 @@ Meteor.methods({
       //var fieldName = "profile." + textField;
       var fieldName = "profile." + textField;
       console.log("Using fieldname : " + fieldName);
-      Meteor.users.update({"profile.github": gh}, {$set : {fieldName : newValue}}, function(error, affectedDocs) {
+      if(this.userId == Meteor.users.findOne({"profile.github": gh})._id){
+      Meteor.users.update({"profile.github": gh}, {$set : {[fieldName] : newValue}}, function(error, affectedDocs) {
           if (error) {
               throw new Meteor.Error(500, error.message);
           }else{
@@ -47,6 +48,9 @@ Meteor.methods({
           }
     });
     console.log(JSON.stringify(Meteor.users.findOne({"profile.github": gh})));
+  }else{
+    console.log("Attempt to modify user without login by : " + gh);
+  }
   }
   },
   'profile.getCount': function() {
