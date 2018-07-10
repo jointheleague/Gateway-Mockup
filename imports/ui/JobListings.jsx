@@ -289,7 +289,9 @@ class JobListings extends React.Component {
 											{langLabels}
 
 											<div className="pull-right">
-												<Button bsStyle="success">View Job</Button>
+												<a href={"/job/" + job.name}>
+													<Button bsStyle="success">View Job</Button>
+												</a>
 											</div>
 										</Panel>
 									</div>

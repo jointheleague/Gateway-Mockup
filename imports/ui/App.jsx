@@ -16,6 +16,7 @@ import About from './About.jsx';
 import Login from './Login.jsx'
 import SignUp from './SignUp.jsx'
 import PostaJob from './PostaJob.jsx'
+import JobDetails from './JobDetails.jsx'
 
 class App extends Component {
 	constructor(props) {
@@ -29,6 +30,7 @@ class App extends Component {
 
 				<Route exact path="/" component={ Homepage } />
 				<Route exact path="/profile/:username" render={(props) => <Profile {...props} user={this.props.user} />} />
+				<Route exact path="/job/:jobName" component={ JobDetails } />
 				<Route exact path="/dashboard" component={ Dashboard } />
 				<Route exact path="/jobs" component={ JobListings } />
 				<Route exact path="/login" component={ SignUp } />
