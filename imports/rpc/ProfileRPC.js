@@ -13,16 +13,22 @@ Meteor.methods({
       }
     }
   },
-  'profile.getFromGithub': function(gh) {
+  'profile.isMyProfile': function(username) {
     if(Meteor.isServer) {
-      var found = Meteor.users.findOne({"profile.github": gh});
+      var found = Meteor.users.findOne({_id: this.userId});
+      return found.profile.username === username;
+    }
+  },
+  'profile.getFromUsername': function(username) {
+    if(Meteor.isServer) {
+      var found = Meteor.users.findOne({"profile.username": username});
       return found ? found.profile : null;
     }
   },
-  'profile.getTextField': function(gh, textField) {
+  'profile.getTextField': function(username, textField) {
     //TODO : Currently this implementation will only work with a GitHub username passed in...change this later, for testing only.
     if(Meteor.isServer) {
-      var found = Meteor.users.findOne({"profile.github": gh});
+      var found = Meteor.users.findOne({"profile.username": username});
       if(found){
         //console.log("Returning found : " + JSON.stringify(found.profile.email"], null, 4));
         return found.profile[textField];
@@ -31,26 +37,15 @@ Meteor.methods({
       }
     }
   },
-  'profile.setTextField': function(gh, textField, newValue) {
+  'profile.setTextField': function(textField, newValue) {
     //TODO : Currently this implementation will only work with a GitHub username passed in...change this later, for testing only.
     if(Meteor.isServer) {
-      //var found = Meteor.users.findOne({"profile.github": gh});
-      console.log("Setting profile " + gh + " for field " + textField + " and value " + newValue);
-      //var fieldName = "profile." + textField;
       var fieldName = "profile." + textField;
-      console.log("Using fieldname : " + fieldName);
-      if(this.userId == Meteor.users.findOne({"profile.github": gh})._id){
-      Meteor.users.update({"profile.github": gh}, {$set : {[fieldName] : newValue}}, function(error, affectedDocs) {
+      Meteor.users.update({_id: this.userId}, {$set : {[fieldName] : newValue}}, function(error, affectedDocs) {
           if (error) {
               throw new Meteor.Error(500, error.message);
-          }else{
-            console.log("Effected docs : "  + JSON.stringify(affectedDocs));
           }
     });
-    console.log(JSON.stringify(Meteor.users.findOne({"profile.github": gh})));
-  }else{
-    console.log("Attempt to modify user without login by : " + gh);
-  }
   }
   },
   'profile.getCount': function() {

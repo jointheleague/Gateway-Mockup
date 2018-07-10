@@ -30,7 +30,7 @@ export default class ProfileEditText extends Component {
 
   onSaveText(){
     this.setState({saved : false});
-    Meteor.call("profile.setTextField", this.props.username, this.props.fieldName, this.state.text,  (error) => {
+    Meteor.call("profile.setTextField", this.props.fieldName, this.state.text,  (error) => {
       Meteor.call("profile.getTextField", this.props.username, this.props.fieldName, (error, text) => {
         this.setState({
           text: text,
@@ -80,10 +80,16 @@ export default class ProfileEditText extends Component {
           {placeHolderText} <img src="/images/EditPencil.svg" width="20px;" onClick={this.onEditText} />
         </div>
       )
-    }else{
+    }else if(this.props.isEditable){
       return(
         <div>
           {this.state.text} <img src="/images/EditPencil.svg" width="20px;" onClick={this.onEditText} />
+        </div>
+      );
+    }else{
+      return(
+        <div>
+          {this.state.text}
         </div>
       );
     }

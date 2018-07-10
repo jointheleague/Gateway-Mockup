@@ -28,7 +28,7 @@ class App extends Component {
 				<AppNavbar profile={this.props.profile || { github: "Logged Out" }}></AppNavbar>
 
 				<Route exact path="/" component={ Homepage } />
-				<Route exact path="/profile/:username" component={ Profile } />
+				<Route exact path="/profile/:username" render={(props) => <Profile {...props} user={this.props.user} />} />
 				<Route exact path="/dashboard" component={ Dashboard } />
 				<Route exact path="/jobs" component={ JobListings } />
 				<Route exact path="/login" component={ SignUp } />
@@ -47,7 +47,7 @@ App.propTypes = {
 
 export default withTracker(() => {
 	return {
-		user: Meteor.user() || null,
+		user: (Meteor.user() || null) == null ? null : Meteor.user(),
 		profile: (Meteor.user() || null) == null ? null : Meteor.user().profile
 	}
 })(App);

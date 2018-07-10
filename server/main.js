@@ -28,7 +28,8 @@ Accounts.onCreateUser(function (options, user) {
     //Load empty user template so the profile page may be filled out manually
     console.log("Adding blank profile for : " + user.services.github.email);
     user.profile = Meteor.settings.sampledata.EmptyUser;
-    user.profile.github = user.services.github.username;
+    //user.profile.github = user.services.github.username;
+    user.profile.username = user.services.github.username;
   }
 
   return user;
