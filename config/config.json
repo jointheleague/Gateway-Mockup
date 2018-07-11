@@ -1,42 +1,85 @@
 {
   "sampledata": {
-    "Jobs": [
-      { "name": "Proxmark Android App", "desc": "I need an app with an interactive UI to use a Proxmark 3 from my Android phone. It should be able to work without rooting the phone. Native bindings are fine, as long as there is support for all types of Android processor architectures (ARM, x86, etc). There needs to be support for all functions of the Proxmark except for graphing functions. An internet connection should not be required. You should have experience with Android, Proxmarks, and general UI development.", "langs": ["Android", "C++"], "client": 0, "level": 4, "comments":[] },
-      { "name": "Motorsport Registration App", "desc": "My car racing club needs a new digital registration system. I need to be able to print labels for racers live at the event. It should be a web service with native bindings to print the labels. I would suggest experience with C# and JavaScript.", "langs": ["C#", "JavaScript"], "client": 1, "level": 1, "comments":[] },
-      { "name": "Organoid Detector", "desc": "My biology lab is measuring the size of human neurospheres. I need some software to recognize the diameter of the neurospheres. The app should be written in Java so that it's cross-platform.", "langs": ["Java"], "client": 0, "level": 4, "comments":[] },
-      { "name": "AWS Interface App", "desc": "I need a web service to interface with the AWS API to easily manage load balancing and other services on my AWS servers.", "langs": ["JavaScript"], "client": 3, "level": 9, "comments":[] },
-      { "name": "Neural Network Development", "desc": "I need a simple yet powerful API for creating neural networks in Fortran.", "langs": ["Fortran"], "client": 2, "level": 2, "comments":[] }
-    ],
-    "Languages": [
-      { "name": "Java",       "popular": true  },
-      { "name": "C++",        "popular": true  },
-      { "name": "Android",    "popular": true  },
-      { "name": "JavaScript", "popular": true  },
-      { "name": "C#",         "popular": false },
-      { "name": "Cornflakes", "popular": false },
-      { "name": "Fortran",    "popular": false },
-      { "name": "Rust",       "popular": false }
-    ],
+    "Jobs": [{
+      "name": "Proxmark Android App",
+      "desc": "I need an app with an interactive UI to use a Proxmark 3 from my Android phone. It should be able to work without rooting the phone. Native bindings are fine, as long as there is support for all types of Android processor architectures (ARM, x86, etc). There needs to be support for all functions of the Proxmark except for graphing functions. An internet connection should not be required. You should have experience with Android, Proxmarks, and general UI development.",
+      "langs": ["Android", "C++"],
+      "client": "LucasBaizer",
+      "level": 4,
+      "comments": []
+    }, {
+      "name": "Motorsport Registration App",
+      "desc": "My car racing club needs a new digital registration system. I need to be able to print labels for racers live at the event. It should be a web service with native bindings to print the labels. I would suggest experience with C# and JavaScript.",
+      "langs": ["C#", "JavaScript"],
+      "client": "matthew86707",
+      "level": 1,
+      "comments": []
+    }, {
+      "name": "Organoid Detector",
+      "desc": "My biology lab is measuring the size of human neurospheres. I need some software to recognize the diameter of the neurospheres. The app should be written in Java so that it's cross-platform.",
+      "langs": ["Java"],
+      "client": "LucasBaizer",
+      "level": 4,
+      "comments": []
+    }, {
+      "name": "AWS Interface App",
+      "desc": "I need a web service to interface with the AWS API to easily manage load balancing and other services on my AWS servers.",
+      "langs": ["JavaScript"],
+      "client": "humanprogrammer",
+      "level": 9,
+      "comments": []
+    }, {
+      "name": "Neural Network Development",
+      "desc": "I need a simple yet powerful API for creating neural networks in Fortran.",
+      "langs": ["Fortran"],
+      "client": "philcruz",
+      "level": 2,
+      "comments": []
+    }],
+    "Languages": [{
+      "name": "Java",
+      "popular": true
+    }, {
+      "name": "C++",
+      "popular": true
+    }, {
+      "name": "Android",
+      "popular": true
+    }, {
+      "name": "JavaScript",
+      "popular": true
+    }, {
+      "name": "C#",
+      "popular": false
+    }, {
+      "name": "Cornflakes",
+      "popular": false
+    }, {
+      "name": "Fortran",
+      "popular": false
+    }, {
+      "name": "Rust",
+      "popular": false
+    }],
     "EmptyUser": {
-        "tempID": -1,
-        "username": "",
-        "firstName": "",
-        "lastName": "",
-        "bio": "",
-        "email": "",
-        "phoneNumber": "",
-        "github": "",
-        "currentJobs": 0,
-        "completedJobs": 0,
-        "jobListings": 0,
-        "experience": 0.0,
-        "workQuality": 0.0,
-        "timeliness": 0.0,
-        "testimonials": []
-      },
-    "Users": [
-      {
-      "profile" :{
+      "tempID": -1,
+      "username": "",
+      "firstName": "",
+      "lastName": "",
+      "bio": "",
+      "email": "",
+      "phoneNumber": "",
+      "github": "",
+      "currentJobs": 0,
+      "completedJobs": 0,
+      "jobListings": 0,
+      "experience": 0.0,
+      "workQuality": 0.0,
+      "timeliness": 0.0,
+      "testimonials": []
+    },
+    "Users": [{
+      "profile": {
         "firstName": "Lucas",
         "lastName": "Baizer",
         "bio": "Hi. I'm Lucas, and I was one of the developers on this application.",
@@ -49,24 +92,19 @@
         "experience": 10.0,
         "workQuality": 10.0,
         "timeliness": 10.0,
-        "testimonials": [
-          {
-            "username": "PhilCruz123",
-            "text": "What a great guy!"
-          },
-          {
-            "username": "VicWintress",
-            "text": "Wow! Such a cool dude!"
-          },
-          {
-            "username": "Keith",
-            "text": "Amazing! An excellent man."
-          }
-        ]
+        "testimonials": [{
+          "username": "PhilCruz123",
+          "text": "What a great guy!"
+        }, {
+          "username": "VicWintress",
+          "text": "Wow! Such a cool dude!"
+        }, {
+          "username": "Keith",
+          "text": "Amazing! An excellent man."
+        }]
       }
-    },
-      {
-      "profile" :{
+    }, {
+      "profile": {
         "firstName": "Matthew",
         "lastName": "Smith",
         "bio": "Hi. I'm Matthew, and I was also one of the developers on this application.",
@@ -79,24 +117,19 @@
         "experience": 10.0,
         "workQuality": 10.0,
         "timeliness": 10.0,
-        "testimonials": [
-          {
-            "username": "PhilCruz123",
-            "text": "Exclamations! Absolutely an enjoyable fellow."
-          },
-          {
-            "username": "VicWintress",
-            "text": "Holy mackerel! Truly a colorful human."
-          },
-          {
-            "username": "Keith",
-            "text": "Goodness gracious! Undoubtedly a magnificent person."
-          }
-        ]
+        "testimonials": [{
+          "username": "PhilCruz123",
+          "text": "Exclamations! Absolutely an enjoyable fellow."
+        }, {
+          "username": "VicWintress",
+          "text": "Holy mackerel! Truly a colorful human."
+        }, {
+          "username": "Keith",
+          "text": "Goodness gracious! Undoubtedly a magnificent person."
+        }]
       }
-    },
-      {
-      "profile" :{
+    }, {
+      "profile": {
         "firstName": "Phil",
         "lastName": "Cruz",
         "bio": "Hi. I'm Phil, and I'm a mentor for the developers of this application.",
@@ -109,24 +142,19 @@
         "experience": 10.0,
         "workQuality": 10.0,
         "timeliness": 10.0,
-        "testimonials": [
-          {
-            "username": "PhilCruz123",
-            "text": "Unbelievable! Unanimously agreed to be a favorable organism."
-          },
-          {
-            "username": "VicWintress",
-            "text": "Fantastic! Universally a radiant creature."
-          },
-          {
-            "username": "Keith",
-            "text": "Wondeful! Consistently a jolly lad."
-          }
-        ]
+        "testimonials": [{
+          "username": "PhilCruz123",
+          "text": "Unbelievable! Unanimously agreed to be a favorable organism."
+        }, {
+          "username": "VicWintress",
+          "text": "Fantastic! Universally a radiant creature."
+        }, {
+          "username": "Keith",
+          "text": "Wondeful! Consistently a jolly lad."
+        }]
       }
-    },
-      {
-      "profile" : {
+    }, {
+      "profile": {
         "firstName": "Not",
         "lastName": "A Robot",
         "bio": "Greetings. I am definitely not a robot. I am a human.",
@@ -139,87 +167,66 @@
         "experience": 10.0,
         "workQuality": 10.0,
         "timeliness": 10.0,
-        "testimonials": [
-          {
-            "profileID": 0,
-            "text": "He writes good code, but I had trouble speaking colloquial English with him."
-          },
-          {
-            "profileID": 1,
-            "text": "A great programmer, but whenever I would use a pronoun in conversation, he wouldn't know what I was referring to."
-          },
-          {
-            "profileID": 2,
-            "text": "He's such an excellent programmer! I invited him for a job interview, but he said he couldn't make it because he \"doesn't have legs\", whatever that means."
-          }
-        ]
+        "testimonials": [{
+          "profileID": 0,
+          "text": "He writes good code, but I had trouble speaking colloquial English with him."
+        }, {
+          "profileID": 1,
+          "text": "A great programmer, but whenever I would use a pronoun in conversation, he wouldn't know what I was referring to."
+        }, {
+          "profileID": 2,
+          "text": "He's such an excellent programmer! I invited him for a job interview, but he said he couldn't make it because he \"doesn't have legs\", whatever that means."
+        }]
       }
-    }
-    ],
+    }],
     "Profiles": [],
-    "Messages": [
-      {
-        "messageID": 0,
-        "fromID": 0,
-        "toID": 1,
-        "date": "1970/1/1 1:00 AM PST",
-        "content": [
-          {
-            "type": "text",
-            "content": "Hey, man! What's up?"
-          }
-        ]
-      },
-      {
-        "messageID": 1,
-        "fromID": 1,
-        "toID": 0,
-        "date": "1970/1/1 1:01 AM PST",
-        "content": [
-          {
-            "type": "text",
-            "content": "Great! You gotta see this thing I found on the information superhighway: "
-          },
-          {
-            "type": "url",
-            "content": "Gateway Mockup",
-            "previewType": "default",
-            "href": "https://github.com/jointheleague/Gateway-Mockup"
-          },
-          {
-            "type": "text",
-            "content": ", it looks like a really cool app!"
-          }
-        ]
-      },
-      {
-        "messageID": 2,
-        "fromID": 0,
-        "toID": 1,
-        "date": "1970/1/1 1:02 AM PST",
-        "content": [
-          {
-            "type": "text",
-            "content": "Wow! I'm definitely going to look at that. Also, did you know that you can link to images and have a preview for them like "
-          },
-          {
-            "type": "url",
-            "content": "this",
-            "previewType": "image",
-            "href": "https://yt3.ggpht.com/-JJRo6OQWWUc/AAAAAAAAAAI/AAAAAAAAAAA/sidrvuvzf44/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg"
-          },
-          {
-            "type": "text",
-            "content": ", or, you can just attach an image, like this!"
-          }
-        ],
-        "attachments": [
-          {
-            "type": "image",
-            "content": "path_to_file.jpg"
-          }
-        ]
-      }
-    ]
+    "Messages": [{
+      "messageID": 0,
+      "fromID": 0,
+      "toID": 1,
+      "date": "1970/1/1 1:00 AM PST",
+      "content": [{
+        "type": "text",
+        "content": "Hey, man! What's up?"
+      }]
+    }, {
+      "messageID": 1,
+      "fromID": 1,
+      "toID": 0,
+      "date": "1970/1/1 1:01 AM PST",
+      "content": [{
+        "type": "text",
+        "content": "Great! You gotta see this thing I found on the information superhighway: "
+      }, {
+        "type": "url",
+        "content": "Gateway Mockup",
+        "previewType": "default",
+        "href": "https://github.com/jointheleague/Gateway-Mockup"
+      }, {
+        "type": "text",
+        "content": ", it looks like a really cool app!"
+      }]
+    }, {
+      "messageID": 2,
+      "fromID": 0,
+      "toID": 1,
+      "date": "1970/1/1 1:02 AM PST",
+      "content": [{
+        "type": "text",
+        "content": "Wow! I'm definitely going to look at that. Also, did you know that you can link to images and have a preview for them like "
+      }, {
+        "type": "url",
+        "content": "this",
+        "previewType": "image",
+        "href": "https://yt3.ggpht.com/-JJRo6OQWWUc/AAAAAAAAAAI/AAAAAAAAAAA/sidrvuvzf44/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg"
+      }, {
+        "type": "text",
+        "content": ", or, you can just attach an image, like this!"
+      }],
+      "attachments": [{
+        "type": "image",
+        "content": "path_to_file.jpg"
+      }]
+    }]
   }
 }

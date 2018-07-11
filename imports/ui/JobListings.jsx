@@ -33,8 +33,8 @@ function FieldGroup({ id, label, help, ...props }) {
 }
 
 class JobListings extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			subscription: {
 				jobs: Meteor.subscribe("jobs")
@@ -61,7 +61,8 @@ class JobListings extends React.Component {
 			lowerLevelFilter: 0,
 			upperLevelFilter: 9,
 			search: "",
-			profiles: []
+			profiles: {},
+			loadingProfiles: false
 		};
 		this.langSelected = this.langSelected.bind(this);
 		this.levelRangeChanged = this.levelRangeChanged.bind(this);
@@ -115,34 +116,32 @@ class JobListings extends React.Component {
 	}
 
 	render() {
-		if(this.state.profiles.length == 0) {
-			Meteor.call("profile.getFromID", this.jobs().map(job => job.client), (error, profiles) => {
-				var map = profiles.map(profile => {
-					profile = profile.profile;
-					return {
-						firstName: profile.firstName,
-						lastName: profile.lastName,
-						github: profile.github
-					};
-				});
-				var dict = [];
-				for(var key in map) {
-					dict[key] = map[key];
-				}
-				this.setState({
-					profiles: dict
+		if(this.props.dataIsReady && Object.keys(this.state.profiles).length === 0) {
+			this.jobs().map(job => job.client).forEach(client => {
+				Meteor.call("profile.getFromUsername", client, (error, profile) => {
+					var dict = {...this.state.profiles};
+					dict[client] = profile;
+
+					this.setState({
+						profiles: dict
+					});
+					if(Object.keys(this.state.profiles).length == this.jobs().length) {
+						this.setState({
+							loadingProfiles: false
+						});
+					}
 				});
 			});
 		}
 
-		if (!this.props.dataIsReady || this.state.profiles.length == 0) {
+		if (!this.props.dataIsReady || this.state.loadingProfiles || Object.keys(this.state.profiles).length === 0) {
 			return (
 				<div style={{ padding: 50 }}>
 					<h1>Loading...</h1>
 				</div>
 			);
 		}
-		console.log(this.state.profiles);
+
 		return (
 			<div>
 				<Grid>
@@ -257,9 +256,9 @@ class JobListings extends React.Component {
 									);
 								});
 								var profile = this.state.profiles[job.client];
-								if(typeof profile === 'undefined') {
+								if(!profile) {
 									profile = {
-										github: "",
+										username: "",
 										firstName: "Unknown",
 										lastName: "User"
 									};
@@ -278,7 +277,7 @@ class JobListings extends React.Component {
 											<h3> {job.name} </h3>
 											<div className="currentTextDisabledSmall">
 												{" "}
-												Posted By <a href={"/profile/" + profile.github}> {profile.firstName + " " + profile.lastName} </a>{" "}
+												Posted By <a href={"/profile/" + profile.username}> {profile.firstName + " " + profile.lastName} </a>{" "}
 											</div>
 											<p> {job.desc} </p>
 											<br />
@@ -306,10 +305,10 @@ class JobListings extends React.Component {
 }
 export default withTracker(() => {
 	const jobsHandle = Meteor.subscribe("jobs");
-	const dataIsReady = jobsHandle.ready();
+	const ready = jobsHandle.ready();
 	return {
-		dataIsReady,
-		jobs: dataIsReady ? Jobs.find({}).fetch() : []
+		dataIsReady: ready,
+		jobs: ready ? Jobs.find({}).fetch() : []
 	};
 })(JobListings);
 
