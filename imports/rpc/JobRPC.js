@@ -27,6 +27,10 @@ Meteor.methods({
     if(Meteor.isServer) {
       var applicantUsername = Meteor.users.findOne({_id : this.userId}).profile.username;
       Jobs.update({name : jobName}, {$push:{applicants : {username : applicantUsername}}});
+      //Send notification to job owner
+      var jobClient = Jobs.findOne({name : jobName}).client;
+      Meteor.users.update({'profile.username' : jobClient}, {$push:{'profile.notifications' : {title : (applicantUsername + " has applied to work on " + jobName)}}});
+
     }
   }
 });

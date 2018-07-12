@@ -6,7 +6,34 @@ import AppNavbar from './AppNavbar';
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 export default class Dashboard extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      showDirectMessages : true,
+      showJobComments : true,
+      showJobApplicants : true,
+      showCodeSubmissions : true,
+      showOther : true
+    };
+    this.toggleFilter = this.toggleFilter.bind(this);
+  }
+  toggleFilter(filterName){
+    this.setState({
+      filterName : !this.state.filterName
+    });
+  }
   render() {
+    const Notifications = [];
+    if(this.props.user != undefined){
+    for(var i = 0; i < this.props.user.profile.notifications.length; i++){
+      notification = this.props.user.profile.notifications[i];
+      Notifications.push(
+        <Panel>
+        {notification.title}
+        </Panel>
+      )
+    }
+  }
     return(
       <div>
         <Grid>
@@ -14,31 +41,17 @@ export default class Dashboard extends Component {
             <Col md={3}>
               <h2>Filters</h2>
               <ListGroup>
-                <ListGroupItem>Cras justo odio</ListGroupItem>
-                <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                <ListGroupItem>Morbi leo risus</ListGroupItem>
-                <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-                <ListGroupItem>Vestibulum at eros</ListGroupItem>
+                <ListGroupItem active={this.state.showDirectMessages} disabled={!this.state.showDirectMessages}>Direct Messages</ListGroupItem>
+                <ListGroupItem active={this.state.showJobComments} disabled={!this.state.showJobComments}>Job Comments</ListGroupItem>
+                <ListGroupItem active={this.state.showJobApplicants} disabled={!this.state.showJobApplicants}>Job Applicants</ListGroupItem>
+                <ListGroupItem active={this.state.showCodeSubmissions} disabled={!this.state.showCodeSubmissions}>Code Submissions</ListGroupItem>
+                <ListGroupItem active={this.state.showOther} disabled={!this.state.showOther}>Other</ListGroupItem>
               </ListGroup>
             </Col>
             <Col md={9}>
-              <h2>Activity Feed</h2>
-              
+              <h2>Notifications</h2>
               <Panel>
-                <Panel header="New Commit From Jane Smith">
-                  Git info and line changes here...
-                </Panel>
-                
-                <div>November 21st</div>
-                <br />
-
-                <Panel header="New Commit From Jane Smith">
-                  Git info and line changes here...
-                 </Panel>
-
-                 <Panel header="New Commit From Jane Smith">
-                   Git info and line changes here...
-                </Panel>
+              {Notifications}
               </Panel>
             </Col>
           </Row>
