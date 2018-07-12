@@ -32,7 +32,7 @@ export default class UserTestimonial extends Component {
         <Panel>
           <div className="panel-body" style={{height: 150 + "px"}}>
             {this.state.text}
-            <br />
+            <br/>
             <a href={"/profile/" + this.state.username}> -{this.state.username}</a>
           </div>
         </Panel>
