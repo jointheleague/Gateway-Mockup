@@ -67,36 +67,6 @@
     },
       {
       "profile" :{
-        "firstName": "Matthew",
-        "lastName": "Smith",
-        "bio": "Hi. I'm Matthew, and I was also one of the developers on this application.",
-        "email": "matt86707@gmail.com",
-        "phoneNumber": "(858) 123-4567",
-        "username": "matthew86707",
-        "currentJobs": 0,
-        "completedJobs": 0,
-        "jobListings": 0,
-        "experience": 10.0,
-        "workQuality": 10.0,
-        "timeliness": 10.0,
-        "testimonials": [
-          {
-            "username": "PhilCruz123",
-            "text": "Exclamations! Absolutely an enjoyable fellow."
-          },
-          {
-            "username": "VicWintress",
-            "text": "Holy mackerel! Truly a colorful human."
-          },
-          {
-            "username": "Keith",
-            "text": "Goodness gracious! Undoubtedly a magnificent person."
-          }
-        ]
-      }
-    },
-      {
-      "profile" :{
         "firstName": "Phil",
         "lastName": "Cruz",
         "bio": "Hi. I'm Phil, and I'm a mentor for the developers of this application.",
@@ -156,7 +126,34 @@
       }
     }
     ],
-    "Profiles": [],
+    "Profiles": [{
+        "firstName": "Matthew",
+        "lastName": "Smith",
+        "bio": "Hi. I'm Matthew, and I was also one of the developers on this application.",
+        "email": "matt86707@gmail.com",
+        "phoneNumber": "(858) 123-4567",
+        "username": "matthew86707",
+        "currentJobs": 0,
+        "completedJobs": 0,
+        "jobListings": 0,
+        "experience": 10.0,
+        "workQuality": 10.0,
+        "timeliness": 10.0,
+        "testimonials": [
+          {
+            "username": "PhilCruz123",
+            "text": "Exclamations! Absolutely an enjoyable fellow."
+          },
+          {
+            "username": "VicWintress",
+            "text": "Holy mackerel! Truly a colorful human."
+          },
+          {
+            "username": "Keith",
+            "text": "Goodness gracious! Undoubtedly a magnificent person."
+          }
+        ]
+      }],
     "Messages": [
       {
         "messageID": 0,
