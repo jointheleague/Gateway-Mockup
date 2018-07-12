@@ -6,35 +6,40 @@
       "langs": ["Android", "C++"],
       "client": "LucasBaizer",
       "level": 4,
-      "comments": []
+      "comments": [],
+      "applicants": []
     }, {
       "name": "Motorsport Registration App",
       "desc": "My car racing club needs a new digital registration system. I need to be able to print labels for racers live at the event. It should be a web service with native bindings to print the labels. I would suggest experience with C# and JavaScript.",
       "langs": ["C#", "JavaScript"],
       "client": "matthew86707",
       "level": 1,
-      "comments": []
+      "comments": [],
+      "applicants": []
     }, {
       "name": "Organoid Detector",
       "desc": "My biology lab is measuring the size of human neurospheres. I need some software to recognize the diameter of the neurospheres. The app should be written in Java so that it's cross-platform.",
       "langs": ["Java"],
       "client": "LucasBaizer",
       "level": 4,
-      "comments": []
+      "comments": [],
+      "applicants": []
     }, {
       "name": "AWS Interface App",
       "desc": "I need a web service to interface with the AWS API to easily manage load balancing and other services on my AWS servers.",
       "langs": ["JavaScript"],
       "client": "humanprogrammer",
       "level": 9,
-      "comments": []
+      "comments": [],
+      "applicants": []
     }, {
       "name": "Neural Network Development",
       "desc": "I need a simple yet powerful API for creating neural networks in Fortran.",
       "langs": ["Fortran"],
       "client": "philcruz",
       "level": 2,
-      "comments": []
+      "comments": [],
+      "applicants": []
     }],
     "Languages": [{
       "name": "Java",

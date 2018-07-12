@@ -66,8 +66,15 @@ handleApplyModalClose(){
 	});
 }
 handleApplyModalSubmit(){
-	this.setState({
-		showApplyModal : false
+	Meteor.call("job.apply", this.props.match.params.jobName, (error, job) => {
+		this.setState({
+			showApplyModal : false
+		});
+		Meteor.call("job.getFromName", this.props.match.params.jobName, (error, job) => {
+			this.setState({
+				job : job
+			});
+		});
 	});
 }
 handleApplyModalOpen(){
@@ -82,6 +89,14 @@ handleApplyModalOpen(){
 				<div> Loading... </div>
 			);
 		}else{
+			const alreadyApplied = false;
+			if(!(this.props.user == undefined)){
+			for(var i = 0; i < this.state.job.applicants.length; i++){
+				if(this.props.user.profile.username == this.state.job.applicants[i].username){
+					alreadyApplied = true;
+				}
+			}
+		}
 			const jobComments = [];
 			for(var i = 0; i < this.state.job.comments.length; i++){
 					jobComments.push(<ListGroupItem>
@@ -104,7 +119,11 @@ handleApplyModalOpen(){
 						</Row>
 						<Row>
 							<br/>
-							<Button bsStyle="success" onClick={this.handleApplyModalOpen}>Apply For Job</Button>
+							{alreadyApplied ?
+							(<div style={{fontSize : '20'}}> Applied <img src="/images/checkmark.png" width="20px;"/></div>)
+							:
+							(<Button bsStyle="success" onClick={this.handleApplyModalOpen}>Apply For Job</Button>)
+							}
 						</Row>
 					</div>
 					</Panel>
@@ -133,7 +152,7 @@ handleApplyModalOpen(){
 				<Modal.Body>
 					<h4>Job Application</h4>
 					<p>
-						Add later...
+						In the future, users may be required to fill out a simple "Job Application" on this page. For now, all that is required is to click the Apply button.
 					</p>
 				</Modal.Body>
 				<Modal.Footer>
