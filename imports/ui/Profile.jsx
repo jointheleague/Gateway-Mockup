@@ -71,6 +71,7 @@ export default class Profile extends Component {
             </div>
             <Col md={8}>
               <Panel>
+                <Panel.Body>
                 <Row>
                   <Col md={6}>
                     <Col mdOffset={1} md={10}>
@@ -137,6 +138,7 @@ export default class Profile extends Component {
                 <Row>
                   {Testimonials.length > 0 ? Testimonials : <div className="text-center"> This user has not yet displayed any testimonials </div>}
                 </Row>
+              </Panel.Body>
               </Panel>
             </Col>
           </Row>

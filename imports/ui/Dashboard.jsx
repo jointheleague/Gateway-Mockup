@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
-import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Col, Panel, Grid, Row, ListGroup, ListGroupItem, Modal, Button } from 'react-bootstrap';
 
 export default class Dashboard extends Component {
   constructor(props){
@@ -13,13 +13,32 @@ export default class Dashboard extends Component {
       showJobComments : true,
       showJobApplicants : true,
       showCodeSubmissions : true,
-      showOther : true
+      showOther : true,
+      showJobApplicationModal : false
     };
     this.toggleFilter = this.toggleFilter.bind(this);
+    this.handleViewJobApplication = this.handleViewJobApplication.bind(this);
+    this.handleJobApplicationModalClose = this.handleJobApplicationModalClose.bind(this);
+    this.handleAcceptJobApplication = this.handleAcceptJobApplication.bind(this);
   }
   toggleFilter(filterName){
     this.setState({
       filterName : !this.state.filterName
+    });
+  }
+  handleViewJobApplication(){
+    this.setState({
+      showJobApplicationModal : true
+    });
+  }
+  handleJobApplicationModalClose(){
+    this.setState({
+      showJobApplicationModal : false
+    });
+  }
+  handleAcceptJobApplication(){
+    this.setState({
+      showJobApplicationModal : false
     });
   }
   render() {
@@ -27,11 +46,34 @@ export default class Dashboard extends Component {
     if(this.props.user != undefined){
     for(var i = 0; i < this.props.user.profile.notifications.length; i++){
       notification = this.props.user.profile.notifications[i];
-      Notifications.push(
-        <Panel>
-        {notification.title}
-        </Panel>
-      )
+      switch (notification.type) {
+        case "newApplicant":
+          Notifications.push(
+            <Panel bsStyle="success">
+              <Panel.Heading>
+                <Panel.Title componentClass="h3">New Job Applicant</Panel.Title>
+              </Panel.Heading>
+              <Panel.Body>
+                <a href={"/profile/" + notification.applicant}>{notification.applicant}</a> has applied to work on {notification.jobName} <Button className="pull-right" bsStyle="success" onClick={this.handleViewJobApplication}>View Application</Button>
+              </Panel.Body>
+            </Panel>
+          );
+          break;
+        case "newComment":
+          Notifications.push(
+            <Panel bsStyle="info">
+              <Panel.Heading>
+                <Panel.Title componentClass="h3">New Question About {notification.jobName}</Panel.Title>
+              </Panel.Heading>
+              <Panel.Body>
+                {notification.text} <a href={"/profile/" + notification.username}>-{notification.username}</a> <Button className="pull-right" bsStyle="primary">Respond</Button>
+              </Panel.Body>
+            </Panel>
+          );
+          break;
+        default:
+
+      }
     }
   }
     return(
@@ -50,12 +92,25 @@ export default class Dashboard extends Component {
             </Col>
             <Col md={9}>
               <h2>Notifications</h2>
-              <Panel>
               {Notifications}
-              </Panel>
             </Col>
           </Row>
         </Grid>
+        <Modal show={this.state.showJobApplicationModal}>
+  				<Modal.Header closeButton>
+  					<Modal.Title>View Job Application</Modal.Title>
+  				</Modal.Header>
+  				<Modal.Body>
+  					<h4>Job Application</h4>
+  					<p>
+  						In the future, clients will be able to view the applicant's "Job Application" on this page.
+  					</p>
+  				</Modal.Body>
+  				<Modal.Footer>
+  					<Button onClick={this.handleJobApplicationModalClose}>Close</Button>
+  					<Button bsStyle="success" onClick={this.handleAcceptJobApplication}>Accept For Job</Button>
+  				</Modal.Footer>
+  			</Modal>
       </div>
     );
   }

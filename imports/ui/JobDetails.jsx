@@ -110,6 +110,7 @@ handleApplyModalOpen(){
 			<Grid>
 				<Col md={3}>
 					<Panel>
+						<Panel.Body>
 						<div className="panel-body">
 						<Row>
 							<h2>{this.state.job.name}</h2>
@@ -126,6 +127,7 @@ handleApplyModalOpen(){
 							}
 						</Row>
 					</div>
+					</Panel.Body>
 					</Panel>
 				</Col>
 				<Col md={9}>

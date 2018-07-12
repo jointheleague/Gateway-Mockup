@@ -150,6 +150,7 @@ class JobListings extends React.Component {
 							<h2> Filters </h2>
 						</div>
 						<Panel>
+							<Panel.Body>
 							<fieldset>
 								<legend> Languages </legend>
 								<LanguageSearch
@@ -186,6 +187,7 @@ class JobListings extends React.Component {
 							<InputGroup>
 								<InputGroup.Addon>Tags</InputGroup.Addon>
 							</InputGroup>
+							</Panel.Body>
 						</Panel>
 					</Col>
 					<Col md={8}>
@@ -274,6 +276,7 @@ class JobListings extends React.Component {
 										}
 									>
 										<Panel>
+											<Panel.Body>
 											<h3> {job.name} </h3>
 											<div className="currentTextDisabledSmall">
 												{" "}
@@ -292,6 +295,7 @@ class JobListings extends React.Component {
 													<Button bsStyle="success">View Job</Button>
 												</a>
 											</div>
+											</Panel.Body>
 										</Panel>
 									</div>
 								);

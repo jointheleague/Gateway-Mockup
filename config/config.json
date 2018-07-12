@@ -28,7 +28,7 @@
       "name": "AWS Interface App",
       "desc": "I need a web service to interface with the AWS API to easily manage load balancing and other services on my AWS servers.",
       "langs": ["JavaScript"],
-      "client": "humanprogrammer",
+      "client": "matthew86707",
       "level": 9,
       "comments": [],
       "applicants": []
@@ -36,7 +36,7 @@
       "name": "Neural Network Development",
       "desc": "I need a simple yet powerful API for creating neural networks in Fortran.",
       "langs": ["Fortran"],
-      "client": "philcruz",
+      "client": "matthew86707",
       "level": 2,
       "comments": [],
       "applicants": []
