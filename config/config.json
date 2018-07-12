@@ -108,33 +108,9 @@
           "text": "Amazing! An excellent man."
         }]
       }
-    }, {
-      "profile": {
-        "firstName": "Matthew",
-        "lastName": "Smith",
-        "bio": "Hi. I'm Matthew, and I was also one of the developers on this application.",
-        "email": "matt86707@gmail.com",
-        "phoneNumber": "(858) 123-4567",
-        "username": "matthew86707",
-        "currentJobs": 0,
-        "completedJobs": 0,
-        "jobListings": 0,
-        "experience": 10.0,
-        "workQuality": 10.0,
-        "timeliness": 10.0,
-        "testimonials": [{
-          "username": "PhilCruz123",
-          "text": "Exclamations! Absolutely an enjoyable fellow."
-        }, {
-          "username": "VicWintress",
-          "text": "Holy mackerel! Truly a colorful human."
-        }, {
-          "username": "Keith",
-          "text": "Goodness gracious! Undoubtedly a magnificent person."
-        }]
-      }
-    }, {
-      "profile": {
+    },
+      {
+      "profile" :{
         "firstName": "Phil",
         "lastName": "Cruz",
         "bio": "Hi. I'm Phil, and I'm a mentor for the developers of this application.",
@@ -183,55 +159,99 @@
           "text": "He's such an excellent programmer! I invited him for a job interview, but he said he couldn't make it because he \"doesn't have legs\", whatever that means."
         }]
       }
-    }],
-    "Profiles": [],
-    "Messages": [{
-      "messageID": 0,
-      "fromID": 0,
-      "toID": 1,
-      "date": "1970/1/1 1:00 AM PST",
-      "content": [{
-        "type": "text",
-        "content": "Hey, man! What's up?"
-      }]
-    }, {
-      "messageID": 1,
-      "fromID": 1,
-      "toID": 0,
-      "date": "1970/1/1 1:01 AM PST",
-      "content": [{
-        "type": "text",
-        "content": "Great! You gotta see this thing I found on the information superhighway: "
-      }, {
-        "type": "url",
-        "content": "Gateway Mockup",
-        "previewType": "default",
-        "href": "https://github.com/jointheleague/Gateway-Mockup"
-      }, {
-        "type": "text",
-        "content": ", it looks like a really cool app!"
-      }]
-    }, {
-      "messageID": 2,
-      "fromID": 0,
-      "toID": 1,
-      "date": "1970/1/1 1:02 AM PST",
-      "content": [{
-        "type": "text",
-        "content": "Wow! I'm definitely going to look at that. Also, did you know that you can link to images and have a preview for them like "
-      }, {
-        "type": "url",
-        "content": "this",
-        "previewType": "image",
-        "href": "https://yt3.ggpht.com/-JJRo6OQWWUc/AAAAAAAAAAI/AAAAAAAAAAA/sidrvuvzf44/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg"
-      }, {
-        "type": "text",
-        "content": ", or, you can just attach an image, like this!"
+    }
+    ],
+    "Profiles": [{
+        "firstName": "Matthew",
+        "lastName": "Smith",
+        "bio": "Hi. I'm Matthew, and I was also one of the developers on this application.",
+        "email": "matt86707@gmail.com",
+        "phoneNumber": "(858) 123-4567",
+        "username": "matthew86707",
+        "currentJobs": 0,
+        "completedJobs": 0,
+        "jobListings": 0,
+        "experience": 10.0,
+        "workQuality": 10.0,
+        "timeliness": 10.0,
+        "testimonials": [
+          {
+            "username": "PhilCruz123",
+            "text": "Exclamations! Absolutely an enjoyable fellow."
+          },
+          {
+            "username": "VicWintress",
+            "text": "Holy mackerel! Truly a colorful human."
+          },
+          {
+            "username": "Keith",
+            "text": "Goodness gracious! Undoubtedly a magnificent person."
+          }
+        ]
       }],
-      "attachments": [{
-        "type": "image",
-        "content": "path_to_file.jpg"
-      }]
-    }]
+    "Messages": [
+      {
+        "messageID": 0,
+        "fromID": 0,
+        "toID": 1,
+        "date": "1970/1/1 1:00 AM PST",
+        "content": [
+          {
+            "type": "text",
+            "content": "Hey, man! What's up?"
+          }
+        ]
+      },
+      {
+        "messageID": 1,
+        "fromID": 1,
+        "toID": 0,
+        "date": "1970/1/1 1:01 AM PST",
+        "content": [
+          {
+            "type": "text",
+            "content": "Great! You gotta see this thing I found on the information superhighway: "
+          },
+          {
+            "type": "url",
+            "content": "Gateway Mockup",
+            "previewType": "default",
+            "href": "https://github.com/jointheleague/Gateway-Mockup"
+          },
+          {
+            "type": "text",
+            "content": ", it looks like a really cool app!"
+          }
+        ]
+      },
+      {
+        "messageID": 2,
+        "fromID": 0,
+        "toID": 1,
+        "date": "1970/1/1 1:02 AM PST",
+        "content": [
+          {
+            "type": "text",
+            "content": "Wow! I'm definitely going to look at that. Also, did you know that you can link to images and have a preview for them like "
+          },
+          {
+            "type": "url",
+            "content": "this",
+            "previewType": "image",
+            "href": "https://yt3.ggpht.com/-JJRo6OQWWUc/AAAAAAAAAAI/AAAAAAAAAAA/sidrvuvzf44/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg"
+          },
+          {
+            "type": "text",
+            "content": ", or, you can just attach an image, like this!"
+          }
+        ],
+        "attachments": [
+          {
+            "type": "image",
+            "content": "path_to_file.jpg"
+          }
+        ]
+      }
+    ]
   }
 }

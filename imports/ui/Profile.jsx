@@ -20,15 +20,6 @@ export default class Profile extends Component {
       isMyProfile: false
     };
 
-    if(this.props.profile != null){
-      console.log("Displaying profile for GitHub username : " + this.props.profile.username);
-    }
-    Meteor.call("profile.isMyProfile", this.props.match.params.username, (error, isItMine) => {
-      this.setState({
-        isMyProfile: isItMine
-      });
-    });
-
     Meteor.call("profile.getFromUsername", this.props.match.params.username, (error, profile) => {
       if(profile){
       this.setState({
@@ -43,6 +34,13 @@ export default class Profile extends Component {
   }
 
   render() {
+    if(this.props.user != undefined && !this.state.isMyProfile){
+      if(this.props.user.profile.username == this.props.match.params.username){
+        this.setState({
+          isMyProfile : true
+        });
+      }
+    }
     if(!this.state.profile) {
       if(this.state.profileExists){
       return(

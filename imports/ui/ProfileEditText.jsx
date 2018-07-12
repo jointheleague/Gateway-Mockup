@@ -68,7 +68,6 @@ export default class ProfileEditText extends Component {
             placeholder={this.props.placeholder}
             onChange={this.onChangeText}
           />
-          <br/>
           <div style={{paddingTop : '4px'}}>
             <Button onClick={this.onSaveText} bsStyle="primary" bsSize="xsmall">Save</Button>
           </div>

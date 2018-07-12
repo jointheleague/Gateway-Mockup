@@ -11,13 +11,13 @@ import Messages from '../imports/api/Messages';
 import Profiles from '../imports/api/Profiles';
 
 Accounts.onCreateUser(function (options, user) {
-  user.username = user.services.github.email;
+  user.username = user.services.github.username;
   console.log("Creating user...");
   const profiles = Meteor.settings.sampledata.Profiles;
   var isSampleUser = false;
   for(var key in profiles) {
     const val = profiles[key];
-    if(val.email == user.username) {
+    if(val.username == user.username) {
       user.profile = val;
       isSampleUser = true;
       break;
