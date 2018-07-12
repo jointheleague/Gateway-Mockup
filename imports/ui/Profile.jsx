@@ -5,34 +5,58 @@ import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
 import ProfileNav from './ProfileNav';
 import UserTestimonial from './UserTestimonial';
+import { withTracker } from "meteor/react-meteor-data";
 import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 export default class Profile extends Component {
   constructor(props) {
     super(props);
 
+    console.log(props);
+
     this.state = {
-      profile: null
+      profile: null,
+      profileExists: true,
+      isMyProfile: false
     };
 
-    console.log("Displaying profile for GitHub username : " + this.props.match.params.username);
-
-    Meteor.call("profile.getFromGithub", this.props.match.params.username, (error, profile) => {
-      console.log("Error from server : " + error);
-      console.log("Displaying profile : " + profile);
+    Meteor.call("profile.getFromUsername", this.props.match.params.username, (error, profile) => {
+      if(profile){
       this.setState({
         profile: profile
       });
+    }else{
+      this.setState({
+        profileExists: false
+      });
+    }
     });
   }
 
   render() {
+    if(this.props.user != undefined && !this.state.isMyProfile){
+      if(this.props.user.profile.username == this.props.match.params.username){
+        this.setState({
+          isMyProfile : true
+        });
+      }
+    }
     if(!this.state.profile) {
+      if(this.state.profileExists){
       return(
         <div>
           Loading...
         </div>
       );
+    }else{
+      return(
+        <div>
+          <div className="text-center">
+          <h2> This user does not exist. </h2>
+          </div>
+        </div>
+      );
+    }
     } else {
       const Testimonials = [];
       for(var i = 0; i < this.state.profile.testimonials.length; i++){
@@ -42,7 +66,7 @@ export default class Profile extends Component {
         <div>
         <Grid>
           <Row>
-          <ProfileNav profile={this.state.profile}> </ProfileNav>
+          <ProfileNav profile={this.state.profile} isMyProfile={this.state.isMyProfile}> </ProfileNav>
             <div className="col-md-3 offset-md-4">
             </div>
             <Col md={8}>
@@ -110,9 +134,9 @@ export default class Profile extends Component {
                   <h3> User Testimonials </h3>
                 </div>
                 <br />
-                <div className="row">
-                  {Testimonials}
-                </div>
+                <Row>
+                  {Testimonials.length > 0 ? Testimonials : <div className="text-center"> This user has not yet displayed any testimonials </div>}
+                </Row>
               </Panel>
             </Col>
           </Row>

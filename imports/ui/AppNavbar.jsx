@@ -39,14 +39,14 @@ class AppNavbar extends Component {
           <Navbar.Collapse>
             <Nav>
               <NavItem eventKey={1} href="/dashboard">Dashboard</NavItem>
-              <NavItem eventKey={2} href={"/profile/" + this.props.profile.github}>Profile</NavItem>
+              <NavItem eventKey={2} href={"/profile/" + this.props.profile.username}>Profile</NavItem>
               <NavItem eventKey={3} href="/jobs">Jobs</NavItem>
               <NavItem eventKey={4} href="/about">About</NavItem>
             </Nav>
             <Nav pullRight>
               <NavItem eventKey={5} href="/jobs/edit">Post a Job</NavItem>
-              <NavDropdown eventKey={6} title={this.props.profile.github} id="basic-nav-dropdown">
-                <MenuItem eventKey={6.1} href={"/profile/" + this.props.profile.github}>Profile</MenuItem>
+              <NavDropdown eventKey={6} title={this.props.profile.username} id="basic-nav-dropdown">
+                <MenuItem eventKey={6.1} href={"/profile/" + this.props.profile.username}>Profile</MenuItem>
                 <MenuItem eventKey={6.2}>Switch to Freelancer</MenuItem>
                 <MenuItem divider />
                 <MenuItem eventKey={6.3} onClick={this.onLogout}>Logout</MenuItem>

@@ -1,167 +1,173 @@
 {
   "sampledata": {
-    "Jobs": [
-      { "name": "Proxmark Android App", "desc": "I need an app with an interactive UI to use a Proxmark 3 from my Android phone. It should be able to work without rooting the phone. Native bindings are fine, as long as there is support for all types of Android processor architectures (ARM, x86, etc). There needs to be support for all functions of the Proxmark except for graphing functions. An internet connection should not be required. You should have experience with Android, Proxmarks, and general UI development.", "langs": ["Android", "C++"], "client": 0, "level": 4 },
-      { "name": "Motorsport Registration App", "desc": "My car racing club needs a new digital registration system. I need to be able to print labels for racers live at the event. It should be a web service with native bindings to print the labels. I would suggest experience with C# and JavaScript.", "langs": ["C#", "JavaScript"], "client": 1, "level": 1 },
-      { "name": "Organoid Detector", "desc": "My biology lab is measuring the size of human neurospheres. I need some software to recognize the diameter of the neurospheres. The app should be written in Java so that it's cross-platform.", "langs": ["Java"], "client": 0, "level": 4 },
-      { "name": "AWS Interface App", "desc": "I need a web service to interface with the AWS API to easily manage load balancing and other services on my AWS servers.", "langs": ["JavaScript"], "client": 3, "level": 9 },
-      { "name": "Neural Network Development", "desc": "I need a simple yet powerful API for creating neural networks in Fortran.", "langs": ["Fortran"], "client": 2, "level": 2 }
-    ],
-    "Languages": [
-      { "name": "Java",       "popular": true  },
-      { "name": "C++",        "popular": true  },
-      { "name": "Android",    "popular": true  },
-      { "name": "JavaScript", "popular": true  },
-      { "name": "C#",         "popular": false },
-      { "name": "Cornflakes", "popular": false },
-      { "name": "Fortran",    "popular": false },
-      { "name": "Rust",       "popular": false }
-    ],
+    "Jobs": [{
+      "name": "Proxmark Android App",
+      "desc": "I need an app with an interactive UI to use a Proxmark 3 from my Android phone. It should be able to work without rooting the phone. Native bindings are fine, as long as there is support for all types of Android processor architectures (ARM, x86, etc). There needs to be support for all functions of the Proxmark except for graphing functions. An internet connection should not be required. You should have experience with Android, Proxmarks, and general UI development.",
+      "langs": ["Android", "C++"],
+      "client": "LucasBaizer",
+      "level": 4,
+      "comments": [],
+      "applicants": []
+    }, {
+      "name": "Motorsport Registration App",
+      "desc": "My car racing club needs a new digital registration system. I need to be able to print labels for racers live at the event. It should be a web service with native bindings to print the labels. I would suggest experience with C# and JavaScript.",
+      "langs": ["C#", "JavaScript"],
+      "client": "matthew86707",
+      "level": 1,
+      "comments": [],
+      "applicants": []
+    }, {
+      "name": "Organoid Detector",
+      "desc": "My biology lab is measuring the size of human neurospheres. I need some software to recognize the diameter of the neurospheres. The app should be written in Java so that it's cross-platform.",
+      "langs": ["Java"],
+      "client": "LucasBaizer",
+      "level": 4,
+      "comments": [],
+      "applicants": []
+    }, {
+      "name": "AWS Interface App",
+      "desc": "I need a web service to interface with the AWS API to easily manage load balancing and other services on my AWS servers.",
+      "langs": ["JavaScript"],
+      "client": "humanprogrammer",
+      "level": 9,
+      "comments": [],
+      "applicants": []
+    }, {
+      "name": "Neural Network Development",
+      "desc": "I need a simple yet powerful API for creating neural networks in Fortran.",
+      "langs": ["Fortran"],
+      "client": "philcruz",
+      "level": 2,
+      "comments": [],
+      "applicants": []
+    }],
+    "Languages": [{
+      "name": "Java",
+      "popular": true
+    }, {
+      "name": "C++",
+      "popular": true
+    }, {
+      "name": "Android",
+      "popular": true
+    }, {
+      "name": "JavaScript",
+      "popular": true
+    }, {
+      "name": "C#",
+      "popular": false
+    }, {
+      "name": "Cornflakes",
+      "popular": false
+    }, {
+      "name": "Fortran",
+      "popular": false
+    }, {
+      "name": "Rust",
+      "popular": false
+    }],
     "EmptyUser": {
-        "tempID": -1,
-        "firstName": "",
-        "lastName": "",
-        "bio": "",
-        "email": "",
-        "phoneNumber": "",
-        "github": "",
-        "currentJobs": 0,
-        "completedJobs": 0,
-        "jobListings": 0,
-        "experience": 0.0,
-        "workQuality": 0.0,
-        "timeliness": 0.0,
-        "testimonials": []
-      },
-    "Users": [
-      {
-        "profile" : {
-                "tempID": 0,
-                "firstName": "Lucas",
-                "lastName": "Baizer",
-                "bio": "Hi. I'm Lucas, and I was one of the developers on this application.",
-                "email": "titaniumsapphire32@gmail.com",
-                "phoneNumber": "(858) 242-7208",
-                "github": "LucasBaizer",
-                "currentJobs": 0,
-                "completedJobs": 0,
-                "jobListings": 0,
-                "experience": 10.0,
-                "workQuality": 10.0,
-                "timeliness": 10.0,
-                "testimonials": [
-                  {
-                    "profileID": 1,
-                    "text": "What a great guy!"
-                  },
-                  {
-                    "profileID": 2,
-                    "text": "Wow! Such a cool dude!"
-                  },
-                  {
-                    "profileID": 3,
-                    "text": "Amazing! An excellent man."
-                  }
-                ]
-              }
-      }
-    ],
-    "Profiles": [
-      {
-        "tempID": 0,
+      "tempID": -1,
+      "username": "",
+      "firstName": "",
+      "lastName": "",
+      "bio": "",
+      "email": "",
+      "phoneNumber": "",
+      "github": "",
+      "currentJobs": 0,
+      "completedJobs": 0,
+      "jobListings": 0,
+      "experience": 0.0,
+      "workQuality": 0.0,
+      "timeliness": 0.0,
+      "testimonials": []
+    },
+    "Users": [{
+      "profile": {
         "firstName": "Lucas",
         "lastName": "Baizer",
         "bio": "Hi. I'm Lucas, and I was one of the developers on this application.",
         "email": "titaniumsapphire32@gmail.com",
         "phoneNumber": "(858) 242-7208",
-        "github": "LucasBaizer",
+        "username": "LucasBaizer",
         "currentJobs": 0,
         "completedJobs": 0,
         "jobListings": 0,
         "experience": 10.0,
         "workQuality": 10.0,
         "timeliness": 10.0,
-        "testimonials": [
-          {
-            "profileID": 1,
-            "text": "What a great guy!"
-          },
-          {
-            "profileID": 2,
-            "text": "Wow! Such a cool dude!"
-          },
-          {
-            "profileID": 3,
-            "text": "Amazing! An excellent man."
-          }
-        ]
-      },
+        "testimonials": [{
+          "username": "PhilCruz123",
+          "text": "What a great guy!"
+        }, {
+          "username": "VicWintress",
+          "text": "Wow! Such a cool dude!"
+        }, {
+          "username": "Keith",
+          "text": "Amazing! An excellent man."
+        }]
+      }
+    },
       {
-        "tempID": 1,
-        "firstName": "Matthew",
-        "lastName": "Smith",
-        "bio": "Hi. I'm Matthew, and I was also one of the developers on this application.",
-        "email": "matt86707@gmail.com",
-        "phoneNumber": "(858) 123-4567",
-        "github": "matthew86707",
-        "currentJobs": 0,
-        "completedJobs": 0,
-        "jobListings": 0,
-        "experience": 10.0,
-        "workQuality": 10.0,
-        "timeliness": 10.0,
-        "testimonials": [
-          {
-            "profileID": 0,
-            "text": "Exclamations! Absolutely an enjoyable fellow."
-          },
-          {
-            "profileID": 2,
-            "text": "Holy mackerel! Truly a colorful human."
-          },
-          {
-            "profileID": 3,
-            "text": "Goodness gracious! Undoubtedly a magnificent person."
-          }
-        ]
-      },
-      {
-        "tempID": 2,
+      "profile" :{
         "firstName": "Phil",
         "lastName": "Cruz",
         "bio": "Hi. I'm Phil, and I'm a mentor for the developers of this application.",
         "email": "phil@philcruz.com",
         "phoneNumber": "(858) 891-0111",
-        "github": "philcruz",
+        "username": "philcruz",
         "currentJobs": 0,
         "completedJobs": 0,
         "jobListings": 0,
         "experience": 10.0,
         "workQuality": 10.0,
         "timeliness": 10.0,
-        "testimonials": [
-          {
-            "profileID": 0,
-            "text": "Unbelievable! Unanimously agreed to be a favorable organism."
-          },
-          {
-            "profileID": 1,
-            "text": "Fantastic! Universally a radiant creature."
-          },
-          {
-            "profileID": 3,
-            "text": "Wondeful! Consistently a jolly lad."
-          }
-        ]
-      },
-      {
-        "tempID": 3,
+        "testimonials": [{
+          "username": "PhilCruz123",
+          "text": "Unbelievable! Unanimously agreed to be a favorable organism."
+        }, {
+          "username": "VicWintress",
+          "text": "Fantastic! Universally a radiant creature."
+        }, {
+          "username": "Keith",
+          "text": "Wondeful! Consistently a jolly lad."
+        }]
+      }
+    }, {
+      "profile": {
         "firstName": "Not",
         "lastName": "A Robot",
         "bio": "Greetings. I am definitely not a robot. I am a human.",
         "email": "human@bostondynamics.com",
         "phoneNumber": "(101) 010-1010",
-        "github": "humanprogrammer",
+        "username": "humanprogrammer",
+        "currentJobs": 0,
+        "completedJobs": 0,
+        "jobListings": 0,
+        "experience": 10.0,
+        "workQuality": 10.0,
+        "timeliness": 10.0,
+        "testimonials": [{
+          "profileID": 0,
+          "text": "He writes good code, but I had trouble speaking colloquial English with him."
+        }, {
+          "profileID": 1,
+          "text": "A great programmer, but whenever I would use a pronoun in conversation, he wouldn't know what I was referring to."
+        }, {
+          "profileID": 2,
+          "text": "He's such an excellent programmer! I invited him for a job interview, but he said he couldn't make it because he \"doesn't have legs\", whatever that means."
+        }]
+      }
+    }
+    ],
+    "Profiles": [{
+        "firstName": "Matthew",
+        "lastName": "Smith",
+        "bio": "Hi. I'm Matthew, and I was also one of the developers on this application.",
+        "email": "matt86707@gmail.com",
+        "phoneNumber": "(858) 123-4567",
+        "username": "matthew86707",
         "currentJobs": 0,
         "completedJobs": 0,
         "jobListings": 0,
@@ -170,20 +176,19 @@
         "timeliness": 10.0,
         "testimonials": [
           {
-            "profileID": 0,
-            "text": "He writes good code, but I had trouble speaking colloquial English with him."
+            "username": "PhilCruz123",
+            "text": "Exclamations! Absolutely an enjoyable fellow."
           },
           {
-            "profileID": 1,
-            "text": "A great programmer, but whenever I would use a pronoun in conversation, he wouldn't know what I was referring to."
+            "username": "VicWintress",
+            "text": "Holy mackerel! Truly a colorful human."
           },
           {
-            "profileID": 2,
-            "text": "He's such an excellent programmer! I invited him for a job interview, but he said he couldn't make it because he \"doesn't have legs\", whatever that means."
+            "username": "Keith",
+            "text": "Goodness gracious! Undoubtedly a magnificent person."
           }
         ]
-      }
-    ],
+      }],
     "Messages": [
       {
         "messageID": 0,

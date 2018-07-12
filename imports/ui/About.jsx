@@ -61,7 +61,6 @@ export default class About extends Component {
               </Col>
             </div>
         </Grid>
-        <ProfileEditText fieldName="bio"></ProfileEditText>
       </div>
     );
   }

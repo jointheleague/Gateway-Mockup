@@ -11,5 +11,22 @@ Meteor.methods({
     if(Meteor.isServer) {
       Jobs.insert(e);
     }
+  },
+  'job.getFromName': function(jobName) {
+    if(Meteor.isServer) {
+      return Jobs.findOne({name : jobName});
+    }
+  },
+  'job.postComment': function(jobName, commentText) {
+    if(Meteor.isServer) {
+      var usr = Meteor.users.findOne({_id : this.userId}).profile.username;
+      Jobs.update({name : jobName}, {$push:{comments : {text : commentText, username : usr}}});
+    }
+  },
+  'job.apply': function(jobName) {
+    if(Meteor.isServer) {
+      var applicantUsername = Meteor.users.findOne({_id : this.userId}).profile.username;
+      Jobs.update({name : jobName}, {$push:{applicants : {username : applicantUsername}}});
+    }
   }
 });

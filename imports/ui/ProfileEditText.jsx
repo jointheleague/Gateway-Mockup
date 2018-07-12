@@ -12,27 +12,30 @@ export default class ProfileEditText extends Component {
     super(props);
 
     this.state = {
-      text: "",
+      text: " ",
       saved: true,
       isEditMode: false
     };
 
     this.onSaveText = this.onSaveText.bind(this);
     this.onEditText = this.onEditText.bind(this);
+    this.onChangeText = this.onChangeText.bind(this);
 
-    Meteor.call("profile.getTextField", "matt86707@Gmail.com", this.props.fieldName, (error, text) => {
+    Meteor.call("profile.getTextField", this.props.username, this.props.fieldName, (error, text) => {
       this.setState({
         text: text
       });
     });
-
   }
 
   onSaveText(){
     this.setState({saved : false});
-    Meteor.call("profile.get", this.props.match.params.username, (error, profile) => {
-      this.setState({
-        saved : true
+    Meteor.call("profile.setTextField", this.props.fieldName, this.state.text,  (error) => {
+      Meteor.call("profile.getTextField", this.props.username, this.props.fieldName, (error, text) => {
+        this.setState({
+          text: text,
+          saved: true
+        });
       });
     });
     this.setState({isEditMode : false});
@@ -42,8 +45,15 @@ export default class ProfileEditText extends Component {
     this.setState({isEditMode : true});
   }
 
+  onChangeText(info){
+    this.setState({
+      text : info.target.value
+    });
+  }
+
   render() {
-    if(this.state.text == "") {
+    const placeHolderText = this.props.showFullPlaceholder ? "Click to add " + this.props.placeholder : this.props.placeholder;
+    if(this.state.text == " ") {
       return(
         <div>
           Loading...
@@ -55,19 +65,30 @@ export default class ProfileEditText extends Component {
           <FormControl
             type="text"
             value={this.state.text}
-            placeholder="Enter text"
+            placeholder={this.props.placeholder}
+            onChange={this.onChangeText}
           />
-          <br/>
           <div style={{paddingTop : '4px'}}>
             <Button onClick={this.onSaveText} bsStyle="primary" bsSize="xsmall">Save</Button>
           </div>
         </div>
       );
-    } else {
+    } else if(this.state.text == ""){
+      return(
+        <div>
+          {placeHolderText} <img src="/images/EditPencil.svg" width="20px;" onClick={this.onEditText} />
+        </div>
+      )
+    }else if(this.props.isEditable){
+      return(
+        <div>
+          {this.state.text} <img src="/images/EditPencil.svg" width="20px;" onClick={this.onEditText} />
+        </div>
+      );
+    }else{
       return(
         <div>
           {this.state.text}
-            <img src="images/EditPencil.svg" width="20px;" onClick={this.onEditText} />
         </div>
       );
     }

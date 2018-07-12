@@ -11,13 +11,13 @@ import Messages from '../imports/api/Messages';
 import Profiles from '../imports/api/Profiles';
 
 Accounts.onCreateUser(function (options, user) {
-  user.username = user.services.github.email;
+  user.username = user.services.github.username;
   console.log("Creating user...");
   const profiles = Meteor.settings.sampledata.Profiles;
   var isSampleUser = false;
   for(var key in profiles) {
     const val = profiles[key];
-    if(val.email == user.username) {
+    if(val.username == user.username) {
       user.profile = val;
       isSampleUser = true;
       break;
@@ -28,7 +28,8 @@ Accounts.onCreateUser(function (options, user) {
     //Load empty user template so the profile page may be filled out manually
     console.log("Adding blank profile for : " + user.services.github.email);
     user.profile = Meteor.settings.sampledata.EmptyUser;
-    user.profile.github = user.services.github.username;
+    //user.profile.github = user.services.github.username;
+    user.profile.username = user.services.github.username;
   }
 
   return user;
