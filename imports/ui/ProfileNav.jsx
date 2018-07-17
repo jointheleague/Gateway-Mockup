@@ -25,7 +25,7 @@ export default class ProfileNav extends Component {
         <br/>
         <ProfileEditText isEditable={this.props.isMyProfile} username={this.props.profile.username} placeholder="Phone Number" fieldName="phoneNumber" showFullPlaceholder={true}></ProfileEditText>
         <br/>
-        <a href={"https://github.com/" + this.props.profile.username}>{this.props.profile.username + " on GitHub"}</a>
+        <a href={"https://github.com/" + this.props.profile.username} target="_blank">{this.props.profile.username + " on GitHub"}</a>
       </div>
       <br/>
       <div className="container-fluid">

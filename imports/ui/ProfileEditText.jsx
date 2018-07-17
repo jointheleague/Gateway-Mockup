@@ -20,12 +20,19 @@ export default class ProfileEditText extends Component {
     this.onSaveText = this.onSaveText.bind(this);
     this.onEditText = this.onEditText.bind(this);
     this.onChangeText = this.onChangeText.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
 
     Meteor.call("profile.getTextField", this.props.username, this.props.fieldName, (error, text) => {
       this.setState({
         text: text
       });
     });
+  }
+
+  onKeyPress(e) {
+    if(e.key === "Enter") {
+      this.onSaveText();
+    }
   }
 
   onSaveText(){
@@ -67,6 +74,7 @@ export default class ProfileEditText extends Component {
             value={this.state.text}
             placeholder={this.props.placeholder}
             onChange={this.onChangeText}
+            onKeyPress={this.onKeyPress}
           />
           <div style={{paddingTop : '4px'}}>
             <Button onClick={this.onSaveText} bsStyle="primary" bsSize="xsmall">Save</Button>
