@@ -45,7 +45,7 @@ class AppNavbar extends Component {
             </Nav>
             <Nav pullRight>
               <NavItem eventKey={5} href="/jobs/edit">Post a Job</NavItem>
-              <NavDropdown eventKey={6} title={this.props.profile.username} id="basic-nav-dropdown">
+              <NavDropdown eventKey={6} title={this.props.profile.username || ""} id="basic-nav-dropdown">
                 <MenuItem eventKey={6.1} href={"/profile/" + this.props.profile.username}>Profile</MenuItem>
                 <MenuItem eventKey={6.2}>Switch to Freelancer</MenuItem>
                 <MenuItem divider />
