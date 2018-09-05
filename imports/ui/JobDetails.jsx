@@ -45,13 +45,17 @@ export default class JobDetails extends React.Component {
 		this.handleApplyModalOpen = this.handleApplyModalOpen.bind(this);
 		this.handleCommentFieldChange = this.handleCommentFieldChange.bind(this);
 		this.handlePostComment = this.handlePostComment.bind(this);
-}
+		this.handlePostReply = this.handlePostReply.bind(this);
+	}
 handleCommentFieldChange(e){
 		this.setState({
 			commentField : e.target.value
 		});
 }
 handlePostComment(e){
+	this.setState({
+		commentField: ""
+	});
 	Meteor.call("job.postComment", this.props.match.params.jobName, this.state.commentField, (error) => {
 		Meteor.call("job.getFromName", this.props.match.params.jobName, (error, job) => {
 			this.setState({
@@ -60,6 +64,17 @@ handlePostComment(e){
 		});
 	});
 }
+
+handlePostReply(e) {
+	Meteor.call("job.postReply", this.state.job.name, e.target.id, "Yes.", err => {
+		Meteor.call("job.getFromName", this.state.job.name, (error, job) => {
+			this.setState({
+				job : job
+			});
+		});
+	});
+}
+
 handleApplyModalClose(){
 	this.setState({
 		showApplyModal : false
@@ -99,11 +114,27 @@ handleApplyModalOpen(){
 		}
 			const jobComments = [];
 			for(var i = 0; i < this.state.job.comments.length; i++){
-					jobComments.push(<ListGroupItem>
-					{this.state.job.comments[i].text}
-					<br/>
-					<a href={"/profile/" + this.state.job.comments[i].username}> -{this.state.job.comments[i].username}</a>
-				</ListGroupItem>);
+					jobComments.push(
+						<div key={i}>
+							<ListGroupItem>
+								{this.state.job.comments[i].text}
+								<br/>
+								<a href={"/profile/" + this.state.job.comments[i].username}> -{this.state.job.comments[i].username}</a>
+								{this.state.job.client == Meteor.user().username ?
+									<div>
+								<Button onClick={this.handlePostReply} id={i}>
+									Reply
+								</Button>
+							</div>
+								: (null)}
+							</ListGroupItem>
+							{this.state.job.comments[i].replies.map(x => {
+								return (
+									<ListGroupItem key={x.text} style={{paddingLeft: "30px"}}>{x.text}</ListGroupItem>
+								);
+							})}
+						</div>
+					);
 			}
 		return (
 			<div>
@@ -138,9 +169,9 @@ handleApplyModalOpen(){
 					</Row>
 					<FormGroup controlId="formControlsTextarea">
       			<ControlLabel>Post A Question</ControlLabel>
-      			<FormControl onChange={this.handleCommentFieldChange} componentClass="textarea" placeholder="" />
+      			<FormControl onChange={this.handleCommentFieldChange} componentClass="textarea" value={this.state.commentField} />
 						<br/>
-						<Button onClick={this.handlePostComment} bsStyle="primary">Ask Question</Button>
+						<Button onClick={this.handlePostComment} bsStyle="primary" active={!!this.state.commentField} disabled={!this.state.commentField}>Ask Question</Button>
     			</FormGroup>
 				</Row>
 				</Col>

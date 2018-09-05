@@ -20,7 +20,14 @@ Meteor.methods({
   'job.postComment': function(jobName, commentText) {
     if(Meteor.isServer) {
       var usr = Meteor.users.findOne({_id : this.userId}).profile.username;
-      Jobs.update({name : jobName}, {$push:{comments : {text : commentText, username : usr}}});
+      Jobs.update({name : jobName}, {$push:{comments : {text : commentText, username : usr, replies: []}}});
+    }
+  },
+  'job.postReply': function(jobName, commentIndex, replyText) {
+    if(Meteor.isServer) {
+      var usr = Meteor.users.findOne({_id : this.userId}).profile.username;
+      var idx = "comments." + commentIndex;
+      Jobs.update({name : jobName}, { $set: { [idx]: { $push: { replies: { text: replyText } } } } });
     }
   },
   'job.apply': function(jobName) {

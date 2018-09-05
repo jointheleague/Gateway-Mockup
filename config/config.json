@@ -20,7 +20,7 @@
       "name": "Organoid Detector",
       "desc": "My biology lab is measuring the size of human neurospheres. I need some software to recognize the diameter of the neurospheres. The app should be written in Java so that it's cross-platform.",
       "langs": ["Java"],
-      "client": "vicwintriss",
+      "client": "sdvic",
       "level": 4,
       "comments": [],
       "applicants": []
@@ -140,7 +140,7 @@
         "bio": "Hi. I'm Vic, and I am the owner of the League.",
         "email": "vic.wintriss@jointheleague.org",
         "phoneNumber": "(101) 010-1010",
-        "username": "vicwintriss",
+        "username": "sdvic",
         "currentJobs": 0,
         "completedJobs": 0,
         "jobListings": 0,
