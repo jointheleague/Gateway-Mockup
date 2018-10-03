@@ -27,7 +27,7 @@ Meteor.methods({
     if(Meteor.isServer) {
       var usr = Meteor.users.findOne({_id : this.userId}).profile.username;
       var idx = "comments." + commentIndex;
-      Jobs.update({name : jobName}, { $set: { [idx]: { $push: { replies: { text: replyText } } } } });
+      Jobs.update({name : jobName}, { [idx]: { $push: { replies: { text: replyText } } } });
     }
   },
   'job.apply': function(jobName) {

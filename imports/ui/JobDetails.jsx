@@ -30,7 +30,8 @@ export default class JobDetails extends React.Component {
 		this.state = {
 			job : undefined,
 			showApplyModal : false,
-			commentField : ""
+			commentField : "",
+			replyField: ""
 		};
 
 		Meteor.call("job.getFromName", this.props.match.params.jobName, (error, job) => {
@@ -44,6 +45,7 @@ export default class JobDetails extends React.Component {
 		this.handleApplyModalSubmit = this.handleApplyModalSubmit.bind(this);
 		this.handleApplyModalOpen = this.handleApplyModalOpen.bind(this);
 		this.handleCommentFieldChange = this.handleCommentFieldChange.bind(this);
+		this.handleReplyFieldChange = this.handleReplyFieldChange.bind(this);
 		this.handlePostComment = this.handlePostComment.bind(this);
 		this.handlePostReply = this.handlePostReply.bind(this);
 	}
@@ -52,6 +54,13 @@ handleCommentFieldChange(e){
 			commentField : e.target.value
 		});
 }
+
+handleReplyFieldChange(e) {
+	this.setState({
+		replyField: e.target.value
+	});
+}
+
 handlePostComment(e){
 	this.setState({
 		commentField: ""
@@ -66,7 +75,12 @@ handlePostComment(e){
 }
 
 handlePostReply(e) {
-	Meteor.call("job.postReply", this.state.job.name, e.target.id, "Yes.", err => {
+	console.log(this.state.replyField);
+	Meteor.call("job.postReply", this.state.job.name, e.target.id, this.state.replyField, err => {
+		this.setState({
+			replyField: ""
+		});
+
 		Meteor.call("job.getFromName", this.state.job.name, (error, job) => {
 			this.setState({
 				job : job
@@ -122,6 +136,7 @@ handleApplyModalOpen(){
 								<a href={"/profile/" + this.state.job.comments[i].username}> -{this.state.job.comments[i].username}</a>
 								{this.state.job.client == Meteor.user().username ?
 									<div>
+								<FormControl onChange={this.handleReplyFieldChange} type="text" value={this.state.replyField} />
 								<Button onClick={this.handlePostReply} id={i}>
 									Reply
 								</Button>
