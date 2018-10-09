@@ -31,7 +31,8 @@ export default class JobDetails extends React.Component {
 			job : undefined,
 			showApplyModal : false,
 			commentField : "",
-			replyField: ""
+			replyField: "",
+			replyFieldId: -1
 		};
 
 		Meteor.call("job.getFromName", this.props.match.params.jobName, (error, job) => {
@@ -57,7 +58,8 @@ handleCommentFieldChange(e){
 
 handleReplyFieldChange(e) {
 	this.setState({
-		replyField: e.target.value
+		replyField: e.target.value,
+		replyFieldId: e.target.id
 	});
 }
 
@@ -78,7 +80,8 @@ handlePostReply(e) {
 	console.log(this.state.replyField);
 	Meteor.call("job.postReply", this.state.job.name, e.target.id, this.state.replyField, err => {
 		this.setState({
-			replyField: ""
+			replyField: "",
+			replyFieldId: -1
 		});
 
 		Meteor.call("job.getFromName", this.state.job.name, (error, job) => {
@@ -129,25 +132,30 @@ handleApplyModalOpen(){
 			const jobComments = [];
 			for(var i = 0; i < this.state.job.comments.length; i++){
 					jobComments.push(
-						<div key={i}>
+						<div key={i} style={{paddingBottom: "15px"}}>
 							<ListGroupItem>
 								{this.state.job.comments[i].text}
-								<br/>
 								<a href={"/profile/" + this.state.job.comments[i].username}> -{this.state.job.comments[i].username}</a>
-								{this.state.job.client == Meteor.user().username ?
-									<div>
-								<FormControl onChange={this.handleReplyFieldChange} type="text" value={this.state.replyField} />
-								<Button onClick={this.handlePostReply} id={i}>
-									Reply
-								</Button>
-							</div>
-								: (null)}
 							</ListGroupItem>
 							{this.state.job.comments[i].replies.map(x => {
 								return (
-									<ListGroupItem key={x.text} style={{paddingLeft: "30px"}}>{x.text}</ListGroupItem>
+									<ListGroupItem key={x.text} style={{paddingLeft: "30px"}}>
+										<span style={{fontWeight: "bold"}}>Reply from OP: </span> {x.text}
+									</ListGroupItem>
 								);
 							})}
+							{this.state.job.client == Meteor.user().username ?
+								<ListGroupItem>
+									<InputGroup>
+										<FormControl onChange={this.handleReplyFieldChange} type="text" value={this.state.replyFieldId == i ? this.state.replyField : ""} id={i.toString()} />
+										<span className="input-group-btn" style={{width: 0}}>
+											<Button onClick={this.handlePostReply} id={this.state.job.comments[i].id}>
+												Reply
+											</Button>
+										</span>
+									</InputGroup>
+								</ListGroupItem>
+							: (null)}
 						</div>
 					);
 			}
