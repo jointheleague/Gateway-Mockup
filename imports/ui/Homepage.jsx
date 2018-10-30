@@ -15,7 +15,9 @@ class Homepage extends Component {
 	}
 
 	onLogin(){
-		Meteor.loginWithGithub();
+		Meteor.loginWithGithub({}, function() {
+			window.location.href = "/dashboard";
+		});
 	}
 
 	render() {
