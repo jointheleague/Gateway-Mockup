@@ -17,7 +17,7 @@ export default class ProfileNav extends Component {
       <Col md={3}>
          <div className="panel panel-default">
     <div className="panel-body">
-      <legend><h2><ProfileEditText isEditable={this.props.isMyProfile} username={this.props.profile.username} placeholder="John" fieldName="firstName" showFullPlaceholder={false}></ProfileEditText> <ProfileEditText isEditable={this.props.isMyProfile} username={this.props.profile.username} placeholder="Doe" fieldName="lastName" showFullPlaceholder={false}></ProfileEditText></h2></legend>
+      <legend><h2><ProfileEditText isEditable={this.props.isMyProfile} username={this.props.profile.username} placeholder="First Name" fieldName="firstName" showFullPlaceholder={false}></ProfileEditText> <ProfileEditText isEditable={this.props.isMyProfile} username={this.props.profile.username} placeholder="Last Name" fieldName="lastName" showFullPlaceholder={false}></ProfileEditText></h2></legend>
       <div style={{overflowWrap: "break-word"}}><ProfileEditText isEditable={this.props.isMyProfile} username={this.props.profile.username} placeholder="Bio" fieldName="bio" showFullPlaceholder={true} isParagraph={true}></ProfileEditText></div>
       <h4>Contact</h4>
       <div style={{color: "grey"}}>
@@ -25,7 +25,7 @@ export default class ProfileNav extends Component {
         <br/>
         <ProfileEditText isEditable={this.props.isMyProfile} username={this.props.profile.username} placeholder="Phone Number" fieldName="phoneNumber" showFullPlaceholder={true}></ProfileEditText>
         <br/>
-        <a href={"https://github.com/" + this.props.profile.username}>{this.props.profile.username + " on GitHub"}</a>
+        <a href={"https://github.com/" + this.props.profile.username} target="_blank">{this.props.profile.username + " on GitHub"}</a>
       </div>
       <br/>
       <div className="container-fluid">

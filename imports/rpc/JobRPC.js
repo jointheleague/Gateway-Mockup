@@ -20,10 +20,19 @@ Meteor.methods({
   'job.postComment': function(jobName, commentText) {
     if(Meteor.isServer) {
       var usr = Meteor.users.findOne({_id : this.userId}).profile.username;
-      Jobs.update({name : jobName}, {$push:{comments : {text : commentText, username : usr}}});
-      //Send notification to job owner
-      var jobClient = Jobs.findOne({name : jobName}).client;
-      Meteor.users.update({'profile.username' : jobClient}, {$push:{'profile.notifications' : {type : "newComment", username : usr, 'jobName' : jobName, text : commentText}}});
+      var count = Jobs.find({name: jobName}).fetch()[0].comments.length;
+      Jobs.update({name : jobName}, {$push:{comments : {text : commentText, username : usr, replies: [], id: count}}});
+    }
+  },
+  'job.postReply': function(jobName, commentIndex, replyText) {
+    if(Meteor.isServer) {
+      var usr = Meteor.users.findOne({_id : this.userId}).profile.username;
+      if(usr != Jobs.find({name: jobName}).fetch()[0].client) {
+        return;
+      }
+      // var idx = "comments." + commentIndex + ".replies";
+      // Jobs.update({name : jobName}, { $push: { [idx]: { text: replyText } } });
+      Jobs.update({name: jobName}, {$push: {["comments." + commentIndex + ".replies"]: {text: replyText}}});
     }
   },
   'job.apply': function(jobName) {

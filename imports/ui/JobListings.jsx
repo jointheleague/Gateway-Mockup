@@ -279,8 +279,7 @@ class JobListings extends React.Component {
 											<Panel.Body>
 											<h3> {job.name} </h3>
 											<div className="currentTextDisabledSmall">
-												{" "}
-												Posted By <a href={"/profile/" + profile.username}> {profile.firstName + " " + profile.lastName} </a>{" "}
+												Posted By <a href={"/profile/" + profile.username}>{profile.firstName + " " + profile.lastName}</a>
 											</div>
 											<p> {job.desc} </p>
 											<br />

@@ -38,7 +38,11 @@ export default class PostaJob extends Component {
         desc: this.state.desc,
         level: this.state.level,
         langs: this.state.selectedLangs,
-        client: Meteor.userId()
+        client: Meteor.user().profile.username,
+        applicants: [],
+        comments: []
+      }, (err, result) => {
+        window.location.href = "/job/" + this.state.title;
       });
     // }
   }

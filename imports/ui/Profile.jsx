@@ -12,8 +12,6 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
 
-    console.log(props);
-
     this.state = {
       profile: null,
       profileExists: true,
@@ -34,8 +32,8 @@ export default class Profile extends Component {
   }
 
   render() {
-    if(this.props.user != undefined && !this.state.isMyProfile){
-      if(this.props.user.profile.username == this.props.match.params.username){
+    if(this.props.user && !this.state.isMyProfile){
+      if(this.props.user.profile.username === this.props.match.params.username){
         this.setState({
           isMyProfile : true
         });

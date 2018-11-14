@@ -30,7 +30,9 @@ export default class JobDetails extends React.Component {
 		this.state = {
 			job : undefined,
 			showApplyModal : false,
-			commentField : ""
+			commentField : "",
+			replyField: "",
+			replyFieldId: -1
 		};
 
 		Meteor.call("job.getFromName", this.props.match.params.jobName, (error, job) => {
@@ -44,14 +46,27 @@ export default class JobDetails extends React.Component {
 		this.handleApplyModalSubmit = this.handleApplyModalSubmit.bind(this);
 		this.handleApplyModalOpen = this.handleApplyModalOpen.bind(this);
 		this.handleCommentFieldChange = this.handleCommentFieldChange.bind(this);
+		this.handleReplyFieldChange = this.handleReplyFieldChange.bind(this);
 		this.handlePostComment = this.handlePostComment.bind(this);
-}
+		this.handlePostReply = this.handlePostReply.bind(this);
+	}
 handleCommentFieldChange(e){
 		this.setState({
 			commentField : e.target.value
 		});
 }
+
+handleReplyFieldChange(e) {
+	this.setState({
+		replyField: e.target.value,
+		replyFieldId: e.target.id
+	});
+}
+
 handlePostComment(e){
+	this.setState({
+		commentField: ""
+	});
 	Meteor.call("job.postComment", this.props.match.params.jobName, this.state.commentField, (error) => {
 		Meteor.call("job.getFromName", this.props.match.params.jobName, (error, job) => {
 			this.setState({
@@ -60,6 +75,23 @@ handlePostComment(e){
 		});
 	});
 }
+
+handlePostReply(e) {
+	console.log(this.state.replyField);
+	Meteor.call("job.postReply", this.state.job.name, e.target.id, this.state.replyField, err => {
+		this.setState({
+			replyField: "",
+			replyFieldId: -1
+		});
+
+		Meteor.call("job.getFromName", this.state.job.name, (error, job) => {
+			this.setState({
+				job : job
+			});
+		});
+	});
+}
+
 handleApplyModalClose(){
 	this.setState({
 		showApplyModal : false
@@ -99,11 +131,33 @@ handleApplyModalOpen(){
 		}
 			const jobComments = [];
 			for(var i = 0; i < this.state.job.comments.length; i++){
-					jobComments.push(<ListGroupItem>
-					{this.state.job.comments[i].text}
-					<br/>
-					<a href={"/profile/" + this.state.job.comments[i].username}> -{this.state.job.comments[i].username}</a>
-				</ListGroupItem>);
+					jobComments.push(
+						<div key={i} style={{paddingBottom: "15px"}}>
+							<ListGroupItem>
+								{this.state.job.comments[i].text}
+								<a href={"/profile/" + this.state.job.comments[i].username}> -{this.state.job.comments[i].username}</a>
+							</ListGroupItem>
+							{this.state.job.comments[i].replies.map(x => {
+								return (
+									<ListGroupItem key={x.text} style={{paddingLeft: "30px"}}>
+										<span style={{fontWeight: "bold"}}>Reply from OP: </span> {x.text}
+									</ListGroupItem>
+								);
+							})}
+							{this.state.job.client == Meteor.user().username ?
+								<ListGroupItem>
+									<InputGroup>
+										<FormControl onChange={this.handleReplyFieldChange} type="text" value={this.state.replyFieldId == i ? this.state.replyField : ""} id={i.toString()} />
+										<span className="input-group-btn" style={{width: 0}}>
+											<Button onClick={this.handlePostReply} id={this.state.job.comments[i].id}>
+												Reply
+											</Button>
+										</span>
+									</InputGroup>
+								</ListGroupItem>
+							: (null)}
+						</div>
+					);
 			}
 		return (
 			<div>
@@ -140,9 +194,9 @@ handleApplyModalOpen(){
 					</Row>
 					<FormGroup controlId="formControlsTextarea">
       			<ControlLabel>Post A Question</ControlLabel>
-      			<FormControl onChange={this.handleCommentFieldChange} componentClass="textarea" placeholder="" />
+      			<FormControl onChange={this.handleCommentFieldChange} componentClass="textarea" value={this.state.commentField} />
 						<br/>
-						<Button onClick={this.handlePostComment} bsStyle="primary">Ask Question</Button>
+						<Button onClick={this.handlePostComment} bsStyle="primary" active={!!this.state.commentField} disabled={!this.state.commentField}>Ask Question</Button>
     			</FormGroup>
 				</Row>
 				</Col>
