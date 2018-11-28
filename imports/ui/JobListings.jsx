@@ -316,6 +316,6 @@ export default withTracker(() => {
 })(JobListings);
 
 JobListings.propTypes = {
-	dataIsReady: React.PropTypes.bool,
-	jobs: React.PropTypes.array
+	dataIsReady: PropTypes.bool,
+	jobs: PropTypes.array
 };

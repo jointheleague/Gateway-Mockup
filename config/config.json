@@ -86,22 +86,12 @@
     },
     "Users": [{
       "profile": {
-<<<<<<< HEAD
-        "notifications": [],
-        "firstName": "Lucas",
-        "lastName": "Baizer",
-        "bio": "Hi. I'm Lucas, and I was one of the developers on this application.",
-        "email": "titaniumsapphire32@gmail.com",
-        "phoneNumber": "(858) 242-7208",
-        "username": "LucasBaizer",
-=======
         "firstName": "Keith",
         "lastName": "Groves",
         "bio": "Hi. I'm Keith, and I'm the head teacher at the League.",
         "email": "keith.groves@jointheleague.org",
         "phoneNumber": "(123) 456-7890",
         "username": "Buskcoin",
->>>>>>> d444721d5112c7e1023feb50c8f3a97e13c3c5cf
         "currentJobs": 0,
         "completedJobs": 0,
         "jobListings": 0,
@@ -119,18 +109,6 @@
           "text": "Amazing! An excellent man."
         }]
       }
-<<<<<<< HEAD
-    },
-      {
-      "profile" :{
-        "notifications": [],
-        "firstName": "Phil",
-        "lastName": "Cruz",
-        "bio": "Hi. I'm Phil, and I'm a mentor for the developers of this application.",
-        "email": "phil@philcruz.com",
-        "phoneNumber": "(858) 891-0111",
-        "username": "philcruz",
-=======
     }, {
       "profile": {
         "firstName": "June",
@@ -139,7 +117,6 @@
         "email": "june.clark@jointheleague.org",
         "phoneNumber": "(321) 654-0987",
         "username": "joonspoon",
->>>>>>> d444721d5112c7e1023feb50c8f3a97e13c3c5cf
         "currentJobs": 0,
         "completedJobs": 0,
         "jobListings": 0,
@@ -159,18 +136,10 @@
       }
     }, {
       "profile": {
-<<<<<<< HEAD
-        "notifications": [],
-        "firstName": "Not",
-        "lastName": "A Robot",
-        "bio": "Greetings. I am definitely not a robot. I am a human.",
-        "email": "human@bostondynamics.com",
-=======
         "firstName": "Vic",
         "lastName": "Wintriss",
         "bio": "Hi. I'm Vic, and I am the owner of the League.",
         "email": "vic.wintriss@jointheleague.org",
->>>>>>> d444721d5112c7e1023feb50c8f3a97e13c3c5cf
         "phoneNumber": "(101) 010-1010",
         "username": "sdvic",
         "currentJobs": 0,
@@ -190,18 +159,6 @@
           "text": "Great guy."
         }]
       }
-<<<<<<< HEAD
-    }
-    ],
-    "Profiles": [{
-        "notifications": [],
-        "firstName": "Matthew",
-        "lastName": "Smith",
-        "bio": "Hi. I'm Matthew, and I was also one of the developers on this application.",
-        "email": "matt86707@gmail.com",
-        "phoneNumber": "(858) 123-4567",
-        "username": "matthew86707",
-=======
     }, {
       "profile": {
         "firstName": "Yashwin",
@@ -210,7 +167,6 @@
         "email": "yashwin.madakamutil@jointheleague.org",
         "phoneNumber": "(858) 277-2423",
         "username": "SASHIMIYM",
->>>>>>> d444721d5112c7e1023feb50c8f3a97e13c3c5cf
         "currentJobs": 0,
         "completedJobs": 0,
         "jobListings": 0,
