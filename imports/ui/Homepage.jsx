@@ -1,33 +1,31 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import classnames from 'classnames';
-import AppNavbar from './AppNavbar';
+import {
+	Col, Panel, Jumbotron, Grid, Row, PageHeader, Button
+} from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
 import HomepageCarousel from './HomepageCarousel';
-import { Col, Panel, Jumbotron, Grid, Row, PageHeader, Button } from 'react-bootstrap';
-import { withRouter } from "react-router-dom";
 
 class Homepage extends Component {
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.onLogin = this.onLogin.bind(this);
 	}
 
-	onLogin(){
-		Meteor.loginWithGithub({}, function() {
-			window.location.href = "/dashboard";
+	onLogin() {
+		Meteor.loginWithGithub({}, () => {
+			window.location.href = '/dashboard';
 		});
 	}
 
 	render() {
-		return(
+		return (
 			<div>
 				<div style={{
-						'background': 'linear-gradient(to right, rgba(236, 240, 241,1.0), rgba(236, 240, 241,1.0) 5%, rgba(52, 152, 219,1.0), rgba(52, 152, 219,1.0) 95%)',
-						'width': '100%',
-						'height': '100%'
-					}}>
+				  background: 'linear-gradient(to right, rgba(236, 240, 241,1.0), rgba(236, 240, 241,1.0) 5%, rgba(52, 152, 219,1.0), rgba(52, 152, 219,1.0) 95%)',
+				  width: '100%',
+				  height: '100%'
+				}}>
 					<Grid>
 						<Row>
 							<Col md={12}>
@@ -38,7 +36,10 @@ class Homepage extends Component {
 									<Button onClick={this.onLogin}> Login With GitHub </Button>
 									<br />
 									<Col md={4} mdOffset={5}>
-										<span>Already a member? <a href="/login">Log in.</a></span>
+										<span>
+											Already a member?
+											<a href="/login">Log in.</a>
+										</span>
 									</Col>
 								</Jumbotron>
 							</Col>
@@ -51,7 +52,7 @@ class Homepage extends Component {
 											</a>
 											&nbsp;A food locator app
 										</Col>
-										<br/>
+										<br />
 										<Col md={9}>
 											<a href="/jobs/crimeapp">
 												Crime Data App
@@ -60,7 +61,7 @@ class Homepage extends Component {
 										</Col>
 									</Row>
 									<Panel header="Featured Users">
-										<HomepageCarousel></HomepageCarousel>
+										<HomepageCarousel />
 									</Panel>
 								</Panel>
 							</Col>

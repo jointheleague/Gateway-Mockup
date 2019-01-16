@@ -1,0 +1,14 @@
+{
+    "extends": [
+        "airbnb",
+        "prettier",
+        "prettier/react"
+    ],
+    "rules": {
+        "indent": ["error", "tab"],
+        "no-tabs": 0,
+        "max-len": 0,
+        "comma-dangle": ["error", "never"],
+        "react/destructuring-assignment": 0
+    }
+}

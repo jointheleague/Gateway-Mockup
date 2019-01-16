@@ -51,3 +51,7 @@ html{
 body    {overflow-x:scroll;}
 body    {overflow-y:scroll;}
 body    {overflow:scroll;}
+
+.list-group-item.disabled, .list-group-item.disabled:hover, .list-group-item.disabled:focus {
+  cursor: pointer !important;
+}

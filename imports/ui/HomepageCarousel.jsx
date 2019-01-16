@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Meteor } from 'meteor/meteor';
-import classnames from 'classnames';
-import { Glyphicon, Carousel, Col, Media } from 'react-bootstrap';
+import {
+	Carousel, Media
+} from 'react-bootstrap';
 
 export default class HomepageCarousel extends Component {
 	constructor() {
@@ -21,13 +20,13 @@ export default class HomepageCarousel extends Component {
 	}
 
 	render() {
-		return(
+		return (
 			<Carousel activeIndex={this.state.index} direction={this.state.direction} onSelect={this.handleSelect}>
 				<Carousel.Item>
 					<Media>
 						<Media.Left>
 							<a href="/profile">
-							<img src="images/default.png" alt="..." />
+								<img src="images/default.png" alt="..." />
 							</a>
 						</Media.Left>
 						<Media.Body>
@@ -53,13 +52,13 @@ export default class HomepageCarousel extends Component {
 					<Media>
 						<Media.Left>
 							<a href="/profile">
-							<img src="images/default.png" alt="..." />
+								<img src="images/default.png" alt="..." />
 							</a>
 						</Media.Left>
 						<Media.Body>
 							<Media.Heading><a href="/freelancers/arther">Arther</a></Media.Heading>
-						A Project for Feeding America and the San Diego Food Bank.
-							</Media.Body>
+							A Project for Feeding America and the San Diego Food Bank.
+						</Media.Body>
 					</Media>
 				</Carousel.Item>
 			</Carousel>

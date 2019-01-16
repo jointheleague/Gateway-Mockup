@@ -13,19 +13,19 @@ const history = createBrowserHistory();
 
 Meteor.startup(() => {
 	Accounts.config({
-  forbidClientAccountCreation: false
-});
-	Accounts.onLogin(function(data){
-		var toRedirect = "/profile/" + Meteor.user.username;
+		forbidClientAccountCreation: false
+	});
+	Accounts.onLogin((data) => {
+		const toRedirect = `/profile/${Meteor.user.username}`;
 	});
 
 
 	render(
 		<Router history={history}>
 			<Switch>
-				<Route path="/" component={ App } />
+				<Route path="/" component={App} />
 			</Switch>
 		</Router>,
-		document.getElementById('react-root')
+		document.getElementById('react-root'),
 	);
 });

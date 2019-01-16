@@ -1,23 +1,23 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Meteor } from "meteor/meteor";
-import classnames from "classnames";
-import AppNavbar from "./AppNavbar";
-import { FormControl, ListGroup, ListGroupItem, Panel } from "react-bootstrap";
-import { withTracker } from "meteor/react-meteor-data";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
+import {
+	FormControl, ListGroup, ListGroupItem, Panel
+} from 'react-bootstrap';
+import { withTracker } from 'meteor/react-meteor-data';
 import Languages from '../api/Languages';
 
 class LanguageSearch extends Component {
 	constructor(props) {
 		super(props);
 		console.log(props);
-		var list = this.props.languageList;
+		const list = this.props.languageList;
 		this.state = {
 			subscription: {
-				languages: Meteor.subscribe("languages")
+				languages: Meteor.subscribe('languages')
 			},
 			selectedLangs: list,
-			search: ""
+			search: ''
 		};
 
 		this.searchChanged = this.searchChanged.bind(this);
@@ -45,8 +45,8 @@ class LanguageSearch extends Component {
 	}
 
 	transferItem(ev) {
-		var item = ev.target;
-		var text = item.innerHTML;
+		const item = ev.target;
+		const text = item.innerHTML;
 
 		if (this.state.selectedLangs.indexOf(text) == -1) {
 			var langs = this.state.selectedLangs;
@@ -70,43 +70,42 @@ class LanguageSearch extends Component {
 					</ListGroup>
 				</div>
 			);
-		} else {
-			return (
-				<div className="languageScrollWindow">
-					<ListGroup>
-						{this.state.selectedLangs.map(name => {
-							if (
-								this.state.search == "" ||
-								name.toLowerCase().indexOf(this.state.search) > -1
-							) {
-								return (
-									<ListGroupItem
-										key={name}
-										style={{ cursor: "pointer" }}
-										onClick={this.transferItem}
-									>
-										{name}
-									</ListGroupItem>
-								);
-							}
-						})}
-					</ListGroup>
-				</div>
-			);
 		}
+		return (
+			<div className="languageScrollWindow">
+				<ListGroup>
+					{this.state.selectedLangs.map((name) => {
+						  if (
+						    this.state.search == ''
+								|| name.toLowerCase().indexOf(this.state.search) > -1
+						  ) {
+						    return (
+								<ListGroupItem
+									key={name}
+									style={{ cursor: 'pointer' }}
+									onClick={this.transferItem}
+								>
+									{name}
+								</ListGroupItem>
+						    );
+						  }
+					})}
+				</ListGroup>
+			</div>
+		);
 	}
 
 	listLanguages(list) {
-		return list.map(language => {
+		return list.map((language) => {
 			if (
-				this.state.selectedLangs.indexOf(language.name) == -1 &&
-				(this.state.search == "" ||
-					language.name.toLowerCase().indexOf(this.state.search) > -1)
+				this.state.selectedLangs.indexOf(language.name) == -1
+				&& (this.state.search == ''
+					|| language.name.toLowerCase().indexOf(this.state.search) > -1)
 			) {
 				return (
 					<ListGroupItem
 						key={language.name}
-						style={{ cursor: "pointer" }}
+						style={{ cursor: 'pointer' }}
 						onClick={this.transferItem}
 					>
 						{language.name}
@@ -117,10 +116,10 @@ class LanguageSearch extends Component {
 	}
 
 	getPopular() {
-		var popular = this.listLanguages(this.popularLanguages());
+		const popular = this.listLanguages(this.popularLanguages());
 
-		var len = 0;
-		for (var key in popular) {
+		let len = 0;
+		for (const key in popular) {
 			if (popular[key] !== undefined) {
 				len++;
 			}
@@ -164,16 +163,16 @@ LanguageSearch.propTypes = {
 };
 
 export default withTracker(() => {
-  const langsHandle = Meteor.subscribe('languages');
-//  const nonPoplangsCursor = Languages.find({popular: false});
-//  const popLangsCursor = Languages.find({popular: true});
-//TODO : Figure out why isReady is inverted, might cause UI errors later when data is missing.
-  const isReady = langsHandle.ready();
-//  const languageListExists = isReady;
-//  const popularLanguageListExists = isReady;
-  return {
-    isReady,
-    languages: isReady ? Languages.find({popular: false}).fetch() : [],
-    popularLanguages : isReady ? Languages.find({popular: true}).fetch() : []
-  };
+	const langsHandle = Meteor.subscribe('languages');
+	//  const nonPoplangsCursor = Languages.find({popular: false});
+	//  const popLangsCursor = Languages.find({popular: true});
+	// TODO : Figure out why isReady is inverted, might cause UI errors later when data is missing.
+	const isReady = langsHandle.ready();
+	//  const languageListExists = isReady;
+	//  const popularLanguageListExists = isReady;
+	return {
+		isReady,
+		languages: isReady ? Languages.find({ popular: false }).fetch() : [],
+		popularLanguages: isReady ? Languages.find({ popular: true }).fetch() : []
+	};
 })(LanguageSearch);
