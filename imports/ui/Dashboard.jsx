@@ -49,6 +49,9 @@ export default class Dashboard extends Component {
 		if (this.props.user != undefined) {
 			for (let i = 0; i < this.props.user.profile.notifications.length; i++) {
 				const notification = this.props.user.profile.notifications[i];
+				if(notification.viewed) {
+					continue;
+				}
 				switch (notification.type) {
 				case 'newApplicant' && this.state.showJobApplicants:
 					Notifications.push(
