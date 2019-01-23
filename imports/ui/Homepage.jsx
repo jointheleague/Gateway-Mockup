@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import HomepageCarousel from './HomepageCarousel';
+import '../../node_modules/bootstrap-social/bootstrap-social.css';
 
 class Homepage extends Component {
 	constructor(props) {
@@ -30,18 +31,18 @@ class Homepage extends Component {
 						<Row>
 							<Col md={12}>
 								<Jumbotron>
-									<PageHeader>Project Gateway</PageHeader>
+									<PageHeader>LeaguedIn <img src="images/LeaguedIn.png" width='100px'/></PageHeader>
 									<br />
-									<p>Project Gateway is a website that allows anyone who wants code written to have it, free of charge. New and upcoming developers can see your job posting and begin working on it. After a few developers have submitted the code, you can choose your favorite. The winning developer will gain points. This allows new developers to gain experience in real world applications in low stress environments without bias against them because they don't have a lot of experience.</p>
+									<p>LeaguedIn connects upcoming developers with clients who need jobs completed in the computer science industry. This system allows new developers to gain real world experience, while clients get work completed free of charge, all while knowing they are contributing to the education for the next generation of programmers.	</p>
+
+
+
 									<Button onClick={this.onLogin}> Login With GitHub </Button>
 									<br />
-									<Col md={4} mdOffset={5}>
-										<span>
-											Already a member?
-											<a href="/login">Log in.</a>
-										</span>
-									</Col>
 								</Jumbotron>
+								<a className="btn btn-block btn-social btn-github">
+									<span className="fa fa-github"></span> Sign in with GitHub
+								</a>
 							</Col>
 							<Col md={10}>
 								<Panel header="Example Jobs">

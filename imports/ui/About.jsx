@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Grid, Col } from 'react-bootstrap';
+import '../../node_modules/bootstrap-social/bootstrap-social.css';
 
 export default class About extends Component {
 	constructor() {
@@ -26,7 +27,11 @@ export default class About extends Component {
 	render() {
 		return (
 			<div>
+
 				<Grid>
+				<a className="btn btn-block btn-social btn-github">
+					<span className="fa fa-github"></span> Sign in with GitHub
+				</a>
 					<div style={{ fontSize: '18px' }}>
 						<div style={{ margin: 'auto' }}>
 							<h2> About </h2>
