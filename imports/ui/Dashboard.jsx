@@ -1,49 +1,135 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Meteor } from 'meteor/meteor';
-import classnames from 'classnames';
-import AppNavbar from './AppNavbar';
-import { Col, Panel, Grid, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
+import {
+	Col, Panel, Grid, Row, ListGroup, ListGroupItem, Modal, Button
+} from 'react-bootstrap';
 
 export default class Dashboard extends Component {
-  render() {
-    return(
-      <div>
-        <Grid>
-          <Row>
-            <Col md={3}>
-              <h2>Filters</h2>
-              <ListGroup>
-                <ListGroupItem>Cras justo odio</ListGroupItem>
-                <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                <ListGroupItem>Morbi leo risus</ListGroupItem>
-                <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-                <ListGroupItem>Vestibulum at eros</ListGroupItem>
-              </ListGroup>
-            </Col>
-            <Col md={9}>
-              <h2>Activity Feed</h2>
-              
-              <Panel>
-                <Panel header="New Commit From Jane Smith">
-                  Git info and line changes here...
-                </Panel>
-                
-                <div>November 21st</div>
-                <br />
+	constructor(props) {
+		super(props);
+		this.state = {
+			showDirectMessages: true,
+			showJobComments: true,
+			showJobApplicants: true,
+			showCodeSubmissions: true,
+			showOther: true,
+			showJobApplicationModal: false
+		};
+		this.toggleFilter = this.toggleFilter.bind(this);
+		this.handleViewJobApplication = this.handleViewJobApplication.bind(this);
+		this.handleJobApplicationModalClose = this.handleJobApplicationModalClose.bind(this);
+		this.handleAcceptJobApplication = this.handleAcceptJobApplication.bind(this);
+	}
 
-                <Panel header="New Commit From Jane Smith">
-                  Git info and line changes here...
-                 </Panel>
+	toggleFilter(filterName) {
+		this.setState({
+			[filterName]: !this.state[filterName]
+		});
+	}
 
-                 <Panel header="New Commit From Jane Smith">
-                   Git info and line changes here...
-                </Panel>
-              </Panel>
-            </Col>
-          </Row>
-        </Grid>
-      </div>
-    );
-  }
+	handleViewJobApplication() {
+		this.setState({
+			showJobApplicationModal: true
+		});
+	}
+
+	handleJobApplicationModalClose() {
+		this.setState({
+			showJobApplicationModal: false
+		});
+	}
+
+	handleAcceptJobApplication() {
+		this.setState({
+			showJobApplicationModal: false
+		});
+	}
+
+	render() {
+		const Notifications = [];
+		if (this.props.user != undefined) {
+			for (let i = 0; i < this.props.user.profile.notifications.length; i++) {
+				const notification = this.props.user.profile.notifications[i];
+				if(notification.viewed) {
+					continue;
+				}
+				switch (notification.type) {
+				case 'newApplicant' && this.state.showJobApplicants:
+					Notifications.push(
+						<Panel bsStyle="success" key={i}>
+							<Panel.Heading>
+								<Panel.Title componentClass="h3">New Job Applicant</Panel.Title>
+							</Panel.Heading>
+							<Panel.Body>
+								<a href={`/profile/${notification.applicant}`}>{notification.applicant}</a>
+								{' '}
+								has applied to work on
+								<a href={`/job/${encodeURIComponent(notification.jobName)}`} target="_blank">{notification.jobName}</a>
+								{' '}
+								<Button className="pull-right" bsStyle="success" onClick={this.handleViewJobApplication}>View Application</Button>
+							</Panel.Body>
+						</Panel>,
+					);
+					break;
+				case 'newComment' && this.state.showJobComments:
+					Notifications.push(
+						<Panel bsStyle="info" key={i}>
+							<Panel.Heading>
+								<Panel.Title componentClass="h3">
+									New Question About
+									{notification.jobName}
+								</Panel.Title>
+							</Panel.Heading>
+							<Panel.Body>
+								{notification.text}
+								{' '}
+								<a href={`/profile/${notification.username}`}>
+									-
+									{notification.username}
+								</a>
+								{' '}
+								<Button className="pull-right" bsStyle="primary">Respond</Button>
+							</Panel.Body>
+						</Panel>,
+					);
+					break;
+				default:
+				}
+			}
+		}
+		return (
+			<div>
+				<Grid>
+					<Row>
+						<Col md={3}>
+							<h2>Filters</h2>
+							<ListGroup>
+								<ListGroupItem active={this.state.showDirectMessages} disabled={!this.state.showDirectMessages} onClick={() => { this.toggleFilter('showDirectMessages'); }}>Direct Messages</ListGroupItem>
+								<ListGroupItem active={this.state.showJobComments} disabled={!this.state.showJobComments} onClick={() => { this.toggleFilter('showJobComments'); }}>Job Comments</ListGroupItem>
+								<ListGroupItem active={this.state.showJobApplicants} disabled={!this.state.showJobApplicants} onClick={() => { this.toggleFilter('showJobApplicants'); }}>Job Applicants</ListGroupItem>
+								<ListGroupItem active={this.state.showCodeSubmissions} disabled={!this.state.showCodeSubmissions} onClick={() => { this.toggleFilter('showCodeSubmissions'); }}>Code Submissions</ListGroupItem>
+								<ListGroupItem active={this.state.showOther} disabled={!this.state.showOther} onClick={() => { this.toggleFilter('showOther'); }}>Other</ListGroupItem>
+							</ListGroup>
+						</Col>
+						<Col md={9}>
+							<h2>Notifications</h2>
+							{Notifications}
+						</Col>
+					</Row>
+				</Grid>
+				<Modal show={this.state.showJobApplicationModal}>
+					<Modal.Header closeButton>
+						<Modal.Title>View Job Application</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<h4>Job Application</h4>
+						<p>In the future, clients will be able to view the applicant's "Job Application" on this page.</p>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button onClick={this.handleJobApplicationModalClose}>Close</Button>
+						<Button bsStyle="success" onClick={this.handleAcceptJobApplication}>Accept For Job</Button>
+					</Modal.Footer>
+				</Modal>
+			</div>
+		);
+	}
 }

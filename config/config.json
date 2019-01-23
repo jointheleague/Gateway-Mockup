@@ -81,7 +81,8 @@
       "experience": 0.0,
       "workQuality": 0.0,
       "timeliness": 0.0,
-      "testimonials": []
+      "testimonials": [],
+      "notifications": []
     },
     "Users": [{
       "profile": {
