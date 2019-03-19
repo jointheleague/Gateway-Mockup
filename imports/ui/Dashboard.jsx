@@ -47,52 +47,59 @@ export default class Dashboard extends Component {
 	render() {
 		const Notifications = [];
 		if (this.props.user != undefined) {
+			console.log(this.props.user.profile.notifications);
+			this.props.user.profile.notifications.sort((a, b) => b.date.getTime() - a.date.getTime());
 			for (let i = 0; i < this.props.user.profile.notifications.length; i++) {
 				const notification = this.props.user.profile.notifications[i];
 				if(notification.viewed) {
 					continue;
 				}
-				switch (notification.type) {
-				case 'newApplicant' && this.state.showJobApplicants:
+
+				if(notification.type === 'newApplicant' && this.state.showJobApplicants) {
 					Notifications.push(
 						<Panel bsStyle="success" key={i}>
 							<Panel.Heading>
-								<Panel.Title componentClass="h3">New Job Applicant</Panel.Title>
+								<Panel.Title componentClass="h3">
+									New Applicant For
+									{' '}
+									<b><a href={`/job/${encodeURIComponent(notification.job)}`}>{notification.job}</a></b>
+								</Panel.Title>
 							</Panel.Heading>
 							<Panel.Body>
 								<a href={`/profile/${notification.applicant}`}>{notification.applicant}</a>
 								{' '}
-								has applied to work on
-								<a href={`/job/${encodeURIComponent(notification.jobName)}`} target="_blank">{notification.jobName}</a>
-								{' '}
+								has applied to work on your job.
 								<Button className="pull-right" bsStyle="success" onClick={this.handleViewJobApplication}>View Application</Button>
 							</Panel.Body>
 						</Panel>,
 					);
-					break;
-				case 'newComment' && this.state.showJobComments:
+				} else if(notification.type === 'newComment' && this.state.showJobComments) {
 					Notifications.push(
 						<Panel bsStyle="info" key={i}>
 							<Panel.Heading>
 								<Panel.Title componentClass="h3">
 									New Question About
-									{notification.jobName}
+									{' '}
+									<b><a href={`/job/${encodeURIComponent(notification.job)}`}>{notification.job}</a></b>
 								</Panel.Title>
 							</Panel.Heading>
 							<Panel.Body>
-								{notification.text}
+								{(() => {
+									if(notification.text.length <= 60) {
+										return notification.text;
+									}
+									return notification.text.substring(0, notification.text.indexOf(' ', 60)) + '...';
+								})()}
 								{' '}
 								<a href={`/profile/${notification.username}`}>
 									-
 									{notification.username}
 								</a>
 								{' '}
-								<Button className="pull-right" bsStyle="primary">Respond</Button>
+								<Button className="pull-right" bsStyle="primary" href={`/job/${encodeURIComponent(notification.job)}`}>Respond</Button>
 							</Panel.Body>
 						</Panel>,
 					);
-					break;
-				default:
 				}
 			}
 		}

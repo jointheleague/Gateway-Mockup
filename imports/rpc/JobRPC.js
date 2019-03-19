@@ -39,7 +39,7 @@ Meteor.methods({
 						type: 'newComment',
 						username: usr,
 						text: commentText,
-						jobName,
+						job: jobName,
 						date: new Date(),
 						viewed: false
 					}
@@ -71,7 +71,7 @@ Meteor.methods({
 					'profile.notifications': {
 						type: 'newApplicant',
 						applicant: applicantUsername,
-						jobName,
+						job: jobName,
 						date: new Date(),
 						viewed: false
 					}

@@ -109,7 +109,9 @@ class JobListings extends React.Component {
 	}
 
 	jobs() {
-		return this.props.jobs;
+		let jobs = this.props.jobs;
+		// jobs.sort((a, b));
+		return jobs;
 	}
 
 	render() {
@@ -198,53 +200,53 @@ class JobListings extends React.Component {
 							<br />
 						</div>
 						{this.jobs().map((job) => {
-						  let validLangs = false;
-						  let validLevel = false;
-						  let validSearch = false;
+							let validLangs = false;
+							let validLevel = false;
+							let validSearch = false;
 
-						  if (this.state.selectedLangs.length > 0) {
-						    for (i in job.langs) {
-						      for (j in this.state.selectedLangs) {
-						        if (job.langs[i] === this.state.selectedLangs[j]) {
-						          validLangs = true;
-						        }
-						      }
-						    }
-						  } else {
-						    validLangs = true;
-						  }
+							if (this.state.selectedLangs.length > 0) {
+								for (i in job.langs) {
+									for (j in this.state.selectedLangs) {
+										if (job.langs[i] === this.state.selectedLangs[j]) {
+											validLangs = true;
+										}
+									}
+								}
+							} else {
+								validLangs = true;
+							}
 
-						  if (this.state.search != '') {
-						    if (
-						      job.name
-						        .toLowerCase()
-						        .trim()
-						        .indexOf(this.state.search) !== -1
-						    ) {
-						      validSearch = true;
-						    }
-						  } else {
-						    validSearch = true;
-						  }
+							if (this.state.search != '') {
+								if (
+									job.name
+										.toLowerCase()
+										.trim()
+										.indexOf(this.state.search) !== -1
+								) {
+									validSearch = true;
+								}
+							} else {
+								validSearch = true;
+							}
 
-						  if (
-						    !(
-						      this.state.lowerLevelFilter == 0
+							if (
+								!(
+									this.state.lowerLevelFilter == 0
 									&& this.state.upperLevelFilter == 9
-						    )
-						  ) {
-						    if (
-						      job.level >= this.state.lowerLevelFilter
+								)
+							) {
+								if (
+									job.level >= this.state.lowerLevelFilter
 									&& job.level <= this.state.upperLevelFilter
-						    ) {
-						      validLevel = true;
-						    }
-						  } else {
-						    validLevel = true;
-						  }
+								) {
+									validLevel = true;
+								}
+							} else {
+								validLevel = true;
+							}
 
-						  if (validLangs && validLevel && validSearch) {
-						    const langLabels = job.langs.map(lang => (
+							if (validLangs && validLevel && validSearch) {
+								const langLabels = job.langs.map(lang => (
 									<span
 										style={{ paddingRight: '5px' }}
 										key={job.toString() + lang.toString()}
@@ -252,24 +254,17 @@ class JobListings extends React.Component {
 										<Label bsStyle="default">{lang}</Label>
 									</span>
 								));
-						    let profile = this.state.profiles[job.client];
-						    if (!profile) {
-						      profile = {
-						        username: '',
-						        firstName: 'Unknown',
-						        lastName: 'User'
-						      };
-						    }
-						    return (
+								let profile = this.state.profiles[job.client];
+								if (!profile) {
+									profile = {
+										username: '',
+										firstName: 'Unknown',
+										lastName: 'User'
+									};
+								}
+								return (
 									<div
-										key={
-											job.name
-											+ job.desc
-											+ job.client
-											+ job.level
-											+ Math.random()
-										}
-									>
+										key={JSON.stringify(job)}>
 										<Panel>
 											<Panel.Body>
 												<h3>
@@ -278,7 +273,7 @@ class JobListings extends React.Component {
 													{' '}
 												</h3>
 												<div className="currentTextDisabledSmall">
-												Posted By
+													Posted By
 													{' '}
 													<a href={`/profile/${profile.username}`}>{/* profile.firstName + " " + profile.lastName */profile.username}</a>
 												</div>
@@ -304,8 +299,8 @@ class JobListings extends React.Component {
 											</Panel.Body>
 										</Panel>
 									</div>
-						    );
-						  }
+								);
+							}
 						})}
 					</Col>
 				</Grid>
