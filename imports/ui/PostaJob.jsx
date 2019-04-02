@@ -39,7 +39,8 @@ export default class PostaJob extends Component {
 			langs: this.state.selectedLangs,
 			client: Meteor.user().profile.username,
 			applicants: [],
-			comments: []
+			comments: [],
+			created: new Date()
 		}, (_err, _result) => {
 			window.location.href = `/job/${this.state.title}`;
 		});

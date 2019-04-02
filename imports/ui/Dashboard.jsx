@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
 	Col, Panel, Grid, Row, ListGroup, ListGroupItem, Modal, Button
 } from 'react-bootstrap';
+import { Meteor } from 'meteor/meteor';
 
 export default class Dashboard extends Component {
 	constructor(props) {
@@ -12,7 +13,8 @@ export default class Dashboard extends Component {
 			showJobApplicants: true,
 			showCodeSubmissions: true,
 			showOther: true,
-			showJobApplicationModal: false
+			showJobApplicationModal: false,
+			currentApplication: null
 		};
 		this.toggleFilter = this.toggleFilter.bind(this);
 		this.handleViewJobApplication = this.handleViewJobApplication.bind(this);
@@ -26,15 +28,19 @@ export default class Dashboard extends Component {
 		});
 	}
 
-	handleViewJobApplication() {
-		this.setState({
-			showJobApplicationModal: true
+	handleViewJobApplication(application) {
+		Meteor.call('job.getApplication', application.job, application.applicant, (_error, job) => {
+			this.setState({
+				showJobApplicationModal: true,
+				currentApplication: job.application
+			});
 		});
 	}
 
 	handleJobApplicationModalClose() {
 		this.setState({
-			showJobApplicationModal: false
+			showJobApplicationModal: false,
+			currentApplication: null
 		});
 	}
 
@@ -47,7 +53,6 @@ export default class Dashboard extends Component {
 	render() {
 		const Notifications = [];
 		if (this.props.user != undefined) {
-			console.log(this.props.user.profile.notifications);
 			this.props.user.profile.notifications.sort((a, b) => b.date.getTime() - a.date.getTime());
 			for (let i = 0; i < this.props.user.profile.notifications.length; i++) {
 				const notification = this.props.user.profile.notifications[i];
@@ -69,7 +74,7 @@ export default class Dashboard extends Component {
 								<a href={`/profile/${notification.applicant}`}>{notification.applicant}</a>
 								{' '}
 								has applied to work on your job.
-								<Button className="pull-right" bsStyle="success" onClick={this.handleViewJobApplication}>View Application</Button>
+								<Button className="pull-right" bsStyle="success" onClick={() => this.handleViewJobApplication(notification)}>View Application</Button>
 							</Panel.Body>
 						</Panel>,
 					);
@@ -129,7 +134,7 @@ export default class Dashboard extends Component {
 					</Modal.Header>
 					<Modal.Body>
 						<h4>Job Application</h4>
-						<p>In the future, clients will be able to view the applicant's "Job Application" on this page.</p>
+						<p>{this.state.currentApplication}</p>
 					</Modal.Body>
 					<Modal.Footer>
 						<Button onClick={this.handleJobApplicationModalClose}>Close</Button>

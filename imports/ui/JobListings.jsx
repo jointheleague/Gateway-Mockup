@@ -110,7 +110,7 @@ class JobListings extends React.Component {
 
 	jobs() {
 		let jobs = this.props.jobs;
-		// jobs.sort((a, b));
+		jobs.sort((a, b) => a.created - b.created);
 		return jobs;
 	}
 

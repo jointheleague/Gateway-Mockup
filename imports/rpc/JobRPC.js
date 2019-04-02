@@ -60,10 +60,22 @@ Meteor.methods({
 		}
 		return undefined;
 	},
-	'job.apply': function (jobName) {
+	'job.getApplication': function(jobName, username) {
+		if (Meteor.isServer) {
+			return Jobs.findOne({ name: jobName, 'applicants.username': username } );
+		}
+	},
+	'job.apply': function (jobName, application) {
 		if (Meteor.isServer) {
 			const applicantUsername = Meteor.users.findOne({ _id: this.userId }).profile.username;
-			Jobs.update({ name: jobName }, { $push: { applicants: { username: applicantUsername } } });
+			Jobs.update({ name: jobName }, {
+				$push: {
+					applicants: {
+						username: applicantUsername,
+						application: application
+					}
+				}
+			});
 			// Send notification to job owner
 			const jobClient = Jobs.findOne({ name: jobName }).client;
 			Meteor.users.update({ 'profile.username': jobClient }, {

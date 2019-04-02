@@ -63,6 +63,9 @@ function setupCollection(name, collection, data) {
   if(collection.find({}).count() == 0) {
     for(var key in data) {
       var val = data[key];
+      if(val.hasOwnProperty('created')) {
+        val['created'] = new Date(val['created']);
+      }
       collection.insert(val);
     }
   }

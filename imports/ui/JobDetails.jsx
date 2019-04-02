@@ -23,7 +23,8 @@ export default class JobDetails extends React.Component {
 			showApplyModal: false,
 			commentField: '',
 			replyField: '',
-			replyFieldId: -1
+			replyFieldId: -1,
+			application: ''
 		};
 
 		Meteor.call('job.getFromName', this.props.match.params.jobName, (_error, job) => {
@@ -40,11 +41,18 @@ export default class JobDetails extends React.Component {
 		this.handleReplyFieldChange = this.handleReplyFieldChange.bind(this);
 		this.handlePostComment = this.handlePostComment.bind(this);
 		this.handlePostReply = this.handlePostReply.bind(this);
+		this.handleApplicationChange = this.handleApplicationChange.bind(this);
 	}
 
 	handleCommentFieldChange(e) {
 		this.setState({
 			commentField: e.target.value
+		});
+	}
+
+	handleApplicationChange(e) {
+		this.setState({
+			application: e.target.value
 		});
 	}
 
@@ -91,7 +99,7 @@ export default class JobDetails extends React.Component {
 	}
 
 	handleApplyModalSubmit() {
-		Meteor.call('job.apply', this.props.match.params.jobName, (_error, _job) => {
+		Meteor.call('job.apply', this.props.match.params.jobName, this.state.application, (_error, _job) => {
 			this.setState({
 				showApplyModal: false
 			});
@@ -214,9 +222,7 @@ export default class JobDetails extends React.Component {
 					</Modal.Header>
 					<Modal.Body>
 						<h4>Job Application</h4>
-						<p>
-							In the future, users may be required to fill out a simple "Job Application" on this page. For now, all that is required is to click the Apply button.
-						</p>
+						<FormControl componentClass="textarea" rows="15" placeholder="Please describe why you are qualified for this job." onChange={this.handleApplicationChange} value={this.application} />
 					</Modal.Body>
 					<Modal.Footer>
 						<Button onClick={this.handleApplyModalClose}>Close</Button>
