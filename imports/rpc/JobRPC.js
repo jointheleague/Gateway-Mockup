@@ -62,7 +62,7 @@ Meteor.methods({
 	},
 	'job.getApplication': function(jobName, username) {
 		if (Meteor.isServer) {
-			return Jobs.findOne({ name: jobName, 'applicants.username': username } );
+			return Jobs.findOne({ name: jobName, 'applicants.username': username } ).applicants[0];
 		}
 	},
 	'job.apply': function (jobName, application) {

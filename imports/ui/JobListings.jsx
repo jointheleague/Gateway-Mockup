@@ -110,7 +110,7 @@ class JobListings extends React.Component {
 
 	jobs() {
 		let jobs = this.props.jobs;
-		jobs.sort((a, b) => a.created - b.created);
+		jobs.sort((a, b) => b.created - a.created);
 		return jobs;
 	}
 
@@ -205,8 +205,8 @@ class JobListings extends React.Component {
 							let validSearch = false;
 
 							if (this.state.selectedLangs.length > 0) {
-								for (i in job.langs) {
-									for (j in this.state.selectedLangs) {
+								for (let i in job.langs) {
+									for (let j in this.state.selectedLangs) {
 										if (job.langs[i] === this.state.selectedLangs[j]) {
 											validLangs = true;
 										}
@@ -273,9 +273,12 @@ class JobListings extends React.Component {
 													{' '}
 												</h3>
 												<div className="currentTextDisabledSmall">
-													Posted By
-													{' '}
+													<span>Posted By </span>
 													<a href={`/profile/${profile.username}`}>{/* profile.firstName + " " + profile.lastName */profile.username}</a>
+													<span> on </span>
+													<span>{(job.created.getMonth() + 1) + '/' + job.created.getDate() + '/' + job.created.getFullYear().toString().substring(2)}</span>
+													<span> at </span>
+													<span>{job.created.getHours().toString().padStart(2, '0') + ':' + job.created.getMinutes().toString().padStart(2, '0')}</span>
 												</div>
 												<p>
 													{' '}

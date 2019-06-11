@@ -116,7 +116,7 @@ export default class Dashboard extends Component {
 							<h2>Filters</h2>
 							<ListGroup>
 								<ListGroupItem active={this.state.showDirectMessages} disabled={!this.state.showDirectMessages} onClick={() => { this.toggleFilter('showDirectMessages'); }}>Direct Messages</ListGroupItem>
-								<ListGroupItem active={this.state.showJobComments} disabled={!this.state.showJobComments} onClick={() => { this.toggleFilter('showJobComments'); }}>Job Comments</ListGroupItem>
+								<ListGroupItem active={this.state.showJobComments} disabled={!this.state.showJobComments} onClick={() => { this.toggleFilter('showJobComments'); }}>Job Questions</ListGroupItem>
 								<ListGroupItem active={this.state.showJobApplicants} disabled={!this.state.showJobApplicants} onClick={() => { this.toggleFilter('showJobApplicants'); }}>Job Applicants</ListGroupItem>
 								<ListGroupItem active={this.state.showCodeSubmissions} disabled={!this.state.showCodeSubmissions} onClick={() => { this.toggleFilter('showCodeSubmissions'); }}>Code Submissions</ListGroupItem>
 								<ListGroupItem active={this.state.showOther} disabled={!this.state.showOther} onClick={() => { this.toggleFilter('showOther'); }}>Other</ListGroupItem>
